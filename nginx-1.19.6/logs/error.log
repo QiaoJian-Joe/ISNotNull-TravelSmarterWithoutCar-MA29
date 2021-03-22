@@ -1,0 +1,33 @@
+2021/01/12 19:21:12 [error] 5308#3672: *1 CreateFile() "C:\Users\Administrator\Desktop\nginx-1.19.6/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/"
+2021/01/12 19:24:12 [error] 14240#10496: *1 CreateFile() "C:\Users\Administrator\Desktop\nginx-1.19.6/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: resouce, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1:9001", referrer: "http://127.0.0.1:9001/"
+2021/01/12 19:29:32 [error] 14240#10496: *3 CreateFile() "C:\Users\Administrator\Desktop\nginx-1.19.6/html/dist" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: resouce, request: "GET /dist HTTP/1.1", host: "127.0.0.1:9001"
+2021/01/12 19:29:35 [error] 14240#10496: *3 "C:\Users\Administrator\Desktop\nginx-1.19.6/html/dist/index.html" is not found (3: The system cannot find the path specified), client: 127.0.0.1, server: resouce, request: "GET /dist/ HTTP/1.1", host: "127.0.0.1:9001"
+2021/01/12 19:29:40 [error] 14240#10496: *3 CreateFile() "C:\Users\Administrator\Desktop\nginx-1.19.6/html/dist/index" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: resouce, request: "GET /dist/index HTTP/1.1", host: "127.0.0.1:9001"
+2021/01/12 19:29:47 [error] 14240#10496: *3 CreateFile() "C:\Users\Administrator\Desktop\nginx-1.19.6/html/dist/index.html" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: resouce, request: "GET /dist/index.html HTTP/1.1", host: "127.0.0.1:9001"
+2021/01/12 19:30:15 [error] 14240#10496: *3 CreateFile() "C:\Users\Administrator\Desktop\nginx-1.19.6/html/dist/index.html" failed (3: The system cannot find the path specified), client: 127.0.0.1, server: resouce, request: "GET /dist/index.html HTTP/1.1", host: "127.0.0.1:9001"
+2021/03/22 15:58:10 [emerg] 16436#18256: unexpected "A" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:56
+2021/03/22 15:59:28 [emerg] 4300#11060: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:104
+2021/03/22 16:00:57 [emerg] 17604#21280: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:104
+2021/03/22 16:03:09 [emerg] 19716#10420: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:110
+2021/03/22 16:12:45 [emerg] 13228#19264: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:110
+2021/03/22 16:13:41 [emerg] 19524#20144: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:110
+2021/03/22 16:16:45 [emerg] 21292#2356: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:110
+2021/03/22 16:17:46 [emerg] 17552#16124: unknown directive "cors" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:26
+2021/03/22 16:18:31 [emerg] 20084#11880: unknown directive "cors" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:26
+2021/03/22 16:23:10 [emerg] 17656#9900: unknown directive "cors" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:26
+2021/03/22 16:34:00 [emerg] 4188#20484: unknown directive "cors" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:26
+2021/03/22 16:34:09 [emerg] 15120#20524: unknown directive "cors" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:26
+2021/03/22 16:38:36 [emerg] 1060#15792: unknown directive "cors" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:26
+2021/03/22 16:51:51 [emerg] 2836#19816: unknown directive "cors" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:26
+2021/03/22 16:55:50 [emerg] 13720#8228: unknown directive "cors" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:26
+2021/03/22 16:56:12 [emerg] 9428#7364: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:70
+2021/03/22 16:56:32 [emerg] 7212#7664: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:70
+2021/03/22 16:56:41 [emerg] 16420#16504: unexpected "}" in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:71
+2021/03/22 16:57:33 [notice] 16476#18140: signal process started
+2021/03/22 16:58:12 [notice] 20524#1976: signal process started
+2021/03/22 16:59:08 [emerg] 18060#5208: invalid URL prefix in C:\Users\Administrator\Desktop\nginx-1.19.6/conf/nginx.conf:69
+2021/03/22 16:59:27 [notice] 5636#12980: signal process started
+2021/03/22 17:00:14 [notice] 1672#16676: signal process started
+2021/03/22 17:00:26 [notice] 4564#10696: signal process started
+2021/03/22 17:00:26 [error] 4564#10696: CreateFile() "C:\Users\Administrator\Desktop\nginx-1.19.6/logs/nginx.pid" failed (2: The system cannot find the file specified)
+2021/03/22 17:01:58 [notice] 20672#16556: signal process started
