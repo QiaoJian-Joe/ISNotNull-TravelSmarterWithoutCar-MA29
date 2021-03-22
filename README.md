@@ -1,4 +1,3 @@
-# ISNotNull-TravelSmarterWithoutCar-MA29
 ## Tech Stack
 As a team made up of DS, BIS students and the only student with an IT background,  it is challenged for the entire team that achieving a high usability, complete full stack project.
 
