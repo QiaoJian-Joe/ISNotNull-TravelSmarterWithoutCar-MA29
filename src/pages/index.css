@@ -39,3 +39,21 @@
 .ant-carousel .slick-slide h3 {
   color: #fff;
 }
+
+.mapContainer {
+  
+  width: '100%';
+  height: '400px'
+}
+
+.mapContainer .mapLocateButton{
+ 
+position: absolute;
+
+  left: 50px;
+  bottom: 15%;
+  /* width: 100%;
+  height: 50px; */
+  z-index: 9999; 
+}
+

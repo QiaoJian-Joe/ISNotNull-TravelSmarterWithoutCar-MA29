@@ -4,7 +4,8 @@ import { Button, Form, Select, Row, Col, Spin, Card, Carousel, Radio } from 'ant
 import { connect } from 'dva';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { Map, Marker } from 'react-amap';
-
+import { AimOutlined } from '@ant-design/icons'
+import MyComponent from '@/pages/googleMap'
 const FormItem = Form.Item
 
 @connect(({ map }) => ({
@@ -19,6 +20,7 @@ export default class Travel extends React.Component {
     }
   }
 
+
   componentDidMount = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
@@ -28,7 +30,6 @@ export default class Travel extends React.Component {
   }
 
   getAddress = (value) => {
-    console.log(value.coords.latitude, value.coords.longitude, value.coords.accuracy)
     if (value) {
       this.setState({
         defaultPosition: {
@@ -153,7 +154,7 @@ export default class Travel extends React.Component {
                 </FormItem>
               </Col>
             </Row>
-            <Row type={'flex'} justify={'end'} gutter={[10,10]}>
+            <Row type={'flex'} justify={'end'} gutter={[10, 10]}>
               <Col>
                 <Radio.Group name="radiogroup" defaultValue={1} >
                   <Radio value={1}>Shortest Distance</Radio>
@@ -172,6 +173,27 @@ export default class Travel extends React.Component {
 
             {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
           </Form>
+
+        </Card>
+        <Card style={{ padding: 20 }}>
+          <div className={styles.mapContainer}>
+            <MyComponent startPoint={this.state.defaultPosition || null} ></MyComponent>
+            <div className={styles.mapLocateButton}>
+              <Button
+                type="default"
+                size='large'
+                icon={'environment'}
+                onClick={() => {
+                  if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
+                  } else {
+                    alert("Could not get the location info.");
+                  }
+                }}></Button>
+
+            </div>
+
+          </div>
 
         </Card>
 
