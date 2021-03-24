@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.css';
-import { Button, Tabs } from 'antd'
+import { Button, Tabs, Row, Col } from 'antd'
 import Travel from '@/pages/map'
 
 import logo from '@/assets/yay.jpg'
@@ -16,7 +16,7 @@ class BasicLayout extends React.PureComponent {
   changeNavigator = (num) => {
     this.setState({
       pageNum: num
-    },()=>{
+    }, () => {
       console.log(num)
     })
   }
@@ -26,13 +26,20 @@ class BasicLayout extends React.PureComponent {
     return (
       <div className={styles.normal}>
         <div className={styles.header}>
-
-          <img src={logo} className={styles.logo_header} />
-
-
-          <h1 className={styles.title}>
-            Travel Smarter in Melbourne!
+          <Row type="flex" justify="start" align="middle">
+          <Col xs={8} sm={8} md={8} lg={8} xl={8}>
+              <img src={logo} className={styles.logo_header} />
+            </Col>
+            <Col xs={16} sm={8} md={8} lg={8} xl={8}>
+              <h1 className={styles.title}>
+                Travel Smarter in Melbourne!
           </h1>
+            </Col>
+          </Row>
+
+
+
+
 
 
 
@@ -48,8 +55,8 @@ class BasicLayout extends React.PureComponent {
         </Tabs>
 
 
-        {this.state.pageNum==='1'?<Travel></Travel>:null}
-        {this.state.pageNum==='2'?<Travel></Travel>:null}
+        {this.state.pageNum === '1' ? <Travel></Travel> : null}
+        {this.state.pageNum === '2' ? <Travel></Travel> : null}
         <div id={'footer'} className={styles.footer_Tabs_background}></div>
       </div>
     );
