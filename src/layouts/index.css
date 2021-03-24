@@ -11,9 +11,10 @@
   width: 100%;
   height: 50px;
   z-index: 9999; */
+  max-height: 200px;
   font-weight: normal;
   letter-spacing: -1px;
-  background: darkslateblue;
+  background: #364d79;
   padding: .6em 0;
   
   margin: 0;
@@ -27,7 +28,7 @@
 .footer_Tabs_background{
   margin-top: 0px;
   height: 100px;
-  background-color: darkslateblue;
+  background-color: #364d79;
   z-index: 9999;
   clear: both;
 }
@@ -35,9 +36,10 @@
 
 
 .logo_header{
+  max-height: 150px;
   width:auto;
         height:auto;
-        max-width:10%;
+        max-width:80%;
 }
 
 .navigator{

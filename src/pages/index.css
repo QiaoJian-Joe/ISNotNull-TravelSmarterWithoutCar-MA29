@@ -27,7 +27,7 @@
   background: #ececec;
 }
 
-.ant_carousel .slick-slide {
+.ant-carousel .slick-slide {
   text-align: center;
   height: 160px;
   line-height: 160px;
@@ -36,6 +36,6 @@
 }
 
 
-.ant_carousel .slick-slide h3 {
+.ant-carousel .slick-slide h3 {
   color: #fff;
 }

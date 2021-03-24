@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.css';
-import { Button, Form, Select, Row, Col, Spin, Card, Carousel } from 'antd';
+import { Button, Form, Select, Row, Col, Spin, Card, Carousel, Radio } from 'antd';
 import { connect } from 'dva';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { Map, Marker } from 'react-amap';
@@ -65,18 +65,41 @@ export default class Travel extends React.Component {
     })
   }
 
+
+  carouselChange(from, to) {
+    console.log(from, to);
+  }
+
   render() {
     const { form: { getFieldDecorator } } = this.props
     const staticOptions = [
       { title: 'Library', value: 'Library' },
       { title: 'Museum', value: 'Museum' }
     ]
+
+    const contentStyle = {
+      height: '160px',
+      color: '#fff',
+      lineHeight: '160px',
+      textAlign: 'center',
+      background: '#364d79',
+    };
+
     return (
       <div id="map" className={styles.background}>
 
-        <Carousel>
+        <Carousel beforeChange={this.carouselChange}>
+          <div >
+            <h3 style={contentStyle}> 1</h3>
+          </div>
           <div>
-            <h3>1</h3>
+            <h3 style={contentStyle}>2</h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}> 3</h3>
+          </div>
+          <div>
+            <h3 style={contentStyle}>4</h3>
           </div>
         </Carousel>
 
@@ -84,7 +107,7 @@ export default class Travel extends React.Component {
         <Card style={{ padding: 20 }}>
           <Form>
             <Row type={'flex'} justify={'center'}>
-              <Col span={24}>
+              <Col xs={24} md={24} xl={24} xxl={8}>
                 <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'First priority place'}>
                   {
                     getFieldDecorator('firstType')(
@@ -99,8 +122,8 @@ export default class Travel extends React.Component {
                   }
                 </FormItem>
               </Col>
-              <Col span={24} >
-                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Second priority placee'}>
+              <Col xs={24} md={24} xl={24} xxl={8}>
+                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Second priority place'}>
                   {
                     getFieldDecorator('Second priority place')(
                       <Select>
@@ -114,7 +137,7 @@ export default class Travel extends React.Component {
                   }
                 </FormItem>
               </Col>
-              <Col span={24} >
+              <Col xs={24} md={24} xl={24} xxl={8}>
                 <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Third priority place'}>
                   {
                     getFieldDecorator('Third priority place')(
@@ -130,7 +153,13 @@ export default class Travel extends React.Component {
                 </FormItem>
               </Col>
             </Row>
-            <Row type={'flex'} justify={'end'}>
+            <Row type={'flex'} justify={'end'} gutter={[10,10]}>
+              <Col>
+                <Radio.Group name="radiogroup" defaultValue={1} >
+                  <Radio value={1}>Shortest Distance</Radio>
+                  <Radio value={2} disabled>Rating First</Radio>
+                </Radio.Group>
+              </Col>
               <Col  >
 
                 <Button type={'primary'} onClick={this.sendRequest}>Plan Now!</Button>
@@ -153,3 +182,5 @@ export default class Travel extends React.Component {
     );
   }
 }
+
+
