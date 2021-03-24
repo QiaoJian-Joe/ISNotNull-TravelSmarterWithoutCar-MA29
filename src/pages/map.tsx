@@ -79,9 +79,9 @@ export default class Travel extends React.Component {
     ]
 
     const contentStyle = {
-      height: '160px',
+      height: '400px',
       color: '#fff',
-      lineHeight: '160px',
+      lineHeight: '400px',
       textAlign: 'center',
       background: '#364d79',
     };
