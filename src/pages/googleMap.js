@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-
+import styles from './index.css';
 
 
 const containerStyle = {
@@ -17,6 +17,7 @@ function MyComponent(props) {
         googleMapsApiKey: "AIzaSyAQ5KNjrj74hz6dkrVn24Ho_tjcrQCUECU"
     })
 
+   
     const center = props.startPoint ? {
         lat: Number(props.startPoint.lat),
         lng: Number(props.startPoint.lon)
@@ -26,6 +27,8 @@ function MyComponent(props) {
 
     const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds();
+        console.log(props)
+        props.getMapStatus('test')
         map.fitBounds(bounds);
         setMap(map)
     }, [])
@@ -45,7 +48,7 @@ function MyComponent(props) {
             { /* Child components, such as markers, info windows, etc. */}
             <></>
         </GoogleMap>
-    ) : <></>
+    ) : null
 }
 
 export default React.memo(MyComponent)

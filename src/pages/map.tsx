@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './index.css';
-import { Button, Form, Select, Row, Col, Spin, Card, Carousel, Radio } from 'antd';
+import { Button, Form, Select, Row, Col, Spin, Card, Carousel, Radio, Input } from 'antd';
 import { connect } from 'dva';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { Map, Marker } from 'react-amap';
-import { AimOutlined } from '@ant-design/icons'
+import { AimOutlined,CaretDownOutlined } from '@ant-design/icons'
 import MyComponent from '@/pages/googleMap'
 const FormItem = Form.Item
 
@@ -71,6 +71,43 @@ export default class Travel extends React.Component {
     console.log(from, to);
   }
 
+  getMapStatus = (isload) => {
+    this.setState({
+      mapIsLoad: isload
+    }, () => {
+      console.log(isload)
+    })
+  }
+
+  constructSeriesPlacesBar = () => {
+    const { form: { getFieldDecorator } } = this.props
+    return (
+      <Row gutter={[10, 10]} justify={'end'}>
+        <Col>
+      
+          {getFieldDecorator('placeholder')(
+            <Input placeholder={'Start'}></Input>
+          )}
+        </Col>
+        <CaretDownOutlined />
+        <Col> {getFieldDecorator('placeholder')(
+          <Input placeholder={'Place'}></Input>
+        )}
+        </Col>
+        <Col>
+        <CaretDownOutlined />
+          {getFieldDecorator('placeholder')(
+            <Input placeholder={'End'}></Input>
+          )}
+        </Col>
+        <Col style={{textAlign:'right'}}>
+        <Button type={'primary'}>GO</Button>
+        </Col>
+       
+      </Row>
+    )
+  }
+
   render() {
     const { form: { getFieldDecorator } } = this.props
     const staticOptions = [
@@ -105,7 +142,7 @@ export default class Travel extends React.Component {
         </Carousel>
 
 
-        <Card style={{ padding: 20 }}>
+        <Card style={{ padding: 20 }} hoverable>
           <Form>
             <Row type={'flex'} justify={'center'}>
               <Col xs={24} md={24} xl={24} xxl={8}>
@@ -175,27 +212,42 @@ export default class Travel extends React.Component {
           </Form>
 
         </Card>
-        <Card style={{ padding: 20 }}>
-          <div className={styles.mapContainer}>
-            <MyComponent startPoint={this.state.defaultPosition || null} ></MyComponent>
-            <div className={styles.mapLocateButton}>
-              <Button
-                type="default"
-                size='large'
-                icon={'environment'}
-                onClick={() => {
-                  if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
-                  } else {
-                    alert("Could not get the location info.");
-                  }
-                }}></Button>
+        <Row>
+          <Col span={17}>
+            <Card style={{ padding: 20 }} hoverable>
+              <div className={styles.mapContainer}>
+                <MyComponent startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
+                <div className={styles.mapLocateButton}>
+                  {this.state.mapIsLoad && <Button
+                    type="default"
+                    size='large'
+                    icon={'environment'}
+                    onClick={() => {
+                      if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
+                      } else {
+                        alert("Could not get the location info.");
+                      }
+                    }}></Button>}
 
-            </div>
+                </div>
 
-          </div>
+              </div>
 
-        </Card>
+            </Card>
+          </Col>
+          <Col span={7}>
+            <Card style={{ padding: 0 }} title={'PLAN'} bordered hoverable headStyle={{background:'#364d79',color:'#fff'}}> 
+              
+              <div>
+                {
+                  this.constructSeriesPlacesBar()
+                }
+              </div>
+            </Card>
+          </Col>
+        </Row>
+
 
 
 
