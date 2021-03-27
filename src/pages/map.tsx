@@ -573,7 +573,7 @@ export default class Travel extends React.Component {
                     icon={'environment'}
                     onClick={() => {
                       if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
+                        navigator.geolocation.getCurrentPosition((value) => (this.getCurrentLocation(value)));
                       } else {
                         alert("Could not get the location info.");
                       }
