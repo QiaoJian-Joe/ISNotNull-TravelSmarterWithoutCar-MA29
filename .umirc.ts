@@ -18,7 +18,7 @@ const config: IConfig =  {
       antd: true,
       dva: true,
       dynamicImport: false,
-      title: 'Coursera-ML-AndrewNg-Notes',
+      title: 'Travel Smarter in Melbourne - without a car',
       dll: false,
       
       routes: {

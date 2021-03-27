@@ -2,9 +2,15 @@ import React from 'react';
 import styles from './index.css';
 import { Button, Form, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
 import { connect } from 'dva';
-import { Autocomplete, Marker, LoadScript, } from '@react-google-maps/api';
+import { Autocomplete, Marker, LoadScript, useJsApiLoader } from '@react-google-maps/api';
 import { AimOutlined, CaretDownOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined } from '@ant-design/icons'
 import MyComponent from '@/pages/googleMap'
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  geocodeByPlaceId,
+  getLatLng,
+} from 'react-places-autocomplete';
+
 const FormItem = Form.Item
 
 @connect(({ map }) => ({
@@ -12,7 +18,7 @@ const FormItem = Form.Item
 }))
 @Form.create()
 export default class Travel extends React.Component {
- 
+
   state = {
     defaultPosition: {
 
@@ -22,6 +28,40 @@ export default class Travel extends React.Component {
     destination: {},
     currentId: 1
   }
+
+  handleAutoCompleteChange = (address, field) => {
+    let state = {}
+    state[field + '_address'] = address
+    this.setState({ ...state });
+  };
+
+  handleAutoCompleteSelect = (address, field) => {
+    const { form } = this.props
+    const _this = this
+    const newAddress = {}
+    const newInput = {}
+    newAddress[field + '_address'] = address
+    newInput[field + '_text'] = address
+    console.log(newAddress)
+
+    this.setState({
+      ...newAddress
+    }, () => {
+      form.setFieldsValue({ ...newInput })
+      geocodeByAddress(address)
+        .then(results => getLatLng(results[0]))
+        .then(latLng => form.setFieldsValue({ destination: latLng['lat'] + ',' + latLng['lng'] }))
+        // .then(latLng => _this.setState(
+        //   {
+        //   destination:latLng
+        // },
+        // ()=>{console.log('giao!!!!!!!!1',_this.state)}
+        // ))
+        .catch(error => console.error('Error', error));
+    })
+
+
+  };
 
   markerRender = () => {
     const { additionalPlaces, destination, currentPosition } = this.state
@@ -62,6 +102,8 @@ export default class Travel extends React.Component {
       }
     </>
 
+    console.log(destination)
+
     const destination_marker = <Marker
       position={
         {
@@ -84,6 +126,7 @@ export default class Travel extends React.Component {
   }
 
   componentDidMount = () => {
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
     } else {
@@ -148,7 +191,7 @@ export default class Travel extends React.Component {
   addPlaces = () => {
     const currentList = [...this.state.additionalPlaces]
     const currentId = this.state.currentId
-    if (this.state.additionalPlaces.length < 2) {
+    if (this.state.additionalPlaces.length < 3) {
       currentList.push(
         {
           id: currentId,
@@ -214,7 +257,52 @@ export default class Travel extends React.Component {
 
   constructSeriesPlacesBar = () => {
     const { form: { getFieldDecorator } } = this.props
-    const { additionalPlaces } = this.state
+    const { additionalPlaces, destination_address } = this.state
+    const start_autoComplete = <></>
+    const wayPoints_autoComplete = <></>
+    console.log(destination_address)
+    const end_autoComplete = <PlacesAutocomplete
+      value={destination_address}
+      onChange={(e) => { this.handleAutoCompleteChange(e, 'destination') }}
+      onSelect={(e) => { this.handleAutoCompleteSelect(e, 'destination') }}
+    >
+      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+        <div>
+          {getFieldDecorator('destination_text')(
+            <Input
+              {...getInputProps({
+                placeholder: 'Search Places ...',
+                className: 'location-search-input',
+              })}
+            />
+          )}
+
+          <div className="autocomplete-dropdown-container">
+            {loading && <div>Loading...</div>}
+            {suggestions.map(suggestion => {
+              const className = suggestion.active
+                ? 'suggestion-item--active'
+                : 'suggestion-item';
+              // inline style for demonstration purpose
+              const style = suggestion.active
+                ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                : { backgroundColor: '#ffffff', cursor: 'pointer' };
+              return (
+                <div
+                  {...getSuggestionItemProps(suggestion, {
+                    className,
+                    style,
+                  })}
+                >
+                  <span>{suggestion.description}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </PlacesAutocomplete>
+
     return (
       <>
         <Col>
@@ -265,7 +353,9 @@ export default class Travel extends React.Component {
           )
           }
           <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
+
         </Col>
+        {end_autoComplete}
       </>
 
 
@@ -422,10 +512,18 @@ export default class Travel extends React.Component {
           </Col>
 
         </Row>
-        
 
 
 
+        <div>
+
+
+
+
+
+
+
+        </div>
 
       </div>
     );
