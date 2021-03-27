@@ -1,10 +1,9 @@
 import React from 'react';
 import styles from './index.css';
-import { Button, Form, Select, Row, Col, Spin, Card, Carousel, Radio, Input } from 'antd';
+import { Button, Form, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
 import { connect } from 'dva';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import { Map, Marker } from 'react-amap';
-import { AimOutlined,CaretDownOutlined } from '@ant-design/icons'
+import { Autocomplete, Marker, LoadScript, } from '@react-google-maps/api';
+import { AimOutlined, CaretDownOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined } from '@ant-design/icons'
 import MyComponent from '@/pages/googleMap'
 const FormItem = Form.Item
 
@@ -13,13 +12,76 @@ const FormItem = Form.Item
 }))
 @Form.create()
 export default class Travel extends React.Component {
-
+ 
   state = {
     defaultPosition: {
 
-    }
+    },
+    additionalPlaces: [],
+
+    destination: {},
+    currentId: 1
   }
 
+  markerRender = () => {
+    const { additionalPlaces, destination, currentPosition } = this.state
+    const { form } = this.props
+    let formValues;
+    form.validateFields((err, values) => {
+      console.log('form:', values, additionalPlaces,)
+      if (values) {
+        formValues = values
+      }
+    })
+    const start_marker = <Marker
+      position={
+        {
+          lat: currentPosition && currentPosition.lat || null,
+          lng: currentPosition && currentPosition.lon || null
+        }
+      }
+    >
+
+    </Marker>
+
+    const way_points = <>
+      {
+        additionalPlaces && (
+          additionalPlaces.map(
+            item => <Marker position={
+              {
+                lat: formValues['place_' + item.id] && formValues['place_' + item.id].split(',')[0] ? Number(formValues['place_' + item.id].split(',')[0]) : null,
+                lng: formValues['place_' + item.id] && formValues['place_' + item.id].split(',')[1] ? Number(formValues['place_' + item.id].split(',')[1]) : null
+              }
+            }>
+
+            </Marker>
+          )
+        )
+
+      }
+    </>
+
+    const destination_marker = <Marker
+      position={
+        {
+          lat: formValues['destination'] && formValues['destination'].split(',')[0] ? Number(formValues['destination'].split(',')[0]) : null,
+          lng: formValues['destination'] && formValues['destination'].split(',')[1] ? Number(formValues['destination'].split(',')[1]) : null
+        }
+      }
+    >
+
+    </Marker>
+
+    const markers = <>
+      {start_marker}
+      {way_points}
+      {destination_marker}
+    </>
+
+
+    return markers
+  }
 
   componentDidMount = () => {
     if (navigator.geolocation) {
@@ -36,12 +98,43 @@ export default class Travel extends React.Component {
           lat: value.coords.latitude,
           lon: value.coords.longitude,
           accuracy: value.coords.accuracy
+        },
+
+        currentPosition: {
+          lat: value.coords.latitude,
+          lon: value.coords.longitude,
+          accuracy: value.coords.accuracy
         }
+
       }, () => {
 
       })
     }
 
+  }
+
+  getCurrentLocation = (value) => {
+    const { form } = this.props
+    if (value) {
+      this.setState({
+        currentPosition: {
+          lat: value.coords.latitude,
+          lon: value.coords.longitude,
+          accuracy: value.coords.accuracy
+        }
+      }, () => {
+
+        form.setFieldsValue({ startPostion: String(value.coords.latitude) + ',' + String(value.coords.longitude) })
+      })
+    }
+  }
+
+  optimize = () => {
+    const { form } = this.props
+    const { additionalPlaces } = this.state
+    form.validateFields((err, values) => {
+      console.log(values, additionalPlaces)
+    })
   }
 
   initUserCurrentPosition = () => {
@@ -50,6 +143,46 @@ export default class Travel extends React.Component {
 
   setUserCurrentPosition = () => {
 
+  }
+
+  addPlaces = () => {
+    const currentList = [...this.state.additionalPlaces]
+    const currentId = this.state.currentId
+    if (this.state.additionalPlaces.length < 2) {
+      currentList.push(
+        {
+          id: currentId,
+          name: '',
+          position: currentList.length + 1,
+          location: {}
+        }
+      )
+      this.setState({
+        additionalPlaces: currentList,
+        currentId: currentId + 1
+      })
+    } else {
+      message.error('Only two way points can be added!!')
+    }
+  }
+
+  removePlaces = (position) => {
+    let finalList = []
+    const currentList = [...this.state.additionalPlaces]
+    let counter = 1
+    if (this.state.additionalPlaces.length !== 0) {
+      currentList.forEach(item => {
+        if (item.position !== position) {
+          let obj = { ...item }
+          obj['position'] = counter
+          counter += 1
+          finalList.push(obj)
+        }
+      })
+      this.setState({
+        additionalPlaces: finalList
+      })
+    }
   }
 
   sendRequest = () => {
@@ -81,30 +214,61 @@ export default class Travel extends React.Component {
 
   constructSeriesPlacesBar = () => {
     const { form: { getFieldDecorator } } = this.props
+    const { additionalPlaces } = this.state
     return (
-      <Row gutter={[10, 10]} justify={'end'}>
+      <>
         <Col>
-      
-          {getFieldDecorator('placeholder')(
-            <Input placeholder={'Start'}></Input>
-          )}
-        </Col>
-        <CaretDownOutlined />
-        <Col> {getFieldDecorator('placeholder')(
-          <Input placeholder={'Place'}></Input>
-        )}
+          <Row type={'flex'} align="middle">
+            <Col span={22}>
+              {getFieldDecorator('startPostion')(
+                <Input placeholder={'Start'}></Input>
+              )}
+            </Col>
+            <Col span={2}>
+              <EnvironmentOutlined
+                style={{ fontSize: '18px' }}
+                onClick={() => {
+                  if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition((value) => (this.getCurrentLocation(value)));
+                  } else {
+                    alert("Could not get the location info.");
+                  }
+                }}></EnvironmentOutlined>
+            </Col>
+          </Row>
+          {/* <Divider>Start & Destination</Divider> */}
+
+          <CaretDownOutlined />
         </Col>
         <Col>
-        <CaretDownOutlined />
-          {getFieldDecorator('placeholder')(
+          {/* <Divider>Destination</Divider> */}
+          {getFieldDecorator('destination')(
             <Input placeholder={'End'}></Input>
           )}
         </Col>
-        <Col style={{textAlign:'right'}}>
-        <Button type={'primary'}>GO</Button>
+        <Col>
+          <Divider> WAY POINT</Divider>
+          {additionalPlaces.map(
+            item =>
+              <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
+                <Col span={22}>
+                  {getFieldDecorator('place_' + String(item.id))(
+                    <Input placeholder={'Place ' + String(item.position)}></Input>
+                  )}
+                </Col>
+                <Col span={2}>
+                  <CloseOutlined onClick={() => { this.removePlaces(item.position) }} style={{ fontSize: '18px', color: 'red' }} />
+                </Col>
+              </Row>
+              </Col>
+
+          )
+          }
+          <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
         </Col>
-       
-      </Row>
+      </>
+
+
     )
   }
 
@@ -116,9 +280,9 @@ export default class Travel extends React.Component {
     ]
 
     const contentStyle = {
-      height: '400px',
+      height: '200px',
       color: '#fff',
-      lineHeight: '400px',
+      lineHeight: '200px',
       textAlign: 'center',
       background: '#364d79',
     };
@@ -142,13 +306,14 @@ export default class Travel extends React.Component {
         </Carousel>
 
 
-        <Card style={{ padding: 20 }} hoverable>
+        <Card style={{ padding: 20, display: 'none' }} hoverable>
           <Form>
             <Row type={'flex'} justify={'center'}>
               <Col xs={24} md={24} xl={24} xxl={8}>
                 <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'First priority place'}>
                   {
                     getFieldDecorator('firstType')(
+
                       <Select>
                         {
                           staticOptions.map(
@@ -213,10 +378,29 @@ export default class Travel extends React.Component {
 
         </Card>
         <Row>
-          <Col span={17}>
+          <Col span={24}>
+            <Card style={{ padding: 0 }} title={'PLAN'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
+              <Row gutter={[10, 10]} justify={'end'}>
+                {
+                  this.constructSeriesPlacesBar()
+                }
+
+                <Col style={{ textAlign: 'right' }}>
+                  <Button style={{ background: '#364d79', color: '#fff' }} onClick={this.optimize}>
+                    Optimize
+                    </Button>
+                </Col>
+
+              </Row>
+
+
+
+            </Card>
+          </Col>
+          <Col span={24}>
             <Card style={{ padding: 20 }} hoverable>
               <div className={styles.mapContainer}>
-                <MyComponent startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
+                <MyComponent markers={this.markerRender.bind(this)} startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
                 <div className={styles.mapLocateButton}>
                   {this.state.mapIsLoad && <Button
                     type="default"
@@ -236,18 +420,9 @@ export default class Travel extends React.Component {
 
             </Card>
           </Col>
-          <Col span={7}>
-            <Card style={{ padding: 0 }} title={'PLAN'} bordered hoverable headStyle={{background:'#364d79',color:'#fff'}}> 
-              
-              <div>
-                {
-                  this.constructSeriesPlacesBar()
-                }
-              </div>
-            </Card>
-          </Col>
-        </Row>
 
+        </Row>
+        
 
 
 

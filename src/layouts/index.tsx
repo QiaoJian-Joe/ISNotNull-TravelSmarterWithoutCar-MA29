@@ -32,7 +32,7 @@ class BasicLayout extends React.PureComponent {
             </Col>
             <Col xs={16} sm={8} md={8} lg={8} xl={8}>
               <h1 className={styles.title}>
-                Travel Smarter in Melbourne!
+                Travel Smarter in Melbourne - without a car
           </h1>
             </Col>
           </Row>
