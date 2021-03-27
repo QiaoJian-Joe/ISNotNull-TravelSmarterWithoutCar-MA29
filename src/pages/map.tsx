@@ -38,7 +38,7 @@ export default class Travel extends React.Component {
     const newInput = {}
     newAddress[field + '_address'] = address
     newInput[field + '_text'] = address
-    
+
 
     this.setState({
       ...newAddress
@@ -92,7 +92,7 @@ export default class Travel extends React.Component {
     const { form } = this.props
     let formValues;
     form.validateFields((err, values) => {
-     
+
       if (values) {
         formValues = values
       }
@@ -178,13 +178,14 @@ export default class Travel extends React.Component {
   }
 
   getCurrentLocation = (value) => {
+
     const { form } = this.props
     Geocode.setApiKey("AIzaSyAQ5KNjrj74hz6dkrVn24Ho_tjcrQCUECU");
-    Geocode.fromLatLng("48.8583701", "2.2922926").then(
+    Geocode.fromLatLng(String(value.coords.latitude), String(value.coords.longitude)).then(
       response => {
         const address = response.results[0].formatted_address;
         console.log(address);
-        form.setFieldsValue({startPosition_text:address})
+        form.setFieldsValue({ startPosition_text: address })
       },
       error => {
         console.error(error);
@@ -199,7 +200,7 @@ export default class Travel extends React.Component {
           accuracy: value.coords.accuracy
         }
       }, () => {
-     
+
         form.setFieldsValue({ startPosition: String(value.coords.latitude) + ',' + String(value.coords.longitude) })
       })
     }
@@ -208,9 +209,39 @@ export default class Travel extends React.Component {
   optimize = () => {
     const { form } = this.props
     const { additionalPlaces } = this.state
+
     form.validateFields((err, values) => {
-      console.log(values, additionalPlaces)
+
+      const DirectionsService = new google.maps.DirectionsService();
+      let wayPoints = []
+      additionalPlaces.forEach(item => {
+      
+       const obj = new google.maps.LatLng(Number(values['place_'+String(item.id)].split(',')[0]), Number(values['place_'+String(item.id)].split(',')[1]))
+       wayPoints.push(
+        {
+          location: obj,
+          stopover: true,
+        })
+      })
+      console.log(wayPoints,new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])))
+      DirectionsService.route({
+        origin: new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])),
+        destination: new google.maps.LatLng(Number(values['destination'].split(',')[0]), Number(values['destination'].split(',')[1])),
+        travelMode: google.maps.TravelMode.DRIVING,
+        waypoints:wayPoints
+      }, (result, status) => {
+        if (status === google.maps.DirectionsStatus.OK) {
+          this.setState({
+            directions: result,
+          },()=>{
+            console.log(result)
+          });
+        } else {
+          console.error(`error fetching directions ${result}`);
+        }
+      });
     })
+
   }
 
   initUserCurrentPosition = () => {
@@ -301,7 +332,7 @@ export default class Travel extends React.Component {
           {getFieldDecorator('startPosition_text')(
             <Input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'Start',
                 className: 'location-search-input',
               })}
             />
@@ -333,8 +364,67 @@ export default class Travel extends React.Component {
       )}
     </PlacesAutocomplete>
 
-    const wayPoints_autoComplete = <></>
-   
+    const wayPoints_autoComplete =
+
+      <>
+        {additionalPlaces.map(
+          item =>
+            <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
+              <Col span={22}>
+                {getFieldDecorator('place_' + String(item.id))(
+                  <PlacesAutocomplete
+                    value={startPosition_address}
+                    onChange={(e) => { this.handleAutoCompleteChange(e, 'place_' + String(item.id)) }}
+                    onSelect={(e) => { this.handleAutoCompleteSelect(e, 'place_' + String(item.id)) }}
+                  >
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                      <div>
+                        {getFieldDecorator('place_' + String(item.id) + '_text')(
+                          <Input
+                            {...getInputProps({
+                              placeholder: 'Place ' + String(item.position),
+                              className: 'location-search-input',
+                            })}
+                          />
+                        )}
+
+                        <div className="autocomplete-dropdown-container">
+                          {loading && <div>Loading...</div>}
+                          {suggestions.map(suggestion => {
+                            const className = suggestion.active
+                              ? 'suggestion-item--active'
+                              : 'suggestion-item';
+                            // inline style for demonstration purpose
+                            const style = suggestion.active
+                              ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                              : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                            return (
+                              <div
+                                {...getSuggestionItemProps(suggestion, {
+                                  className,
+                                  style,
+                                })}
+                              >
+                                <span>{suggestion.description}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </PlacesAutocomplete>
+                )}
+              </Col>
+              <Col span={2}>
+                <CloseOutlined onClick={() => { this.removePlaces(item.position) }} style={{ fontSize: '18px', color: 'red' }} />
+              </Col>
+            </Row>
+            </Col>
+
+        )
+        }
+      </>
+
     const end_autoComplete = <PlacesAutocomplete
       value={destination_address}
       onChange={(e) => { this.handleAutoCompleteChange(e, 'destination') }}
@@ -345,7 +435,7 @@ export default class Travel extends React.Component {
           {getFieldDecorator('destination_text')(
             <Input
               {...getInputProps({
-                placeholder: 'Search Places ...',
+                placeholder: 'End',
                 className: 'location-search-input',
               })}
             />
@@ -382,8 +472,9 @@ export default class Travel extends React.Component {
         <Col>
           <Row type={'flex'} align="middle">
             <Col span={22}>
+              {start_autoComplete}
               {getFieldDecorator('startPosition')(
-                <Input placeholder={'Start'}></Input>
+                <Input placeholder={'Start'} style={{ display: 'none' }}></Input>
               )}
             </Col>
             <Col span={2}>
@@ -403,9 +494,10 @@ export default class Travel extends React.Component {
           <CaretDownOutlined />
         </Col>
         <Col>
+          {end_autoComplete}
           {/* <Divider>Destination</Divider> */}
           {getFieldDecorator('destination')(
-            <Input placeholder={'End'}></Input>
+            <Input placeholder={'End'} style={{ display: 'none' }}></Input>
           )}
         </Col>
         <Col>
@@ -415,22 +507,22 @@ export default class Travel extends React.Component {
               <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
                 <Col span={22}>
                   {getFieldDecorator('place_' + String(item.id))(
-                    <Input placeholder={'Place ' + String(item.position)}></Input>
+                    <Input placeholder={'Place ' + String(item.position)} style={{ display: 'none' }}></Input>
                   )}
                 </Col>
                 <Col span={2}>
-                  <CloseOutlined onClick={() => { this.removePlaces(item.position) }} style={{ fontSize: '18px', color: 'red' }} />
+
                 </Col>
               </Row>
               </Col>
 
           )
           }
-          <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
 
+          {wayPoints_autoComplete}
+          <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
         </Col>
-        {start_autoComplete}
-        {end_autoComplete}
+
       </>
 
 
@@ -565,7 +657,7 @@ export default class Travel extends React.Component {
           <Col span={24}>
             <Card style={{ padding: 20 }} hoverable>
               <div className={styles.mapContainer}>
-                <MyComponent markers={this.markerRender.bind(this)} startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
+                <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
                 <div className={styles.mapLocateButton}>
                   {this.state.mapIsLoad && <Button
                     type="default"

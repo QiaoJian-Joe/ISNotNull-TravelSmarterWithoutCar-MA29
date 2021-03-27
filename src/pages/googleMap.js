@@ -1,5 +1,5 @@
 import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, DirectionsService,DirectionsRenderer } from '@react-google-maps/api';
 import styles from './index.css';
 
 
@@ -46,11 +46,11 @@ function MyComponent(props) {
             onLoad={onLoad}
             onUnmount={onUnmount}
         >
-            
+
             {
                 props.markers()
             }
-
+             {props.directions && <DirectionsRenderer directions={props.directions} />}
         </GoogleMap>
 
 
