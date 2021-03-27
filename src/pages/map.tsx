@@ -5,6 +5,8 @@ import { connect } from 'dva';
 import { Autocomplete, Marker, LoadScript, useJsApiLoader } from '@react-google-maps/api';
 import { AimOutlined, CaretDownOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined } from '@ant-design/icons'
 import MyComponent from '@/pages/googleMap'
+import Geocode from "react-geocode";
+
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -30,9 +32,30 @@ export default class Travel extends React.Component {
   }
 
   handleAutoCompleteChange = (address, field) => {
-    let state = {}
-    state[field + '_address'] = address
-    this.setState({ ...state });
+    const { form } = this.props
+    const _this = this
+    const newAddress = {}
+    const newInput = {}
+    newAddress[field + '_address'] = address
+    newInput[field + '_text'] = address
+    
+
+    this.setState({
+      ...newAddress
+    }, () => {
+      form.setFieldsValue({ ...newInput })
+      geocodeByAddress(address)
+        .then(results => getLatLng(results[0]))
+        .then(latLng => { const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; form.setFieldsValue({ ...newField }) })
+        // .then(latLng => _this.setState(
+        //   {
+        //   destination:latLng
+        // },
+        // ()=>{console.log('giao!!!!!!!!1',_this.state)}
+        // ))
+        .catch(error => { const newField = {}; newField[field] = null; form.setFieldsValue({ ...newField }) });
+    })
+
   };
 
   handleAutoCompleteSelect = (address, field) => {
@@ -42,7 +65,7 @@ export default class Travel extends React.Component {
     const newInput = {}
     newAddress[field + '_address'] = address
     newInput[field + '_text'] = address
-    console.log(newAddress)
+
 
     this.setState({
       ...newAddress
@@ -50,7 +73,7 @@ export default class Travel extends React.Component {
       form.setFieldsValue({ ...newInput })
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
-        .then(latLng => form.setFieldsValue({ destination: latLng['lat'] + ',' + latLng['lng'] }))
+        .then(latLng => { const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; form.setFieldsValue({ ...newField }) })
         // .then(latLng => _this.setState(
         //   {
         //   destination:latLng
@@ -64,27 +87,28 @@ export default class Travel extends React.Component {
   };
 
   markerRender = () => {
-    const { additionalPlaces, destination, currentPosition } = this.state
+    console.log(null ? '真的' : '假的')
+    const { additionalPlaces } = this.state
     const { form } = this.props
     let formValues;
     form.validateFields((err, values) => {
-      console.log('form:', values, additionalPlaces,)
+     
       if (values) {
         formValues = values
       }
     })
-    const start_marker = <Marker
+    const start_marker = formValues['startPosition'] && formValues['startPosition'].split(',')[0] && formValues['startPosition'] && formValues['startPosition'].split(',')[1] && <Marker
       position={
         {
-          lat: currentPosition && currentPosition.lat || null,
-          lng: currentPosition && currentPosition.lon || null
+          lat: formValues['startPosition'] && formValues['startPosition'].split(',')[0] ? Number(formValues['startPosition'].split(',')[0]) : null,
+          lng: formValues['startPosition'] && formValues['startPosition'].split(',')[1] ? Number(formValues['startPosition'].split(',')[1]) : null
         }
       }
     >
 
     </Marker>
 
-    const way_points = <>
+    const way_points_marker = <>
       {
         additionalPlaces && (
           additionalPlaces.map(
@@ -102,9 +126,7 @@ export default class Travel extends React.Component {
       }
     </>
 
-    console.log(destination)
-
-    const destination_marker = <Marker
+    const destination_marker = formValues['destination'] && formValues['destination'].split(',')[0] && formValues['destination'] && formValues['destination'].split(',')[1] && <Marker
       position={
         {
           lat: formValues['destination'] && formValues['destination'].split(',')[0] ? Number(formValues['destination'].split(',')[0]) : null,
@@ -117,7 +139,7 @@ export default class Travel extends React.Component {
 
     const markers = <>
       {start_marker}
-      {way_points}
+      {way_points_marker}
       {destination_marker}
     </>
 
@@ -126,7 +148,6 @@ export default class Travel extends React.Component {
   }
 
   componentDidMount = () => {
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
     } else {
@@ -158,6 +179,18 @@ export default class Travel extends React.Component {
 
   getCurrentLocation = (value) => {
     const { form } = this.props
+    Geocode.setApiKey("AIzaSyAQ5KNjrj74hz6dkrVn24Ho_tjcrQCUECU");
+    Geocode.fromLatLng("48.8583701", "2.2922926").then(
+      response => {
+        const address = response.results[0].formatted_address;
+        console.log(address);
+        form.setFieldsValue({startPosition_text:address})
+      },
+      error => {
+        console.error(error);
+      }
+    );
+
     if (value) {
       this.setState({
         currentPosition: {
@@ -166,8 +199,8 @@ export default class Travel extends React.Component {
           accuracy: value.coords.accuracy
         }
       }, () => {
-
-        form.setFieldsValue({ startPostion: String(value.coords.latitude) + ',' + String(value.coords.longitude) })
+     
+        form.setFieldsValue({ startPosition: String(value.coords.latitude) + ',' + String(value.coords.longitude) })
       })
     }
   }
@@ -257,10 +290,51 @@ export default class Travel extends React.Component {
 
   constructSeriesPlacesBar = () => {
     const { form: { getFieldDecorator } } = this.props
-    const { additionalPlaces, destination_address } = this.state
-    const start_autoComplete = <></>
+    const { additionalPlaces, destination_address, startPosition_address } = this.state
+    const start_autoComplete = <PlacesAutocomplete
+      value={startPosition_address}
+      onChange={(e) => { this.handleAutoCompleteChange(e, 'startPosition') }}
+      onSelect={(e) => { this.handleAutoCompleteSelect(e, 'startPosition') }}
+    >
+      {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+        <div>
+          {getFieldDecorator('startPosition_text')(
+            <Input
+              {...getInputProps({
+                placeholder: 'Search Places ...',
+                className: 'location-search-input',
+              })}
+            />
+          )}
+
+          <div className="autocomplete-dropdown-container">
+            {loading && <div>Loading...</div>}
+            {suggestions.map(suggestion => {
+              const className = suggestion.active
+                ? 'suggestion-item--active'
+                : 'suggestion-item';
+              // inline style for demonstration purpose
+              const style = suggestion.active
+                ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                : { backgroundColor: '#ffffff', cursor: 'pointer' };
+              return (
+                <div
+                  {...getSuggestionItemProps(suggestion, {
+                    className,
+                    style,
+                  })}
+                >
+                  <span>{suggestion.description}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </PlacesAutocomplete>
+
     const wayPoints_autoComplete = <></>
-    console.log(destination_address)
+   
     const end_autoComplete = <PlacesAutocomplete
       value={destination_address}
       onChange={(e) => { this.handleAutoCompleteChange(e, 'destination') }}
@@ -308,7 +382,7 @@ export default class Travel extends React.Component {
         <Col>
           <Row type={'flex'} align="middle">
             <Col span={22}>
-              {getFieldDecorator('startPostion')(
+              {getFieldDecorator('startPosition')(
                 <Input placeholder={'Start'}></Input>
               )}
             </Col>
@@ -355,6 +429,7 @@ export default class Travel extends React.Component {
           <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
 
         </Col>
+        {start_autoComplete}
         {end_autoComplete}
       </>
 
