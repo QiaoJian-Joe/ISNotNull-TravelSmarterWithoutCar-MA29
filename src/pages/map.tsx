@@ -6,7 +6,13 @@ import { Autocomplete, Marker, LoadScript, useJsApiLoader } from '@react-google-
 import { AimOutlined, CaretDownOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined } from '@ant-design/icons'
 import MyComponent from '@/pages/googleMap'
 import Geocode from "react-geocode";
-
+import show_img_1 from '@/assets/show_img_1.png'
+import show_img_2 from '@/assets/show_img_2.png'
+import show_img_3 from '@/assets/show_img_3.png'
+import show_img_4 from '@/assets/show_img_4.png'
+import img1 from '@/assets/img1.png'
+import img2 from '@/assets/img2.png'
+import img3 from '@/assets/img3.png'
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -215,25 +221,25 @@ export default class Travel extends React.Component {
       const DirectionsService = new google.maps.DirectionsService();
       let wayPoints = []
       additionalPlaces.forEach(item => {
-      
-       const obj = new google.maps.LatLng(Number(values['place_'+String(item.id)].split(',')[0]), Number(values['place_'+String(item.id)].split(',')[1]))
-       wayPoints.push(
-        {
-          location: obj,
-          stopover: true,
-        })
+
+        const obj = new google.maps.LatLng(Number(values['place_' + String(item.id)].split(',')[0]), Number(values['place_' + String(item.id)].split(',')[1]))
+        wayPoints.push(
+          {
+            location: obj,
+            stopover: true,
+          })
       })
-      console.log(wayPoints,new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])))
+      console.log(wayPoints, new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])))
       DirectionsService.route({
         origin: new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])),
         destination: new google.maps.LatLng(Number(values['destination'].split(',')[0]), Number(values['destination'].split(',')[1])),
         travelMode: google.maps.TravelMode.DRIVING,
-        waypoints:wayPoints
+        waypoints: wayPoints
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
           this.setState({
             directions: result,
-          },()=>{
+          }, () => {
             console.log(result)
           });
         } else {
@@ -537,28 +543,66 @@ export default class Travel extends React.Component {
     ]
 
     const contentStyle = {
-      height: '200px',
+      width: '100%',
       color: '#fff',
-      lineHeight: '200px',
+      opacity: 0.3,
       textAlign: 'center',
       background: '#364d79',
+
     };
 
-    return (
-      <div id="map" className={styles.background}>
+    const imgTitleStyle = {
+      position: 'absolute',
+      padding: '10px',
+      // top: '8px',
+      // left: '16px',
+      fontSize: '28px',
+      color: '#000',
+      textAlign: 'center',
+    }
 
-        <Carousel beforeChange={this.carouselChange}>
-          <div >
-            <h3 style={contentStyle}> 1</h3>
+    const imgContentStyle = {
+      position: 'absolute',
+      top: '70px',
+      padding: '20px',
+      // left: '16px',
+      fontSize: '14px',
+      color: '#000',
+      textAlign: 'left',
+    }
+
+    return (
+      <div id="map" className={styles.background} >
+
+        <Carousel beforeChange={this.carouselChange} style={{ height: '20%', maxHeight: '290px' }}>
+          <div className={styles.show_img_container}>
+            <div style={imgTitleStyle}> Travel smarter by saving your time!</div>
+            <div style={imgContentStyle}>
+              Plan your routes in a simple way to avoid<br />
+              spending more time in travelling.<br />
+              Optimize your route by time or plan the route<br />
+              in the same order as you entered.
+            </div>
+            <img src={img1} style={contentStyle} ></img>
+
           </div>
-          <div>
-            <h3 style={contentStyle}>2</h3>
+          <div className={styles.show_img_container}>
+            <div style={imgTitleStyle}> Are you health conscious?</div>
+            <div style={imgContentStyle}>
+            We take care of your health too.<br />
+Check the number of calories burned while <br />
+you were travelling.
+            </div>
+            <img src={img2} style={contentStyle} ></img>
           </div>
-          <div>
-            <h3 style={contentStyle}> 3</h3>
-          </div>
-          <div>
-            <h3 style={contentStyle}>4</h3>
+          <div className={styles.show_img_container}>
+            <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
+            <div style={imgContentStyle}>
+            We will help you get to a place where you feel safe.<br />
+Find a well-lighted route near you using our website.<br />
+Check out the number of people near you.
+            </div>
+            <img src={img3} style={contentStyle} ></img>
           </div>
         </Carousel>
 
