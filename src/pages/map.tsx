@@ -589,7 +589,7 @@ export default class Travel extends React.Component {
           <div className={styles.show_img_container}>
             <div style={imgTitleStyle}> Are you health conscious?</div>
             <div style={imgContentStyle}>
-            We take care of your health too.<br />
+              We take care of your health too.<br />
 Check the number of calories burned while <br />
 you were travelling.
             </div>
@@ -598,7 +598,7 @@ you were travelling.
           <div className={styles.show_img_container}>
             <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
             <div style={imgContentStyle}>
-            We will help you get to a place where you feel safe.<br />
+              We will help you get to a place where you feel safe.<br />
 Find a well-lighted route near you using our website.<br />
 Check out the number of people near you.
             </div>
@@ -607,7 +607,7 @@ Check out the number of people near you.
         </Carousel>
 
 
-        <Card style={{ padding: 20, display: 'none' }} hoverable>
+        <Card style={{ padding: 20, display: '' }} hoverable>
           <Form>
             <Row type={'flex'} justify={'center'}>
               <Col xs={24} md={24} xl={24} xxl={8}>
@@ -664,12 +664,7 @@ Check out the number of people near you.
                   <Radio value={2} disabled>Rating First</Radio>
                 </Radio.Group>
               </Col>
-              <Col  >
 
-                <Button type={'primary'} onClick={this.sendRequest}>Plan Now!</Button>
-
-
-              </Col>
             </Row>
 
 
@@ -683,13 +678,13 @@ Check out the number of people near you.
             <Card style={{ padding: 0 }} title={'PLAN'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
               <Row gutter={[10, 10]} justify={'end'}>
                 {
-                  this.constructSeriesPlacesBar()
+                  this.state.mapIsLoad && this.constructSeriesPlacesBar()
                 }
 
                 <Col style={{ textAlign: 'right' }}>
-                  <Button style={{ background: '#364d79', color: '#fff' }} onClick={this.optimize}>
+                  {this.state.mapIsLoad && <Button style={{ background: '#364d79', color: '#fff' }} onClick={this.optimize}>
                     Optimize
-                    </Button>
+                    </Button>}
                 </Col>
 
               </Row>
