@@ -499,15 +499,9 @@ export default class Travel extends React.Component {
 
           <CaretDownOutlined />
         </Col>
+
         <Col>
-          {end_autoComplete}
-          {/* <Divider>Destination</Divider> */}
-          {getFieldDecorator('destination')(
-            <Input placeholder={'End'} style={{ display: 'none' }}></Input>
-          )}
-        </Col>
-        <Col>
-          <Divider> WAY POINT</Divider>
+         
           {additionalPlaces.map(
             item =>
               <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
@@ -526,7 +520,18 @@ export default class Travel extends React.Component {
           }
 
           {wayPoints_autoComplete}
+
+
           <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
+         
+        </Col>
+        <Col>
+        <CaretDownOutlined />
+          {end_autoComplete}
+          {/* <Divider>Destination</Divider> */}
+          {getFieldDecorator('destination')(
+            <Input placeholder={'End'} style={{ display: 'none' }}></Input>
+          )}
         </Col>
 
       </>
@@ -539,7 +544,8 @@ export default class Travel extends React.Component {
     const { form: { getFieldDecorator } } = this.props
     const staticOptions = [
       { title: 'Library', value: 'Library' },
-      { title: 'Museum', value: 'Museum' }
+      { title: 'Museum', value: 'Museum' },
+      { title: 'Coffee Shop', value: 'Coffee Shop' }
     ]
 
     const contentStyle = {
@@ -629,7 +635,7 @@ Check out the number of people near you.
               <Col xs={24} md={24} xl={24} xxl={8}>
                 <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Second priority place'}>
                   {
-                    getFieldDecorator('Second priority place')(
+                    getFieldDecorator('secondType')(
                       <Select>
                         {
                           staticOptions.map(
@@ -644,7 +650,7 @@ Check out the number of people near you.
               <Col xs={24} md={24} xl={24} xxl={8}>
                 <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Third priority place'}>
                   {
-                    getFieldDecorator('Third priority place')(
+                    getFieldDecorator('thirdType')(
                       <Select>
                         {
                           staticOptions.map(
