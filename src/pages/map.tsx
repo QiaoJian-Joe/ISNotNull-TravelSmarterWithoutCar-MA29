@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './index.css';
-import { Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
+import { Descriptions, Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
 import { connect } from 'dva';
 import { Autocomplete, Marker, LoadScript, useJsApiLoader } from '@react-google-maps/api';
-import { AimOutlined, CaretDownOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined } from '@ant-design/icons'
+import { AimOutlined, CaretDownOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined } from '@ant-design/icons'
 import MyComponent from '@/pages/googleMap'
 import Geocode from "react-geocode";
 import show_img_1 from '@/assets/show_img_1.png'
@@ -235,12 +235,14 @@ export default class Travel extends React.Component {
         }
       })
 
+      const travelMode = values['mode']
+
       console.log(wayPoints)
       console.log(wayPoints, new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])))
       DirectionsService.route({
         origin: new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])),
         destination: new google.maps.LatLng(Number(values['destination'].split(',')[0]), Number(values['destination'].split(',')[1])),
-        travelMode: google.maps.TravelMode.DRIVING,
+        travelMode: google.maps.TravelMode[travelMode],
         waypoints: wayPoints
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
@@ -819,17 +821,39 @@ Check out the number of people near you.
 
         <Row>
           <Col span={24}>
-            <Card style={{ padding: 0 }} title={'PLAN'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
+            <Card style={{ padding: 0 }} title={'Plan'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
               <Row gutter={[10, 10]} justify={'end'}>
-                {
-                  this.state.mapIsLoad && this.constructSeriesPlacesBar()
-                }
-
-                <Col style={{ textAlign: 'right' }}>
-                  {this.state.mapIsLoad && <Button style={{ background: '#364d79', color: '#fff' }} onClick={this.optimize}>
-                    Optimize
-                    </Button>}
+                <Col>
+                  {
+                    this.state.mapIsLoad && this.constructSeriesPlacesBar()
+                  }
                 </Col>
+
+                <Col>
+                  <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
+                    <Col style={{ textAlign: 'right' }} span={12}>
+                      {
+                        getFieldDecorator('mode', {
+                          initialValue: 'WALKING'
+                        })(
+                          <Radio.Group
+
+                            buttonStyle={{ background: '#364d79', color: '#fff' }}
+                          >
+                            <Radio.Button value="WALKING">WALKING</Radio.Button>
+                            <Radio.Button value="BICYCLING">BICYCLING</Radio.Button>
+                          </Radio.Group>)
+                      }
+                    </Col>
+                    <Col span={6}>
+                      {this.state.mapIsLoad && <Button style={{ background: '#364d79', color: '#fff' }} onClick={this.optimize}>
+                        <RocketOutlined />Optimize
+                    </Button>}
+                    </Col>
+                  </Row>
+                </Col>
+
+
 
               </Row>
 
@@ -839,6 +863,7 @@ Check out the number of people near you.
           </Col>
           <Col span={24}>
             <Card style={{ padding: 20 }} hoverable>
+
               <div className={styles.mapContainer}>
                 <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
                 <div className={styles.mapLocateButton}>
@@ -861,10 +886,16 @@ Check out the number of people near you.
             </Card>
           </Col>
           <Col span={24}>
-            <Card style={{ padding: 0 }} title={'Health Prediction'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
+            <Card style={{ padding: 0 }} title={'Health Travel Prediction'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
 
 
+              <Row>
 
+                <Divider orientation="left" >
+                  Calorie consumption of this trip
+                  </Divider>
+
+              </Row>
 
             </Card>
           </Col>
