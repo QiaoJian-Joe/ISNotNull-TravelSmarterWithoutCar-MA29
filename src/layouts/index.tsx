@@ -3,7 +3,7 @@ import styles from './index.css';
 import { Button, Tabs, Row, Col } from 'antd'
 import Travel from '@/pages/map'
 
-import logo from '@/assets/yay.jpg'
+import logo from '@/assets/logo.png'
 
 const { TabPane } = Tabs
 class BasicLayout extends React.PureComponent {
@@ -48,9 +48,9 @@ class BasicLayout extends React.PureComponent {
           <TabPane tab="Travel" key={'1'}>
 
           </TabPane>
-          <TabPane tab="About US" key={'2'}>
+          {/* <TabPane tab="About US" key={'2'}>
 
-          </TabPane>
+          </TabPane> */}
 
         </Tabs>
 
