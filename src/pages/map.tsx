@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.css';
-import { Button, Form, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
+import { Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
 import { connect } from 'dva';
 import { Autocomplete, Marker, LoadScript, useJsApiLoader } from '@react-google-maps/api';
 import { AimOutlined, CaretDownOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined } from '@ant-design/icons'
@@ -28,6 +28,7 @@ const FormItem = Form.Item
 export default class Travel extends React.Component {
 
   state = {
+    age: 0, weight: 0, height: 0,
     defaultPosition: {
 
     },
@@ -217,18 +218,24 @@ export default class Travel extends React.Component {
     const { additionalPlaces } = this.state
 
     form.validateFields((err, values) => {
-
+      if (!values['startPosition'] || !values['destination']) {
+        message.error('Please entering the start position and destination!')
+        return
+      }
       const DirectionsService = new google.maps.DirectionsService();
       let wayPoints = []
       additionalPlaces.forEach(item => {
-
-        const obj = new google.maps.LatLng(Number(values['place_' + String(item.id)].split(',')[0]), Number(values['place_' + String(item.id)].split(',')[1]))
-        wayPoints.push(
-          {
-            location: obj,
-            stopover: true,
-          })
+        if (values['place_' + String(item.id)]) {
+          const obj = new google.maps.LatLng(Number(values['place_' + String(item.id)].split(',')[0]), Number(values['place_' + String(item.id)].split(',')[1]))
+          wayPoints.push(
+            {
+              location: obj,
+              stopover: true,
+            })
+        }
       })
+
+      console.log(wayPoints)
       console.log(wayPoints, new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])))
       DirectionsService.route({
         origin: new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])),
@@ -501,7 +508,7 @@ export default class Travel extends React.Component {
         </Col>
 
         <Col>
-         
+
           {additionalPlaces.map(
             item =>
               <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
@@ -523,10 +530,10 @@ export default class Travel extends React.Component {
 
 
           <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
-         
+
         </Col>
         <Col>
-        <CaretDownOutlined />
+          <CaretDownOutlined />
           {end_autoComplete}
           {/* <Divider>Destination</Divider> */}
           {getFieldDecorator('destination')(
@@ -540,7 +547,26 @@ export default class Travel extends React.Component {
     )
   }
 
+  changeAge = (value) => {
+    this.setState({
+      age: value,
+    });
+  }
+
+  changeHeight = (value) => {
+    this.setState({
+      height: value,
+    });
+  }
+
+  changeWeight = (value) => {
+    this.setState({
+      weight: value,
+    });
+  }
+
   render() {
+    const { age, weight, height } = this.state
     const { form: { getFieldDecorator } } = this.props
     const staticOptions = [
       { title: 'Library', value: 'Library' },
@@ -613,7 +639,7 @@ Check out the number of people near you.
         </Carousel>
 
 
-        <Card style={{ padding: 20, display: '' }} hoverable>
+        <Card style={{ padding: 20, display: 'none' }} hoverable>
           <Form>
             <Row type={'flex'} justify={'center'}>
               <Col xs={24} md={24} xl={24} xxl={8}>
@@ -679,6 +705,118 @@ Check out the number of people near you.
           </Form>
 
         </Card>
+
+        <Card title={'Health Info'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
+          <Form>
+            <Row type={'flex'} justify={'center'}>
+              <Col xs={14} md={12} xl={12} xxl={8}>
+                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Age(year)'}>
+                  {
+                    getFieldDecorator('age')(
+                      <Slider min={0} max={140}
+                        onChange={
+                          this.changeAge
+                        }
+                        value={typeof age === 'number' ? age : 0}
+                      ></Slider>
+                    )
+                  }
+                </FormItem>
+              </Col>
+              <Col span={6}>
+                {
+                  getFieldDecorator('age', {
+                    initialValue: 0
+                  })(
+
+                    <InputNumber
+
+                      min={0}
+                      max={140}
+                      style={{ margin: '0 16px' }}
+                      value={age || 0}
+                      onChange={this.changeAge}
+                      formatter={value => `${value}   year`}
+                      parser={value => value.replace('   year', '')}
+                    />
+                  )
+                }
+
+
+              </Col>
+            </Row>
+            <Row type={'flex'} justify={'center'}>
+              <Col xs={14} md={12} xl={12} xxl={8}>
+                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Height(cm)'}>
+                  {
+                    getFieldDecorator('height')(
+                      <Slider min={0} max={300} step={0.1}
+                        onChange={
+                          this.changeHeight
+                        }
+                        value={typeof height === 'number' ? height : 0}></Slider>
+                    )
+                  }
+                </FormItem>
+              </Col>
+              <Col span={6}>
+                {
+                  getFieldDecorator('height', {
+                    initialValue: 0
+                  })(
+                    <InputNumber
+                      min={0}
+                      max={300}
+                      style={{ margin: '0 16px' }}
+                      value={height || 0}
+                      onChange={this.changeHeight}
+                      formatter={value => `${value}   cm`}
+                      parser={value => value.replace('   cm', '')}
+                    />
+                  )
+                }
+
+              </Col>
+            </Row>
+            <Row type={'flex'} justify={'center'}>
+              <Col xs={14} md={12} xl={12} xxl={8}>
+                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Weight(kg)'}>
+                  {
+                    getFieldDecorator('weight')(
+                      <Slider min={0} max={400} step={0.1}
+                        onChange={
+                          this.changeWeight
+                        }
+                        value={typeof weight === 'number' ? weight : 0}></Slider>
+                    )
+                  }
+                </FormItem>
+
+              </Col>
+              <Col span={6}>
+                {
+                  getFieldDecorator('weight', {
+                    initialValue: 0
+                  })(
+                    <InputNumber
+                      min={0}
+                      max={400}
+                      style={{ margin: '0 16px' }}
+                      value={weight || 0}
+                      onChange={this.changeWeight}
+                      formatter={value => `${value}   kg`}
+                      parser={value => value.replace('   kg', '')}
+                    />)
+                }
+
+
+              </Col>
+            </Row>
+            {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
+          </Form>
+
+        </Card>
+
         <Row>
           <Col span={24}>
             <Card style={{ padding: 0 }} title={'PLAN'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
@@ -719,6 +857,14 @@ Check out the number of people near you.
                 </div>
 
               </div>
+
+            </Card>
+          </Col>
+          <Col span={24}>
+            <Card style={{ padding: 0 }} title={'Health Prediction'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
+
+
+
 
             </Card>
           </Col>
