@@ -283,6 +283,7 @@ export default class Travel extends React.Component {
   }
 
   travelPredictionRender = () => {
+    const { form } = this.props
     let { original_routes, optimized_routes } = this.state
     let optimized_distance = 0
     let original_distance = 0
@@ -295,7 +296,7 @@ export default class Travel extends React.Component {
     let difference_avg_speed = 0
     let total_calories_comsuption = 0
     let comsuption_efficiency = 0
-    let fat_lost = 0
+
 
     console.log('原始路径/优化路径', original_routes, optimized_routes)
 
@@ -319,7 +320,21 @@ export default class Travel extends React.Component {
       original_avg_speed = (original_distance / original_time).toFixed(2)
       optimized_avg_speed = (optimized_distance / optimized_time).toFixed(2)
       difference_avg_speed = original_avg_speed - optimized_avg_speed
+      form.validateFields((err, values) => {
+        if (values['weight']) {
+          if (values['mode'] === 'WALKING') {
+            total_calories_comsuption = Math.round((3 * values['weight'] * (optimized_time / 60)) / 60)
+            comsuption_efficiency = Math.round(total_calories_comsuption / (optimized_time / 60))
+          } else if(values['mode'] === 'BICYCLING'){
+            total_calories_comsuption = Math.round((7.5 * values['weight'] * (optimized_time / 60)) / 60)
+            comsuption_efficiency = Math.round(total_calories_comsuption / (optimized_time / 60))
+          }
+
+        }
+      })
     }
+
+
 
     this.setState({
       optimized_distance,
@@ -333,7 +348,6 @@ export default class Travel extends React.Component {
       difference_avg_speed,
       total_calories_comsuption,
       comsuption_efficiency,
-      fat_lost,
     })
   }
 
@@ -658,7 +672,6 @@ export default class Travel extends React.Component {
       original_avg_speed,
       total_calories_comsuption,
       comsuption_efficiency,
-      fat_lost,
     } = this.state
     const { form: { getFieldDecorator } } = this.props
     const staticOptions = [
@@ -934,10 +947,10 @@ Check out the number of people near you.
           </Col>
           <Col xs={24} xl={8}>
 
-            <Card title={'Health Info'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
+            <Card title={'Health calculator'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
               <Form>
-                <Row type={'flex'} justify={'center'}>
-
+                {/* <Row type={'flex'} justify={'center'}>
+                  
                   <Col xs={14} md={12} xl={12} xxl={8}>
                     <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Age'}>
                       {
@@ -973,6 +986,7 @@ Check out the number of people near you.
 
 
                   </Col>
+                  
                 </Row>
                 <Row type={'flex'} justify={'center'}>
                   <Col xs={14} md={12} xl={12} xxl={8}>
@@ -1006,7 +1020,8 @@ Check out the number of people near you.
                     }
 
                   </Col>
-                </Row>
+                  
+                </Row> */}
                 <Row type={'flex'} justify={'center'}>
                   <Col xs={14} md={12} xl={12} xxl={8}>
                     <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Weight'}>
@@ -1039,6 +1054,17 @@ Check out the number of people near you.
                     }
 
 
+                  </Col>
+                  <Col>
+                    {/* <Divider  >
+                      <h2>Health</h2>
+                    </Divider> */}
+
+                    <Descriptions title="Calories Comsuption">
+                      <Descriptions.Item label="Total Consumption">{total_calories_comsuption&&String(total_calories_comsuption) + ' cal' || 0} </Descriptions.Item>
+                      <Descriptions.Item label="Consumption efficiency">{comsuption_efficiency&&String(comsuption_efficiency) + ' cal/min' || 0}</Descriptions.Item>
+
+                    </Descriptions>
                   </Col>
                 </Row>
                 {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
@@ -1106,17 +1132,7 @@ Check out the number of people near you.
 
 
               <Row>
-                <Col>
-                  <Divider  >
-                    <h2>Health</h2>
-                  </Divider>
 
-                  <Descriptions title="Calories Comsuption">
-                    <Descriptions.Item label="Total Consumption">{total_calories_comsuption || 0} </Descriptions.Item>
-                    <Descriptions.Item label="Consumption efficiency">{comsuption_efficiency || 0}</Descriptions.Item>
-                    <Descriptions.Item label="Equivalent fat lost">{fat_lost || 0}</Descriptions.Item>
-                  </Descriptions>
-                </Col>
                 <Col>
                   <Divider  >
                     <h2>Trip</h2>
