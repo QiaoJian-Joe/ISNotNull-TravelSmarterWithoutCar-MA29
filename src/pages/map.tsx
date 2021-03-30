@@ -886,15 +886,34 @@ Check out the number of people near you.
             </Card>
           </Col>
           <Col span={24}>
-            <Card style={{ padding: 0 }} title={'Health Travel Prediction'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
+            <Card style={{ padding: 0 }} title={'Travel Prediction'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
 
 
               <Row>
-
-                <Divider orientation="left" >
-                  Calorie consumption of this trip
+                <Col>
+                  <Divider orientation="left" >
+                    Health
                   </Divider>
-
+                  <Descriptions title="Calories Comsuption">
+                    <Descriptions.Item label="Total Consumption">placeholder </Descriptions.Item>
+                    <Descriptions.Item label="Consumption efficiency">placeholder</Descriptions.Item>
+                    <Descriptions.Item label="Equivalent fat weight">placeholder</Descriptions.Item>
+                  </Descriptions>
+                </Col>
+                <Col>
+                  <Divider orientation="left" >
+                    Trip
+                  </Divider>
+                  <Descriptions title="Distance Prediction">
+                    <Descriptions.Item label="Optimized route distance">placeholder</Descriptions.Item>
+                    <Descriptions.Item label="Original route distance">placeholder</Descriptions.Item>
+                  </Descriptions>
+                  <Descriptions title="Time Prediction">
+                    <Descriptions.Item label="Estimated time after optimization">placeholder</Descriptions.Item>
+                    <Descriptions.Item label="Original estimated time">placeholder</Descriptions.Item>
+                    <Descriptions.Item label="Total time reduced by optimizer">placeholder</Descriptions.Item>
+                  </Descriptions>
+                </Col>
               </Row>
 
             </Card>
