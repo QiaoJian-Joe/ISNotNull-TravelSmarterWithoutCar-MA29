@@ -48,7 +48,7 @@ function MyComponent(props) {
         >
 
             {
-                props.markers()
+                !props.directions && props.markers()
             }
              {props.directions && <DirectionsRenderer directions={props.directions} />}
         </GoogleMap>

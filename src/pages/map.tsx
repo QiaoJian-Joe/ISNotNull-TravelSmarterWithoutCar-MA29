@@ -150,6 +150,7 @@ export default class Travel extends React.Component {
       {destination_marker}
     </>
 
+console.log('途经点:',additionalPlaces)
 
     return markers
   }
@@ -243,13 +244,34 @@ export default class Travel extends React.Component {
         origin: new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])),
         destination: new google.maps.LatLng(Number(values['destination'].split(',')[0]), Number(values['destination'].split(',')[1])),
         travelMode: google.maps.TravelMode[travelMode],
-        waypoints: wayPoints
+        waypoints: wayPoints,
+        optimizeWaypoints: true
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
+          console.log(result)
           this.setState({
             directions: result,
+            optimized_routes: result.routes
           }, () => {
-            console.log(result)
+            DirectionsService.route({
+              origin: new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])),
+              destination: new google.maps.LatLng(Number(values['destination'].split(',')[0]), Number(values['destination'].split(',')[1])),
+              travelMode: google.maps.TravelMode[travelMode],
+              waypoints: wayPoints,
+              optimizeWaypoints: false
+            }, (result, status) => {
+              if (status === google.maps.DirectionsStatus.OK) {
+                console.log(result)
+                this.setState({
+
+                  original_routes: result.routes
+                }, () => {
+                  this.travelPredictionRender()
+                });
+              } else {
+                console.error(`error fetching directions ${result}`);
+              }
+            });
           });
         } else {
           console.error(`error fetching directions ${result}`);
@@ -257,6 +279,33 @@ export default class Travel extends React.Component {
       });
     })
 
+  }
+
+  travelPredictionRender = () => {
+    const { original_routes, optimized_routes } = this.state
+    const optimized_distance = 0
+    const original_distance = 0
+    const difference_distance = 0
+    const optimized_time = 0
+    const original_time = 0
+    const difference_time = 0
+    const optimized_avg_speed = 0
+    const original_avg_speed = 0
+    console.log('原始路径/优化路径',original_routes,optimized_routes)
+    original_routes && original_routes.legs &&original_routes.legs.forEach(element => {
+      console.log(element)
+    });
+
+    this.setState({
+      optimized_distance,
+      original_distance,
+      difference_distance,
+      optimized_time,
+      original_time,
+      difference_time,
+      optimized_avg_speed,
+      original_avg_speed
+    })
   }
 
   initUserCurrentPosition = () => {
@@ -568,7 +617,15 @@ export default class Travel extends React.Component {
   }
 
   render() {
-    const { age, weight, height } = this.state
+    const { age, weight, height,
+      optimized_distance,
+      original_distance,
+      difference_distance,
+      optimized_time,
+      original_time,
+      difference_time,
+      optimized_avg_speed,
+      original_avg_speed } = this.state
     const { form: { getFieldDecorator } } = this.props
     const staticOptions = [
       { title: 'Library', value: 'Library' },
@@ -904,14 +961,20 @@ Check out the number of people near you.
                   <Divider orientation="left" >
                     Trip
                   </Divider>
-                  <Descriptions title="Distance Prediction">
-                    <Descriptions.Item label="Optimized route distance">placeholder</Descriptions.Item>
-                    <Descriptions.Item label="Original route distance">placeholder</Descriptions.Item>
+
+                  <Descriptions title="Distance Prediction" >
+                    <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance || 0}</Descriptions.Item>
+                    <Descriptions.Item label="Estimated route distance(original)">{original_distance || 0}</Descriptions.Item>
+                    <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance || 0}</Descriptions.Item>
                   </Descriptions>
                   <Descriptions title="Time Prediction">
-                    <Descriptions.Item label="Estimated time after optimization">placeholder</Descriptions.Item>
-                    <Descriptions.Item label="Original estimated time">placeholder</Descriptions.Item>
-                    <Descriptions.Item label="Total time reduced by optimizer">placeholder</Descriptions.Item>
+                    <Descriptions.Item label="Estimated time(optimized)">{optimized_time || 0}</Descriptions.Item>
+                    <Descriptions.Item label="Estimated time(original)">{original_time || 0}</Descriptions.Item>
+                    <Descriptions.Item label="Total time reduced by optimizer">{difference_time || 0}</Descriptions.Item>
+                  </Descriptions>
+                  <Descriptions title="Travel Speed Prediction">
+                    <Descriptions.Item label="Estimated average speed(optimized)">{optimized_avg_speed || 0}</Descriptions.Item>
+                    <Descriptions.Item label="Estimated average speed(original)">{original_avg_speed || 0}</Descriptions.Item>
                   </Descriptions>
                 </Col>
               </Row>
