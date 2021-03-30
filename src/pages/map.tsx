@@ -3,8 +3,9 @@ import styles from './index.css';
 import { Descriptions, Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
 import { connect } from 'dva';
 import { Autocomplete, Marker, LoadScript, useJsApiLoader } from '@react-google-maps/api';
-import { AimOutlined, CaretDownOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined } from '@ant-design/icons'
-import MyComponent from '@/pages/googleMap'
+import { AimOutlined, CaretDownOutlined, RedoOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined } from '@ant-design/icons'
+import MyComponent from '@/pages/googleMap';
+import ReactECharts from 'echarts-for-react';
 import Geocode from "react-geocode";
 import show_img_1 from '@/assets/show_img_1.png'
 import show_img_2 from '@/assets/show_img_2.png'
@@ -150,8 +151,6 @@ export default class Travel extends React.Component {
       {destination_marker}
     </>
 
-console.log('途经点:',additionalPlaces)
-
     return markers
   }
 
@@ -238,6 +237,8 @@ console.log('途经点:',additionalPlaces)
 
       const travelMode = values['mode']
 
+
+
       console.log(wayPoints)
       console.log(wayPoints, new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])))
       DirectionsService.route({
@@ -269,12 +270,12 @@ console.log('途经点:',additionalPlaces)
                   this.travelPredictionRender()
                 });
               } else {
-                console.error(`error fetching directions ${result}`);
+                message.error('No Routes has been found!');
               }
             });
           });
         } else {
-          console.error(`error fetching directions ${result}`);
+          message.error(`No Routes has been found!`);
         }
       });
     })
@@ -282,19 +283,43 @@ console.log('途经点:',additionalPlaces)
   }
 
   travelPredictionRender = () => {
-    const { original_routes, optimized_routes } = this.state
-    const optimized_distance = 0
-    const original_distance = 0
-    const difference_distance = 0
-    const optimized_time = 0
-    const original_time = 0
-    const difference_time = 0
-    const optimized_avg_speed = 0
-    const original_avg_speed = 0
-    console.log('原始路径/优化路径',original_routes,optimized_routes)
-    original_routes && original_routes.legs &&original_routes.legs.forEach(element => {
-      console.log(element)
+    let { original_routes, optimized_routes } = this.state
+    let optimized_distance = 0
+    let original_distance = 0
+    let difference_distance = 0
+    let optimized_time = 0
+    let original_time = 0
+    let difference_time = 0
+    let optimized_avg_speed = 0
+    let original_avg_speed = 0
+    let difference_avg_speed = 0
+    let total_calories_comsuption = 0
+    let comsuption_efficiency = 0
+    let fat_lost = 0
+
+    console.log('原始路径/优化路径', original_routes, optimized_routes)
+
+    let original_legs = original_routes && original_routes[0] && original_routes[0].legs ? original_routes[0].legs : []
+    let optimized_legs = optimized_routes && optimized_routes[0] && optimized_routes[0].legs ? optimized_routes[0].legs : []
+
+    original_legs.length > 0 && original_legs.forEach(element => {
+      original_distance += element.distance.value
+      original_time += element.duration.value
     });
+
+    optimized_legs.length > 0 && optimized_legs.forEach(element => {
+      optimized_distance += element.distance.value
+      optimized_time += element.duration.value
+    });
+
+    difference_distance = original_distance - optimized_distance
+    difference_time = original_time - optimized_time
+
+    if (optimized_distance && original_distance && optimized_time && original_time) {
+      original_avg_speed = (original_distance / original_time).toFixed(2)
+      optimized_avg_speed = (optimized_distance / optimized_time).toFixed(2)
+      difference_avg_speed = original_avg_speed - optimized_avg_speed
+    }
 
     this.setState({
       optimized_distance,
@@ -304,7 +329,11 @@ console.log('途经点:',additionalPlaces)
       original_time,
       difference_time,
       optimized_avg_speed,
-      original_avg_speed
+      original_avg_speed,
+      difference_avg_speed,
+      total_calories_comsuption,
+      comsuption_efficiency,
+      fat_lost,
     })
   }
 
@@ -333,7 +362,7 @@ console.log('途经点:',additionalPlaces)
         currentId: currentId + 1
       })
     } else {
-      message.error('Only two way points can be added!!')
+      message.error('At most there way points could be added!!')
     }
   }
 
@@ -625,7 +654,12 @@ console.log('途经点:',additionalPlaces)
       original_time,
       difference_time,
       optimized_avg_speed,
-      original_avg_speed } = this.state
+      difference_avg_speed,
+      original_avg_speed,
+      total_calories_comsuption,
+      comsuption_efficiency,
+      fat_lost,
+    } = this.state
     const { form: { getFieldDecorator } } = this.props
     const staticOptions = [
       { title: 'Library', value: 'Library' },
@@ -662,40 +696,112 @@ console.log('途经点:',additionalPlaces)
       textAlign: 'left',
     }
 
+    const distance_option = {
+      xAxis: {
+        type: 'category',
+        data: ['Original', 'Optimized', 'Differences']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [
+          {
+            value: original_distance,
+
+
+            itemStyle: {
+              color: '#FFEB3B'
+            }
+          },
+          {
+            value: optimized_distance,
+            itemStyle: {
+              color: '#388E3C'
+            }
+          },
+          {
+            value: difference_distance,
+            itemStyle: {
+              color: '#3F51B5'
+            }
+          }],
+        type: 'bar'
+      }]
+    };
+
+    const speed_option = {
+      xAxis: {
+        type: 'category',
+        data: ['Original', 'Optimized', 'Differences']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [
+          {
+            value: original_avg_speed,
+
+
+            itemStyle: {
+              color: '#FFEB3B'
+            }
+          },
+          {
+            value: optimized_avg_speed,
+            itemStyle: {
+              color: '#388E3C'
+            }
+          },
+          {
+            value: difference_avg_speed,
+            itemStyle: {
+              color: '#3F51B5'
+            }
+          }],
+        type: 'bar'
+      }]
+    };
+
+    const time_option = {
+      xAxis: {
+        type: 'category',
+        data: ['Original', 'Optimized', 'Differences']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [
+          {
+            value: original_time,
+
+
+            itemStyle: {
+              color: '#FFEB3B'
+            }
+          },
+          {
+            value: optimized_time,
+            itemStyle: {
+              color: '#388E3C'
+            }
+          },
+          {
+            value: difference_time,
+            itemStyle: {
+              color: '#3F51B5'
+            }
+          }],
+        type: 'bar'
+      }]
+    };
+
     return (
       <div id="map" className={styles.background} >
 
-        <Carousel beforeChange={this.carouselChange} style={{ height: '20%', maxHeight: '290px' }}>
-          <div className={styles.show_img_container}>
-            <div style={imgTitleStyle}> Travel smarter by saving your time!</div>
-            <div style={imgContentStyle}>
-              Plan your routes in a simple way to avoid<br />
-              spending more time in travelling.<br />
-              Optimize your route by time or plan the route<br />
-              in the same order as you entered.
-            </div>
-            <img src={img1} style={contentStyle} ></img>
 
-          </div>
-          <div className={styles.show_img_container}>
-            <div style={imgTitleStyle}> Are you health conscious?</div>
-            <div style={imgContentStyle}>
-              We take care of your health too.<br />
-Check the number of calories burned while <br />
-you were travelling.
-            </div>
-            <img src={img2} style={contentStyle} ></img>
-          </div>
-          <div className={styles.show_img_container}>
-            <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
-            <div style={imgContentStyle}>
-              We will help you get to a place where you feel safe.<br />
-Find a well-lighted route near you using our website.<br />
-Check out the number of people near you.
-            </div>
-            <img src={img3} style={contentStyle} ></img>
-          </div>
-        </Carousel>
 
 
         <Card style={{ padding: 20, display: 'none' }} hoverable>
@@ -765,119 +871,182 @@ Check out the number of people near you.
 
         </Card>
 
-        <Card title={'Health Info'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
-          <Form>
-            <Row type={'flex'} justify={'center'}>
-              <Col xs={14} md={12} xl={12} xxl={8}>
-                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Age(year)'}>
-                  {
-                    getFieldDecorator('age')(
-                      <Slider min={0} max={140}
-                        onChange={
-                          this.changeAge
-                        }
-                        value={typeof age === 'number' ? age : 0}
-                      ></Slider>
-                    )
-                  }
-                </FormItem>
-              </Col>
-              <Col span={6}>
-                {
-                  getFieldDecorator('age', {
-                    initialValue: 0
-                  })(
 
-                    <InputNumber
+        <Row gutter={[10, 10]}>
+          <Col>
+            <Carousel beforeChange={this.carouselChange} style={{ height: '20%', maxHeight: '290px' }}>
+              <div className={styles.show_img_container}>
+                <div style={imgTitleStyle}> Travel smarter by saving your time!</div>
+                <div style={imgContentStyle}>
+                  Plan your routes in a simple way to avoid<br />
+              spending more time in travelling.<br />
+              Optimize your route by time or plan the route<br />
+              in the same order as you entered.
+            </div>
+                <img src={img1} style={contentStyle} ></img>
 
-                      min={0}
-                      max={140}
-                      style={{ margin: '0 16px' }}
-                      value={age || 0}
-                      onChange={this.changeAge}
-                      formatter={value => `${value}   year`}
-                      parser={value => value.replace('   year', '')}
-                    />
-                  )
-                }
+              </div>
+              <div className={styles.show_img_container}>
+                <div style={imgTitleStyle}> Are you health conscious?</div>
+                <div style={imgContentStyle}>
+                  We take care of your health too.<br />
+Check the number of calories burned while <br />
+you were travelling.
+            </div>
+                <img src={img2} style={contentStyle} ></img>
+              </div>
+              {/* <div className={styles.show_img_container}>
+                <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
+                <div style={imgContentStyle}>
+                  We will help you get to a place where you feel safe.<br />
+Find a well-lighted route near you using our website.<br />
+Check out the number of people near you.
+            </div>
+                <img src={img3} style={contentStyle} ></img>
+              </div> */}
+            </Carousel>
+          </Col>
+          <Col>
+          </Col>
+          <Col xs={24} xl={16}>
+            <Card style={{ padding: 20 }} hoverable>
 
+              <div className={styles.mapContainer}>
+                <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
+                <div className={styles.mapLocateButton}>
+                  {this.state.mapIsLoad && <Button
+                    type="default"
+                    size='large'
+                    icon={'environment'}
+                    onClick={() => {
+                      if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition((value) => (this.getCurrentLocation(value)));
+                      } else {
+                        alert("Could not get the location info.");
+                      }
+                    }}></Button>}
 
-              </Col>
-            </Row>
-            <Row type={'flex'} justify={'center'}>
-              <Col xs={14} md={12} xl={12} xxl={8}>
-                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Height(cm)'}>
-                  {
-                    getFieldDecorator('height')(
-                      <Slider min={0} max={300} step={0.1}
-                        onChange={
-                          this.changeHeight
-                        }
-                        value={typeof height === 'number' ? height : 0}></Slider>
-                    )
-                  }
-                </FormItem>
-              </Col>
-              <Col span={6}>
-                {
-                  getFieldDecorator('height', {
-                    initialValue: 0
-                  })(
-                    <InputNumber
-                      min={0}
-                      max={300}
-                      style={{ margin: '0 16px' }}
-                      value={height || 0}
-                      onChange={this.changeHeight}
-                      formatter={value => `${value}   cm`}
-                      parser={value => value.replace('   cm', '')}
-                    />
-                  )
-                }
+                </div>
 
-              </Col>
-            </Row>
-            <Row type={'flex'} justify={'center'}>
-              <Col xs={14} md={12} xl={12} xxl={8}>
-                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Weight(kg)'}>
-                  {
-                    getFieldDecorator('weight')(
-                      <Slider min={0} max={400} step={0.1}
-                        onChange={
-                          this.changeWeight
-                        }
-                        value={typeof weight === 'number' ? weight : 0}></Slider>
-                    )
-                  }
-                </FormItem>
+              </div>
 
-              </Col>
-              <Col span={6}>
-                {
-                  getFieldDecorator('weight', {
-                    initialValue: 0
-                  })(
-                    <InputNumber
-                      min={0}
-                      max={400}
-                      style={{ margin: '0 16px' }}
-                      value={weight || 0}
-                      onChange={this.changeWeight}
-                      formatter={value => `${value}   kg`}
-                      parser={value => value.replace('   kg', '')}
-                    />)
-                }
+            </Card>
+          </Col>
+          <Col xs={24} xl={8}>
+
+            <Card title={'Health Info'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
+              <Form>
+                <Row type={'flex'} justify={'center'}>
+
+                  <Col xs={14} md={12} xl={12} xxl={8}>
+                    <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Age'}>
+                      {
+                        getFieldDecorator('age')(
+                          <Slider min={0} max={140}
+                            onChange={
+                              this.changeAge
+                            }
+                            value={typeof age === 'number' ? age : 0}
+                          ></Slider>
+                        )
+                      }
+                    </FormItem>
+                  </Col>
+                  <Col span={6}>
+                    {
+                      getFieldDecorator('age', {
+                        initialValue: 0
+                      })(
+
+                        <InputNumber
+
+                          min={0}
+                          max={140}
+                          style={{ margin: '0 16px' }}
+                          value={age || 0}
+                          onChange={this.changeAge}
+                          formatter={value => `${value}   year`}
+                          parser={value => value.replace('   year', '')}
+                        />
+                      )
+                    }
 
 
-              </Col>
-            </Row>
-            {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
-          </Form>
+                  </Col>
+                </Row>
+                <Row type={'flex'} justify={'center'}>
+                  <Col xs={14} md={12} xl={12} xxl={8}>
+                    <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Height'}>
+                      {
+                        getFieldDecorator('height')(
+                          <Slider min={0} max={300} step={0.1}
+                            onChange={
+                              this.changeHeight
+                            }
+                            value={typeof height === 'number' ? height : 0}></Slider>
+                        )
+                      }
+                    </FormItem>
+                  </Col>
+                  <Col span={6}>
+                    {
+                      getFieldDecorator('height', {
+                        initialValue: 0
+                      })(
+                        <InputNumber
+                          min={0}
+                          max={300}
+                          style={{ margin: '0 16px' }}
+                          value={height || 0}
+                          onChange={this.changeHeight}
+                          formatter={value => `${value}   cm`}
+                          parser={value => value.replace('   cm', '')}
+                        />
+                      )
+                    }
 
-        </Card>
+                  </Col>
+                </Row>
+                <Row type={'flex'} justify={'center'}>
+                  <Col xs={14} md={12} xl={12} xxl={8}>
+                    <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Weight'}>
+                      {
+                        getFieldDecorator('weight')(
+                          <Slider min={0} max={400} step={0.1}
+                            onChange={
+                              this.changeWeight
+                            }
+                            value={typeof weight === 'number' ? weight : 0}></Slider>
+                        )
+                      }
+                    </FormItem>
 
-        <Row>
-          <Col span={24}>
+                  </Col>
+                  <Col span={6}>
+                    {
+                      getFieldDecorator('weight', {
+                        initialValue: 0
+                      })(
+                        <InputNumber
+                          min={0}
+                          max={400}
+                          style={{ margin: '0 16px' }}
+                          value={weight || 0}
+                          onChange={this.changeWeight}
+                          formatter={value => `${value}   kg`}
+                          parser={value => value.replace('   kg', '')}
+                        />)
+                    }
+
+
+                  </Col>
+                </Row>
+                {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
+              </Form>
+
+            </Card>
+          </Col>
+          <Col xs={24} xl={8}>
             <Card style={{ padding: 0 }} title={'Plan'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
               <Row gutter={[10, 10]} justify={'end'}>
                 <Col>
@@ -902,11 +1071,24 @@ Check out the number of people near you.
                           </Radio.Group>)
                       }
                     </Col>
-                    <Col span={6}>
-                      {this.state.mapIsLoad && <Button style={{ background: '#364d79', color: '#fff' }} onClick={this.optimize}>
-                        <RocketOutlined />Optimize
+                    <Col span={12}>
+                      <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
+                        <Col span={13} style={{ textAlign: 'right' }}>
+                          {this.state.mapIsLoad && <Button style={{ background: '#303F9F', color: '#fff' }} onClick={this.optimize}>
+                            <RocketOutlined />Optimize
                     </Button>}
+                        </Col >
+
+                        <Col span={11} style={{ textAlign: 'left' }}>
+                          {this.state.mapIsLoad && <Button onClick={() => { location.reload() }}>
+                            <RedoOutlined />Reset
+                    </Button>}
+                        </Col>
+                      </Row>
+
+
                     </Col>
+
                   </Row>
                 </Col>
 
@@ -918,64 +1100,62 @@ Check out the number of people near you.
 
             </Card>
           </Col>
-          <Col span={24}>
-            <Card style={{ padding: 20 }} hoverable>
 
-              <div className={styles.mapContainer}>
-                <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
-                <div className={styles.mapLocateButton}>
-                  {this.state.mapIsLoad && <Button
-                    type="default"
-                    size='large'
-                    icon={'environment'}
-                    onClick={() => {
-                      if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition((value) => (this.getCurrentLocation(value)));
-                      } else {
-                        alert("Could not get the location info.");
-                      }
-                    }}></Button>}
-
-                </div>
-
-              </div>
-
-            </Card>
-          </Col>
           <Col span={24}>
             <Card style={{ padding: 0 }} title={'Travel Prediction'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
 
 
               <Row>
                 <Col>
-                  <Divider orientation="left" >
-                    Health
+                  <Divider  >
+                    <h2>Health</h2>
                   </Divider>
+
                   <Descriptions title="Calories Comsuption">
-                    <Descriptions.Item label="Total Consumption">placeholder </Descriptions.Item>
-                    <Descriptions.Item label="Consumption efficiency">placeholder</Descriptions.Item>
-                    <Descriptions.Item label="Equivalent fat weight">placeholder</Descriptions.Item>
+                    <Descriptions.Item label="Total Consumption">{total_calories_comsuption || 0} </Descriptions.Item>
+                    <Descriptions.Item label="Consumption efficiency">{comsuption_efficiency || 0}</Descriptions.Item>
+                    <Descriptions.Item label="Equivalent fat lost">{fat_lost || 0}</Descriptions.Item>
                   </Descriptions>
                 </Col>
                 <Col>
-                  <Divider orientation="left" >
-                    Trip
+                  <Divider  >
+                    <h2>Trip</h2>
                   </Divider>
+                  <Row>
+                    <Col xs={24} xl={24}>
+                      <Descriptions title="Distance Prediction" >
+                        <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                      </Descriptions>
+                    </Col>
+                    <Col xs={24} xl={24}>
+                      <ReactECharts option={distance_option} />
+                    </Col>
+                  </Row>
 
-                  <Descriptions title="Distance Prediction" >
-                    <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance || 0}</Descriptions.Item>
-                    <Descriptions.Item label="Estimated route distance(original)">{original_distance || 0}</Descriptions.Item>
-                    <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance || 0}</Descriptions.Item>
-                  </Descriptions>
-                  <Descriptions title="Time Prediction">
-                    <Descriptions.Item label="Estimated time(optimized)">{optimized_time || 0}</Descriptions.Item>
-                    <Descriptions.Item label="Estimated time(original)">{original_time || 0}</Descriptions.Item>
-                    <Descriptions.Item label="Total time reduced by optimizer">{difference_time || 0}</Descriptions.Item>
-                  </Descriptions>
-                  <Descriptions title="Travel Speed Prediction">
-                    <Descriptions.Item label="Estimated average speed(optimized)">{optimized_avg_speed || 0}</Descriptions.Item>
-                    <Descriptions.Item label="Estimated average speed(original)">{original_avg_speed || 0}</Descriptions.Item>
-                  </Descriptions>
+                  <Row>
+                    <Col xs={24} xl={24}>
+                      <Descriptions title="Time Prediction">
+                        <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item>
+                      </Descriptions>
+                    </Col>
+                    <Col xs={24} xl={24}>
+                      <ReactECharts option={time_option} />
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <Col xs={24} xl={24}>
+
+                      <Descriptions title="Travel Speed Prediction">
+                        <Descriptions.Item label="Estimated Average speed">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item>
+                      </Descriptions>
+                    </Col>
+
+                  </Row>
                 </Col>
               </Row>
 

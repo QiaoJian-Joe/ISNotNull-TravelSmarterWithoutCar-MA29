@@ -33,8 +33,9 @@ class BasicLayout extends React.PureComponent {
             <Col xs={16} sm={8} md={8} lg={8} xl={8}>
               <h1 className={styles.title}>
                 Travel Smarter in Melbourne <br></br>
-                 without a car
+                
           </h1>
+          <h2 className={styles.title}>without a car</h2>
             </Col>
           </Row>
 
