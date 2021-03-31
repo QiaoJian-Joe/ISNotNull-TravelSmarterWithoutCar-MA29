@@ -201,6 +201,11 @@ export default class Travel extends React.Component {
 
     if (value) {
       this.setState({
+        defaultPosition: {
+          lat: value.coords.latitude,
+          lon: value.coords.longitude,
+          accuracy: value.coords.accuracy
+        },
         currentPosition: {
           lat: value.coords.latitude,
           lon: value.coords.longitude,
@@ -325,7 +330,7 @@ export default class Travel extends React.Component {
           if (values['mode'] === 'WALKING') {
             total_calories_comsuption = Math.round((3 * values['weight'] * (optimized_time / 60)) / 60)
             comsuption_efficiency = Math.round(total_calories_comsuption / (optimized_time / 60))
-          } else if(values['mode'] === 'BICYCLING'){
+          } else if (values['mode'] === 'BICYCLING') {
             total_calories_comsuption = Math.round((7.5 * values['weight'] * (optimized_time / 60)) / 60)
             comsuption_efficiency = Math.round(total_calories_comsuption / (optimized_time / 60))
           }
@@ -376,7 +381,7 @@ export default class Travel extends React.Component {
         currentId: currentId + 1
       })
     } else {
-      message.error('At most there way points could be added!!')
+      message.error('You could only add up to 3 additional waypoints!')
     }
   }
 
@@ -715,12 +720,18 @@ export default class Travel extends React.Component {
         data: ['Original', 'Optimized', 'Differences']
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        axisLabel: {
+          formatter: '{value} km'
+        },
+        axisPointer: {
+          snap: true
+        }
       },
       series: [{
         data: [
           {
-            value: original_distance,
+            value: original_distance / 1000,
 
 
             itemStyle: {
@@ -728,13 +739,13 @@ export default class Travel extends React.Component {
             }
           },
           {
-            value: optimized_distance,
+            value: optimized_distance / 1000,
             itemStyle: {
               color: '#388E3C'
             }
           },
           {
-            value: difference_distance,
+            value: difference_distance / 1000,
             itemStyle: {
               color: '#3F51B5'
             }
@@ -783,12 +794,18 @@ export default class Travel extends React.Component {
         data: ['Original', 'Optimized', 'Differences']
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        axisLabel: {
+          formatter: '{value} min'
+        },
+        axisPointer: {
+          snap: true
+        }
       },
       series: [{
         data: [
           {
-            value: original_time,
+            value: Math.round(original_time / 60),
 
 
             itemStyle: {
@@ -796,13 +813,13 @@ export default class Travel extends React.Component {
             }
           },
           {
-            value: optimized_time,
+            value: Math.round(optimized_time / 60),
             itemStyle: {
               color: '#388E3C'
             }
           },
           {
-            value: difference_time,
+            value: Math.round(difference_time / 60),
             itemStyle: {
               color: '#3F51B5'
             }
@@ -921,11 +938,11 @@ Check out the number of people near you.
           </Col>
           <Col>
           </Col>
-          <Col xs={24} xl={16}>
+          <Col xs={24} lg={11} xl={13}>
             <Card style={{ padding: 20 }} hoverable>
 
               <div className={styles.mapContainer}>
-                <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.defaultPosition || null} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
+                <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.directions ? null : this.state.defaultPosition} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
                 <div className={styles.mapLocateButton}>
                   {this.state.mapIsLoad && <Button
                     type="default"
@@ -945,7 +962,7 @@ Check out the number of people near you.
 
             </Card>
           </Col>
-          <Col xs={24} xl={8}>
+          <Col xs={24} lg={13} xl={11}>
 
             <Card title={'Health calculator'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
               <Form>
@@ -1037,20 +1054,20 @@ Check out the number of people near you.
                     </FormItem>
 
                   </Col>
-                  <Col span={6}>
+                  <Col span={4}>
                     {
                       getFieldDecorator('weight', {
                         initialValue: 0
                       })(
-                        <InputNumber
-                          min={0}
-                          max={400}
+                        <Input
+                          disabled
                           style={{ margin: '0 16px' }}
-                          value={weight || 0}
+                          suffix={'kg'}
+
+                          value={weight}
                           onChange={this.changeWeight}
-                          formatter={value => `${value}   kg`}
-                          parser={value => value.replace('   kg', '')}
                         />)
+
                     }
 
 
@@ -1060,9 +1077,9 @@ Check out the number of people near you.
                       <h2>Health</h2>
                     </Divider> */}
 
-                    <Descriptions title="Calories Comsuption">
-                      <Descriptions.Item label="Total Consumption">{total_calories_comsuption&&String(total_calories_comsuption) + ' cal' || 0} </Descriptions.Item>
-                      <Descriptions.Item label="Consumption efficiency">{comsuption_efficiency&&String(comsuption_efficiency) + ' cal/min' || 0}</Descriptions.Item>
+                    <Descriptions title="Calories burned">
+                      <Descriptions.Item label="Total calories burned">{total_calories_comsuption && String(total_calories_comsuption) + ' cal' || 0} </Descriptions.Item>
+                      <Descriptions.Item label="Burning efficiency">{comsuption_efficiency && String(comsuption_efficiency) + ' cal/min' || 0}</Descriptions.Item>
 
                     </Descriptions>
                   </Col>
@@ -1072,7 +1089,7 @@ Check out the number of people near you.
 
             </Card>
           </Col>
-          <Col xs={24} xl={8}>
+          <Col xs={24} lg={13} xl={11}>
             <Card style={{ padding: 0 }} title={'Plan'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
               <Row gutter={[10, 10]} justify={'end'}>
                 <Col>
@@ -1140,8 +1157,8 @@ Check out the number of people near you.
                   <Row>
                     <Col xs={24} xl={24}>
                       <Descriptions title="Distance Prediction" >
-                        <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item>
                       </Descriptions>
                     </Col>
@@ -1153,8 +1170,8 @@ Check out the number of people near you.
                   <Row>
                     <Col xs={24} xl={24}>
                       <Descriptions title="Time Prediction">
-                        <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item>
                       </Descriptions>
                     </Col>
@@ -1167,7 +1184,7 @@ Check out the number of people near you.
                     <Col xs={24} xl={24}>
 
                       <Descriptions title="Travel Speed Prediction">
-                        <Descriptions.Item label="Estimated Average speed">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Estimated Average speed(m/s)">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item>
                       </Descriptions>
                     </Col>
 

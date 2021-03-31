@@ -23,6 +23,8 @@ function MyComponent(props) {
         lng: Number(props.startPoint.lon)
     } : null;
 
+    console.log(props.startPoint)
+
     const [map, setMap] = React.useState(null)
 
     const onLoad = React.useCallback(function callback(map) {
