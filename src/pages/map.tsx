@@ -14,6 +14,8 @@ import show_img_4 from '@/assets/show_img_4.png'
 import img1 from '@/assets/img1.png'
 import img2 from '@/assets/img2.png'
 import img3 from '@/assets/img3.png'
+import img4 from '@/assets/img4.png'
+import img5 from '@/assets/img5.png'
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -904,27 +906,33 @@ export default class Travel extends React.Component {
 
         <Row gutter={[10, 10]}>
           <Col>
-            <Carousel beforeChange={this.carouselChange} style={{ height: '20%', maxHeight: '290px' }}>
+            <Carousel beforeChange={this.carouselChange} style={{ height: '20%', maxHeight: '700px' }}>
               <div className={styles.show_img_container}>
-                <div style={imgTitleStyle}> Travel smarter by saving your time!</div>
+                <div style={imgTitleStyle}> <h1>New to Melbourne?</h1></div>
                 <div style={imgContentStyle}>
-                  Plan your routes in a simple way to avoid<br />
-              spending more time in travelling.<br />
-              Optimize your route by time or plan the route<br />
-              in the same order as you entered.
-            </div>
-                <img src={img1} style={contentStyle} ></img>
+                  <h2>
+
+                    Explore your surroundings with us. <br />
+Walk or cycle to places near you quicker.<br />
+Do multiple things on the go.
+                  </h2>
+                </div>
+                <img src={img5} style={contentStyle} ></img>
+              </div>
+              <div className={styles.show_img_container}>
+                <div style={imgTitleStyle}> <h1>Travel smarter!</h1></div>
+                <div style={imgContentStyle}>
+                  <h2>
+                    Optimize your travel with us. <br />
+Do more in less time.<br />
+Discover how much time you saved by travelling with us.
+
+                  </h2>
+                </div>
+                <img src={img4} style={contentStyle} ></img>
 
               </div>
-              <div className={styles.show_img_container}>
-                <div style={imgTitleStyle}> Are you health conscious?</div>
-                <div style={imgContentStyle}>
-                  We take care of your health too.<br />
-Check the number of calories burned while <br />
-you were travelling.
-            </div>
-                <img src={img2} style={contentStyle} ></img>
-              </div>
+
               {/* <div className={styles.show_img_container}>
                 <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
                 <div style={imgContentStyle}>
