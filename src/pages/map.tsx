@@ -98,7 +98,6 @@ export default class Travel extends React.Component {
   };
 
   markerRender = () => {
-    console.log(null ? '真的' : '假的')
     const { additionalPlaces } = this.state
     const { form } = this.props
     let formValues;
@@ -194,7 +193,6 @@ export default class Travel extends React.Component {
     Geocode.fromLatLng(String(value.coords.latitude), String(value.coords.longitude)).then(
       response => {
         const address = response.results[0].formatted_address;
-        console.log(address);
         form.setFieldsValue({ startPosition_text: address })
       },
       error => {
@@ -247,8 +245,7 @@ export default class Travel extends React.Component {
 
 
 
-      console.log(wayPoints)
-      console.log(wayPoints, new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])))
+    
       DirectionsService.route({
         origin: new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])),
         destination: new google.maps.LatLng(Number(values['destination'].split(',')[0]), Number(values['destination'].split(',')[1])),
@@ -257,7 +254,6 @@ export default class Travel extends React.Component {
         optimizeWaypoints: true
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
-          console.log(result)
           this.setState({
             directions: result,
             optimized_routes: result.routes
@@ -270,7 +266,6 @@ export default class Travel extends React.Component {
               optimizeWaypoints: false
             }, (result, status) => {
               if (status === google.maps.DirectionsStatus.OK) {
-                console.log(result)
                 this.setState({
 
                   original_routes: result.routes
@@ -306,7 +301,6 @@ export default class Travel extends React.Component {
     let comsuption_efficiency = 0
 
 
-    console.log('原始路径/优化路径', original_routes, optimized_routes)
 
     let original_legs = original_routes && original_routes[0] && original_routes[0].legs ? original_routes[0].legs : []
     let optimized_legs = optimized_routes && optimized_routes[0] && optimized_routes[0].legs ? optimized_routes[0].legs : []
@@ -421,14 +415,12 @@ export default class Travel extends React.Component {
   }
 
   sendRequest = () => {
-    console.log('clicked:', this)
     const { dispatch } = this.props
     dispatch({
       type: 'map/query',
       payload: {},
       callback: (res) => {
         if (res) {
-          console.log(res)
         }
       }
     })
@@ -436,14 +428,12 @@ export default class Travel extends React.Component {
 
 
   carouselChange(from, to) {
-    console.log(from, to);
   }
 
   getMapStatus = (isload) => {
     this.setState({
       mapIsLoad: isload
     }, () => {
-      console.log(isload)
     })
   }
 
