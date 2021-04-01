@@ -21,6 +21,7 @@ import PlacesAutocomplete, {
   geocodeByPlaceId,
   getLatLng,
 } from 'react-places-autocomplete';
+import { formatCountdown } from 'antd/lib/statistic/utils';
 
 const FormItem = Form.Item
 
@@ -56,7 +57,7 @@ export default class Travel extends React.Component {
       form.setFieldsValue({ ...newInput })
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
-        .then(latLng => { const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; form.setFieldsValue({ ...newField }) })
+        .then(latLng => { ;const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; form.setFieldsValue({ ...newField }) })
         // .then(latLng => _this.setState(
         //   {
         //   destination:latLng
@@ -381,6 +382,8 @@ export default class Travel extends React.Component {
       this.setState({
         additionalPlaces: currentList,
         currentId: currentId + 1
+      }, () => {
+
       })
     } else {
       message.error('You could only add up to 3 additional waypoints!')
@@ -388,6 +391,7 @@ export default class Travel extends React.Component {
   }
 
   removePlaces = (position) => {
+    const { form: { getFieldDecorator } } = this.props
     let finalList = []
     const currentList = [...this.state.additionalPlaces]
     let counter = 1
@@ -402,8 +406,18 @@ export default class Travel extends React.Component {
       })
       this.setState({
         additionalPlaces: finalList
+      }, () => {
+
+
       })
     }
+  }
+
+  setPosition = () => {
+    this.state.additionalPlaces.forEach(el => {
+      this.handleAutoCompleteChange(this.props.form.getFieldsValue('place_' + String(el.id) + '_text'), 'place_' + String(el.id))
+
+    })
   }
 
   sendRequest = () => {
@@ -431,6 +445,10 @@ export default class Travel extends React.Component {
     }, () => {
       console.log(isload)
     })
+  }
+
+  componentDidUpdate =() =>{
+    
   }
 
   constructSeriesPlacesBar = () => {
@@ -485,9 +503,9 @@ export default class Travel extends React.Component {
           item =>
             <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
               <Col span={22}>
-                {getFieldDecorator('place_' + String(item.id))(
+                {/* {getFieldDecorator('place_' + String(item.id))( */}
                   <PlacesAutocomplete
-                    value={startPosition_address}
+                    value={'1'}
                     onChange={(e) => { this.handleAutoCompleteChange(e, 'place_' + String(item.id)) }}
                     onSelect={(e) => { this.handleAutoCompleteSelect(e, 'place_' + String(item.id)) }}
                   >
@@ -527,7 +545,7 @@ export default class Travel extends React.Component {
                       </div>
                     )}
                   </PlacesAutocomplete>
-                )}
+                {/* )} */}
               </Col>
               <Col span={2}>
                 <CloseOutlined onClick={() => { this.removePlaces(item.position) }} style={{ fontSize: '18px', color: 'red' }} />
