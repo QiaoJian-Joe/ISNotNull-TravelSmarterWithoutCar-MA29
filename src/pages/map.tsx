@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './index.css';
 import { Descriptions, Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
 import { connect } from 'dva';
-import { Autocomplete, Marker, LoadScript, useJsApiLoader } from '@react-google-maps/api';
+import { Autocomplete, Marker, LoadScript, useJsApiLoader, GoogleMap } from '@react-google-maps/api';
 import { AimOutlined, CaretDownOutlined, RedoOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined } from '@ant-design/icons'
 import MyComponent from '@/pages/googleMap';
 import ReactECharts from 'echarts-for-react';
@@ -58,7 +58,34 @@ export default class Travel extends React.Component {
       form.setFieldsValue({ ...newInput })
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
-        .then(latLng => { ; const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; form.setFieldsValue({ ...newField }) })
+        .then(latLng => { ; const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; if (field + '_text' === 'startPosition_text') {
+          this.setState({
+            defaultPosition: {
+              lat: latLng['lat'],
+              lon: latLng['lng'],
+
+            },
+
+            currentPosition: {
+              lat: latLng['lat'],
+              lon: latLng['lng'],
+            }
+          }, () => {
+            form.setFieldsValue({
+              ...newField
+
+
+            })
+          })
+
+        } else {
+          form.setFieldsValue({
+            ...newField
+
+
+          })
+        }
+      })
         // .then(latLng => _this.setState(
         //   {
         //   destination:latLng
@@ -79,13 +106,43 @@ export default class Travel extends React.Component {
     newInput[field + '_text'] = address
 
 
+
     this.setState({
       ...newAddress
     }, () => {
       form.setFieldsValue({ ...newInput })
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
-        .then(latLng => { const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; form.setFieldsValue({ ...newField }) })
+        .then(latLng => {
+          const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng'];
+          if (field + '_text' === 'startPosition_text') {
+            this.setState({
+              defaultPosition: {
+                lat: latLng['lat'],
+                lon: latLng['lng'],
+
+              },
+
+              currentPosition: {
+                lat: latLng['lat'],
+                lon: latLng['lng'],
+              }
+            }, () => {
+              form.setFieldsValue({
+                ...newField
+
+
+              })
+            })
+
+          } else {
+            form.setFieldsValue({
+              ...newField
+
+
+            })
+          }
+        })
         // .then(latLng => _this.setState(
         //   {
         //   destination:latLng
@@ -158,12 +215,11 @@ export default class Travel extends React.Component {
   }
 
   componentDidMount = () => {
-    if (navigator.geolocation) {
-      console.log('当前浏览器有导航功能')
-      navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
-    } else {
-      alert("Could not get the location info.");
-    }
+    this.getCurrentPosition()
+  }
+
+  getCurrentPosition = () => {
+    navigator?.geolocation.getCurrentPosition((value) => (this.getCurrentLocation(value)))
   }
 
   getAddress = (value) => {
@@ -189,14 +245,15 @@ export default class Travel extends React.Component {
   }
 
   getCurrentLocation = (value) => {
-
+    const { form } = this.props
     if (value) {
-      console.log('地图信息获取',value)
-      const { form } = this.props
+      console.log('地图信息获取', value)
+
       Geocode.setApiKey("AIzaSyAQ5KNjrj74hz6dkrVn24Ho_tjcrQCUECU");
       Geocode.fromLatLng(String(value.coords.latitude), String(value.coords.longitude)).then(
         response => {
           const address = response.results[0].formatted_address;
+          console.log('地址获取！！！！！！！！')
           form.setFieldsValue({ startPosition_text: address })
         },
         error => {
@@ -218,7 +275,7 @@ export default class Travel extends React.Component {
 
         form.setFieldsValue({ startPosition: String(value.coords.latitude) + ',' + String(value.coords.longitude) })
       })
-    }else{
+    } else {
       message.error('Current location loading was failed!!!')
     }
   }
@@ -607,13 +664,7 @@ export default class Travel extends React.Component {
               <EnvironmentOutlined
                 style={{ fontSize: '18px' }}
                 onClick={() => {
-                  console.log('click the getCurrentaddress button!!!!!!!!!!!!!!!!!!!!!!!')
-                  if (navigator.geolocation) {
-                    console.log('click the getCurrentaddress button')
-                    navigator.geolocation.getCurrentPosition((value) => (this.getCurrentLocation(value)));
-                  } else {
-                    alert("Could not get the location info.");
-                  }
+                  this.getCurrentPosition()
                 }}></EnvironmentOutlined>
             </Col>
           </Row>
@@ -971,11 +1022,7 @@ Check out the number of people near you.
                     size='large'
                     icon={'environment'}
                     onClick={() => {
-                      if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition((value) => (this.getCurrentLocation(value)));
-                      } else {
-                        alert("Could not get the location info.");
-                      }
+                      this.getCurrentPosition()
                     }}></Button>}
 
                 </div>
