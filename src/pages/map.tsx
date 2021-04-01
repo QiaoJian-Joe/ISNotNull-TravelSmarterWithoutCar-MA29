@@ -49,16 +49,16 @@ export default class Travel extends React.Component {
     const newInput = {}
     newAddress[field + '_address'] = address
     newInput[field + '_text'] = address
-    
+
 
     this.setState({
       ...newAddress,
-      inputing:address
+      inputing: address
     }, () => {
       form.setFieldsValue({ ...newInput })
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
-        .then(latLng => { ;const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; form.setFieldsValue({ ...newField }) })
+        .then(latLng => { ; const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; form.setFieldsValue({ ...newField }) })
         // .then(latLng => _this.setState(
         //   {
         //   destination:latLng
@@ -190,19 +190,19 @@ export default class Travel extends React.Component {
 
   getCurrentLocation = (value) => {
 
-    const { form } = this.props
-    Geocode.setApiKey("AIzaSyAQ5KNjrj74hz6dkrVn24Ho_tjcrQCUECU");
-    Geocode.fromLatLng(String(value.coords.latitude), String(value.coords.longitude)).then(
-      response => {
-        const address = response.results[0].formatted_address;
-        form.setFieldsValue({ startPosition_text: address })
-      },
-      error => {
-        console.error(error);
-      }
-    );
-
     if (value) {
+      console.log('地图信息获取',value)
+      const { form } = this.props
+      Geocode.setApiKey("AIzaSyAQ5KNjrj74hz6dkrVn24Ho_tjcrQCUECU");
+      Geocode.fromLatLng(String(value.coords.latitude), String(value.coords.longitude)).then(
+        response => {
+          const address = response.results[0].formatted_address;
+          form.setFieldsValue({ startPosition_text: address })
+        },
+        error => {
+          console.error(error);
+        }
+      );
       this.setState({
         defaultPosition: {
           lat: value.coords.latitude,
@@ -218,6 +218,8 @@ export default class Travel extends React.Component {
 
         form.setFieldsValue({ startPosition: String(value.coords.latitude) + ',' + String(value.coords.longitude) })
       })
+    }else{
+      message.error('Current location loading was failed!!!')
     }
   }
 
@@ -247,7 +249,7 @@ export default class Travel extends React.Component {
 
 
 
-    
+
       DirectionsService.route({
         origin: new google.maps.LatLng(Number(values['startPosition'].split(',')[0]), Number(values['startPosition'].split(',')[1])),
         destination: new google.maps.LatLng(Number(values['destination'].split(',')[0]), Number(values['destination'].split(',')[1])),
@@ -439,8 +441,8 @@ export default class Travel extends React.Component {
     })
   }
 
-  componentDidUpdate =() =>{
-    
+  componentDidUpdate = () => {
+
   }
 
   constructSeriesPlacesBar = () => {
@@ -496,47 +498,47 @@ export default class Travel extends React.Component {
             <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
               <Col span={22}>
                 {/* {getFieldDecorator('place_' + String(item.id))( */}
-                  <PlacesAutocomplete
-                    value={this.state.inputing}
-                    onChange={(e) => { this.handleAutoCompleteChange(e, 'place_' + String(item.id)) }}
-                    onSelect={(e) => { this.handleAutoCompleteSelect(e, 'place_' + String(item.id)) }}
-                  >
-                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                      <div>
-                        {getFieldDecorator('place_' + String(item.id) + '_text')(
-                          <Input
-                            {...getInputProps({
-                              placeholder: 'Place ' + String(item.position),
-                              className: 'location-search-input',
-                            })}
-                          />
-                        )}
-
-                        <div className="autocomplete-dropdown-container">
-                          {loading && <div>Loading...</div>}
-                          {suggestions.map(suggestion => {
-                            const className = suggestion.active
-                              ? 'suggestion-item--active'
-                              : 'suggestion-item';
-                            // inline style for demonstration purpose
-                            const style = suggestion.active
-                              ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                              : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                            return (
-                              <div
-                                {...getSuggestionItemProps(suggestion, {
-                                  className,
-                                  style,
-                                })}
-                              >
-                                <span>{suggestion.description}</span>
-                              </div>
-                            );
+                <PlacesAutocomplete
+                  value={this.state.inputing}
+                  onChange={(e) => { this.handleAutoCompleteChange(e, 'place_' + String(item.id)) }}
+                  onSelect={(e) => { this.handleAutoCompleteSelect(e, 'place_' + String(item.id)) }}
+                >
+                  {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div>
+                      {getFieldDecorator('place_' + String(item.id) + '_text')(
+                        <Input
+                          {...getInputProps({
+                            placeholder: 'Place ' + String(item.position),
+                            className: 'location-search-input',
                           })}
-                        </div>
+                        />
+                      )}
+
+                      <div className="autocomplete-dropdown-container">
+                        {loading && <div>Loading...</div>}
+                        {suggestions.map(suggestion => {
+                          const className = suggestion.active
+                            ? 'suggestion-item--active'
+                            : 'suggestion-item';
+                          // inline style for demonstration purpose
+                          const style = suggestion.active
+                            ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                            : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                          return (
+                            <div
+                              {...getSuggestionItemProps(suggestion, {
+                                className,
+                                style,
+                              })}
+                            >
+                              <span>{suggestion.description}</span>
+                            </div>
+                          );
+                        })}
                       </div>
-                    )}
-                  </PlacesAutocomplete>
+                    </div>
+                  )}
+                </PlacesAutocomplete>
                 {/* )} */}
               </Col>
               <Col span={2}>
@@ -605,7 +607,9 @@ export default class Travel extends React.Component {
               <EnvironmentOutlined
                 style={{ fontSize: '18px' }}
                 onClick={() => {
+                  console.log('click the getCurrentaddress button!!!!!!!!!!!!!!!!!!!!!!!')
                   if (navigator.geolocation) {
+                    console.log('click the getCurrentaddress button')
                     navigator.geolocation.getCurrentPosition((value) => (this.getCurrentLocation(value)));
                   } else {
                     alert("Could not get the location info.");
