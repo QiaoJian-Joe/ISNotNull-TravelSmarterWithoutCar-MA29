@@ -158,6 +158,7 @@ export default class Travel extends React.Component {
 
   componentDidMount = () => {
     if (navigator.geolocation) {
+      console.log('当前浏览器有导航功能')
       navigator.geolocation.getCurrentPosition((value) => (this.getAddress(value)));
     } else {
       alert("Could not get the location info.");
