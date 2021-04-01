@@ -49,10 +49,11 @@ export default class Travel extends React.Component {
     const newInput = {}
     newAddress[field + '_address'] = address
     newInput[field + '_text'] = address
-
+    
 
     this.setState({
-      ...newAddress
+      ...newAddress,
+      inputing:address
     }, () => {
       form.setFieldsValue({ ...newInput })
       geocodeByAddress(address)
@@ -496,7 +497,7 @@ export default class Travel extends React.Component {
               <Col span={22}>
                 {/* {getFieldDecorator('place_' + String(item.id))( */}
                   <PlacesAutocomplete
-                    value={'1'}
+                    value={this.state.inputing}
                     onChange={(e) => { this.handleAutoCompleteChange(e, 'place_' + String(item.id)) }}
                     onSelect={(e) => { this.handleAutoCompleteSelect(e, 'place_' + String(item.id)) }}
                   >
