@@ -1,47 +1,109 @@
-
-.normal {
-  font-family: Georgia, sans-serif;
-  text-align: center;
+:global(.body){
+  
 }
 
+.normal {
+  font-family: Open Sans, sans-serif;
+  text-align: center;
+  background-color:#313437;
+}
+
+
 .header{
-  /* position: fixed; */
-  /* left: 0px;
+  position: fixed;
+  left: 0px;
   top: 0px;
-  width: 100%;
-  height: 50px;
-  z-index: 9999; */
+   width: 100%;
+  z-index: 3;
   max-height: 200px;
   font-weight: normal;
   letter-spacing: -1px;
-  background: #364d79;
-  padding: .6em 0;
+  padding: 0;
   
   margin: 0;
+  background-color:#fff;
+}
+
+.content{
+  max-width: 1700px;
+  margin-left: auto;
+	margin-right: auto;
+  margin-top: 100px ;
 }
 
 .title {
   font-size: 1 rem;
-  color: white;
+  color: 'black';
 }
 
 .footer_Tabs_background{
   margin-top: 0px;
-  height: 100px;
-  background-color: #364d79;
+  min-height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('../assets/background_footer.jpg') no-repeat center;
+  background-size: 150%;
   z-index: 9999;
   clear: both;
-}
-
-
-
-.logo_header{
-  max-height: 150px;
-  width:auto;
-        height:auto;
-        max-width:80%;
-}
-
-.navigator{
   
 }
+
+.footer_content_container{
+  padding: 20;
+}
+
+.footer_content{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25.5px;
+  color: #c5c5c5;
+}
+
+.footer_contact_link{
+
+display: inline-block;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25.5px;
+  color: #c5c5c5;
+  margin: 0 0 10px 10px;
+}
+
+.footer_link{
+  display: block;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 25.5px;
+  color: #c5c5c5;
+  margin: 0 0 10px 0;
+}
+
+.footer_title{
+  display: inline-block;
+  color: #fff;
+  text-align: left;
+  line-height: 40px;
+  border-bottom: 1px solid rgba(248,249,250,0.12);
+  font-weight: 700;
+}
+
+.logo_header{
+  max-height: 100px;
+  width:auto;
+        height:auto;
+        max-width:100%;
+}
+
+.navigator {
+  position: relative;
+  bottom: 0;
+  height: 100%;
+  color: #313437;
+    font-size: 17px;
+    font-weight: 400;
+    text-transform: uppercase;
+    z-index: 9999;
+}
+
+

@@ -969,8 +969,8 @@ export default class Travel extends React.Component {
         </Card>
 
 
-        <Row gutter={[10, 10]}>
-          <Col>
+        <Row gutter={[10, 10]} >
+          <Col style={{display:'none'}}>
             <Carousel beforeChange={this.carouselChange} style={{ height: '20%', maxHeight: '700px' }}>
               <div className={styles.show_img_container}>
                 <div style={imgTitleStyle}> <h1>New to Melbourne?</h1></div>
