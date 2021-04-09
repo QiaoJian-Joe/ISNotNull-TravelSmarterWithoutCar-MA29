@@ -54,7 +54,7 @@ class BasicLayout extends React.PureComponent {
             </Col>
             <Col xs={3} sm={3} md={3} lg={3} xl={8}>
             <Row type="flex" justify="start" align="middle">
-              <Col span={11}>
+              <Col span={16}>
               <Menu style={{zIndex:9999}} overflowedIndicator={<MenuUnfoldOutlined />} className={styles.navigator} onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
                   
                   <Menu.Item key="home" icon={<MailOutlined />}>
