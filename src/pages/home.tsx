@@ -149,9 +149,9 @@ Check out the number of people near you.
             <img src={img6} style={{ width: '100%' }} ></img>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-            <h2 className={styles.aboutUsSecondTitle}>We are Passionate about Laundry</h2>
+            <h2 className={styles.aboutUsSecondTitle}>Melbourne is inactive!</h2>
             <p style={{ textAlign: 'left' }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officia dicta magni ea at, culpa atque, rerum dolorum voluptas alias qui temporibus ex totam distinctio nobis impedit minus! Voluptatibus ullam rerum, nihil blanditiis quos atque iusto!
+            Over the years, Australian city planners have made efforts to extend pedestrian and cycling paths, restrict car traffic but have their efforts paid off? The answer is NO. If we go by the numbers, in 2001 the number of people using active travel was 3.6% while in 2011 it was 5% and in 2021 it stands at 5.1%. This means only a change of 1.4% which certainly is not good enough. Moreover, concerns are that Melbourne’s young age group is becoming inactive which increases health risk. Young adults are advised to at least have some active travel every day of the week. It is important to promote active travel amongst people and certainly amongst the future of Australia.
 </p>
           </Col>
         </Row>
