@@ -3,6 +3,7 @@ import styles from './index.css';
 import { Button, Tabs, Row, Col, Menu } from 'antd'
 import Travel from '@/pages/map'
 import Home from '@/pages/home'
+import About from '@/pages/about'
 import { MailOutlined, AppstoreOutlined, SettingOutlined ,MenuUnfoldOutlined,MailTwoTone} from '@ant-design/icons';
 import logo from '@/assets/logo.png'
 import footerImg from '@/assets/background_footer.jpg'
@@ -60,15 +61,16 @@ class BasicLayout extends React.PureComponent {
                   <Menu.Item key="home" icon={<MailOutlined />}>
                     HOME
         </Menu.Item>
+        <Menu.Item key="travel">
+                   
+                   TRAVEL
+   
+                 </Menu.Item>
                   <Menu.Item key="about" icon={<AppstoreOutlined />}>
                     ABOUT
         </Menu.Item>
 
-                  <Menu.Item key="travel">
-                   
-                    TRAVEL
-    
-                  </Menu.Item>
+                
                 </Menu>
               </Col>
             </Row>
@@ -93,6 +95,7 @@ class BasicLayout extends React.PureComponent {
 <div className={styles.content}> 
 {this.state.current === 'travel' ? <Travel></Travel> : null}
 {this.state.current === 'home' ? <Home></Home> : null}
+{this.state.current === 'about' ? <About></About> : null}
 </div>
         
         <div id={'footer'} className={styles.footer_Tabs_background}>
@@ -101,15 +104,16 @@ class BasicLayout extends React.PureComponent {
            <Col  xs={24} sm={24} md={24} lg={24} xl={8} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>
               <h2 className={styles.footer_title}>ABOUT</h2>
               <p className={styles.footer_content}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officia dicta magni ea at, culpa atque, rerum dolorum voluptas alias qui temporibus ex totam distinctio nobis impedit minus! Voluptatibus ullam rerum, nihil blanditiis quos atque iusto!
+              Travel Smarter Melbourne is an initiative to help people of Melbourne get aware of the importance of active travel. Active travel is much more than just health benefits or environmental stability. Through this platform, we educate, guide, and optimize their daily travels.  
               </p>
            </Col>
            <Col  xs={24} sm={24} md={24} lg={12} xl={4} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>
            <h2 className={styles.footer_title}>QUICK LINKS</h2>
            <p className={styles.footer_content}>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('home')}}>Home</a>
-             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('about')}}>About</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('travel')}}>Travel</a>
+             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('about')}}>About</a>
+           
               </p>
            </Col>
            <Col  xs={24} sm={24} md={24} lg={12} xl={8} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>

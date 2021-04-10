@@ -16,10 +16,15 @@ import img2 from '@/assets/img2.png'
 import img3 from '@/assets/img3.png'
 import img4 from '@/assets/img4.png'
 import img5 from '@/assets/img5.png'
-
+import { FaBrain,FaDirections,FaRoute } from 'react-icons/fa';
+import { IconContext } from "react-icons";
 import discover from '@/assets/discover.jpg'
 import save from '@/assets/save.jpg'
 import what from '@/assets/what.jpg'
+import img6 from '@/assets/banner_desktop.jpg'
+import educate from '@/assets/educate.png'
+import guide from '@/assets/guide.png'
+import optimize from '@/assets/optimize.png'
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -28,7 +33,7 @@ import PlacesAutocomplete, {
 import { formatCountdown } from 'antd/lib/statistic/utils';
 
 const FormItem = Form.Item
-
+const { Meta } = Card;
 @connect(({ map }) => ({
   map
 }))
@@ -140,24 +145,69 @@ Check out the number of people near you.
         </Carousel>
 
         <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
-          <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
-            <img src={img4} style={{ width: '100%' }} ></img>
+          <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+            <img src={img6} style={{ width: '100%' }} ></img>
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={16} style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
-            <h2 style={{ textAlign: 'left', lineHeight: '40px', fontSize: '32px', fontFamily: 'Roboto, sans-serif', fontWeight: '400' }}>We are Passionate about Laundry</h2>
+          <Col xs={24} sm={24} md={24} lg={12} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+            <h2 className={styles.aboutUsSecondTitle}>We are Passionate about Laundry</h2>
             <p style={{ textAlign: 'left' }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officia dicta magni ea at, culpa atque, rerum dolorum voluptas alias qui temporibus ex totam distinctio nobis impedit minus! Voluptatibus ullam rerum, nihil blanditiis quos atque iusto!
 </p>
           </Col>
         </Row>
-        <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }} gutter={[10, 10]}>
           <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
-            <h2 style={{ textAlign: 'Center', lineHeight: '55px', fontSize: '46px', fontFamily: 'Roboto, sans-serif', fontWeight: '400' }}>What We Can Offer!</h2>
+            <h2 style={{ textAlign: 'Center', lineHeight: '55px', fontSize: '46px', fontFamily: 'Roboto, sans-serif', fontWeight: '400' }}>What We Offer</h2>
           </Col>
+
 
         </Row>
 
-
+        <Row gutter={[10,10]} type={"flex"} justify={'center'}  style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto',marginBottom:40 }}>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8} >
+            <Card 
+              hoverable
+              style={{  marginLeft: 'auto', marginRight: 'auto' ,width:'80%'}}
+              cover={
+                <IconContext.Provider value={{ color: "#99cc00", className: "global-class-name",size:'30%',style:{padding:20} }}>
+                  <div>
+                    <FaRoute />
+                  </div>
+                </IconContext.Provider>}
+            >
+              <h3 className={styles.vectorTitle}>Optimize</h3>
+              <Meta  description="We provide you shortest routes to manage all your travel in one go." />
+            </Card>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+            <Card
+              hoverable
+              style={{  marginLeft: 'auto', marginRight: 'auto',width:'80%' }}
+              cover={<IconContext.Provider value={{ color: "#6600cc", className: "global-class-name",size:'30%',style:{padding:20} }}>
+              <div>
+                <FaDirections />
+              </div>
+            </IconContext.Provider>}
+            >
+               <h3 className={styles.vectorTitle}>Guide</h3>
+              <Meta description="We provide you all the reasons for choosing and adopting active travel." />
+            </Card>
+          </Col>
+          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+            <Card
+              hoverable
+              style={{  marginLeft: 'auto', marginRight: 'auto',width:'80%' }}
+              cover={<IconContext.Provider value={{ color: "#0066cc", className: "global-class-name",size:'30%',style:{padding:20} }}>
+              <div>
+                <FaBrain />
+              </div>
+            </IconContext.Provider>}
+            >
+               <h3 className={styles.vectorTitle}>Educate</h3>
+              <Meta description="We educate you about all the benefits associated with active travel." />
+            </Card>
+          </Col>
+        </Row>
       </div>
     );
   }
