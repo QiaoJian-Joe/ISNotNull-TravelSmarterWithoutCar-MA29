@@ -58,34 +58,35 @@ export default class Travel extends React.Component {
       form.setFieldsValue({ ...newInput })
       geocodeByAddress(address)
         .then(results => getLatLng(results[0]))
-        .then(latLng => { ; const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; if (field + '_text' === 'startPosition_text') {
-          this.setState({
-            defaultPosition: {
-              lat: latLng['lat'],
-              lon: latLng['lng'],
+        .then(latLng => {
+          ; const newField = {}; newField[field] = latLng['lat'] + ',' + latLng['lng']; if (field + '_text' === 'startPosition_text') {
+            this.setState({
+              defaultPosition: {
+                lat: latLng['lat'],
+                lon: latLng['lng'],
 
-            },
+              },
 
-            currentPosition: {
-              lat: latLng['lat'],
-              lon: latLng['lng'],
-            }
-          }, () => {
+              currentPosition: {
+                lat: latLng['lat'],
+                lon: latLng['lng'],
+              }
+            }, () => {
+              form.setFieldsValue({
+                ...newField
+
+
+              })
+            })
+
+          } else {
             form.setFieldsValue({
               ...newField
 
 
             })
-          })
-
-        } else {
-          form.setFieldsValue({
-            ...newField
-
-
-          })
-        }
-      })
+          }
+        })
         // .then(latLng => _this.setState(
         //   {
         //   destination:latLng
@@ -784,7 +785,7 @@ export default class Travel extends React.Component {
     const distance_option = {
       xAxis: {
         type: 'category',
-        data: ['Original', 'Optimized', 'Differences']
+        data: ['Original', 'Optimized']
       },
       yAxis: {
         type: 'value',
@@ -811,12 +812,13 @@ export default class Travel extends React.Component {
               color: '#388E3C'
             }
           },
-          {
-            value: difference_distance / 1000,
-            itemStyle: {
-              color: '#3F51B5'
-            }
-          }],
+          // {
+          //   value: difference_distance / 1000,
+          //   itemStyle: {
+          //     color: '#3F51B5'
+          //   }
+          // }
+        ],
         type: 'bar'
       }]
     };
@@ -858,7 +860,7 @@ export default class Travel extends React.Component {
     const time_option = {
       xAxis: {
         type: 'category',
-        data: ['Original', 'Optimized', 'Differences']
+        data: ['Original', 'Optimized']
       },
       yAxis: {
         type: 'value',
@@ -885,12 +887,13 @@ export default class Travel extends React.Component {
               color: '#388E3C'
             }
           },
-          {
-            value: Math.round(difference_time / 60),
-            itemStyle: {
-              color: '#3F51B5'
-            }
-          }],
+          // {
+          //   value: Math.round(difference_time / 60),
+          //   itemStyle: {
+          //     color: '#3F51B5'
+          //   }
+          // }
+        ],
         type: 'bar'
       }]
     };
@@ -970,7 +973,7 @@ export default class Travel extends React.Component {
 
 
         <Row gutter={[10, 10]} >
-          <Col style={{display:'none'}}>
+          <Col style={{ display: 'none' }}>
             <Carousel beforeChange={this.carouselChange} style={{ height: '20%', maxHeight: '700px' }}>
               <div className={styles.show_img_container}>
                 <div style={imgTitleStyle}> <h1>New to Melbourne?</h1></div>
@@ -1219,36 +1222,48 @@ Check out the number of people near you.
 
               <Row>
 
-                <Col>
-                  <Divider  >
-                    <h2>Trip</h2>
-                  </Divider>
+
+                <Divider  >
+                  <h2>Trip</h2>
+                </Divider>
+
+
+                <Col xs={24} xl={12}>
                   <Row>
                     <Col xs={24} xl={24}>
                       <Descriptions title="Distance Prediction" >
                         <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item>
-                        <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                        {/* <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
                       </Descriptions>
                     </Col>
                     <Col xs={24} xl={24}>
                       <ReactECharts option={distance_option} />
                     </Col>
                   </Row>
+                </Col>
 
+
+                <Col xs={24} xl={12}>
                   <Row>
                     <Col xs={24} xl={24}>
                       <Descriptions title="Time Prediction">
                         <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item>
-                        <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item>
+                        {/* <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item> */}
                       </Descriptions>
                     </Col>
                     <Col xs={24} xl={24}>
                       <ReactECharts option={time_option} />
                     </Col>
                   </Row>
+                </Col>
 
+
+
+
+
+                <Col xs={24} xl={24}>
                   <Row>
                     <Col xs={24} xl={24}>
 
@@ -1256,9 +1271,11 @@ Check out the number of people near you.
                         <Descriptions.Item label="Estimated Average speed(m/s)">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item>
                       </Descriptions>
                     </Col>
-
                   </Row>
                 </Col>
+
+
+
               </Row>
 
             </Card>

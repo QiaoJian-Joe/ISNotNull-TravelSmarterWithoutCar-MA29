@@ -146,7 +146,7 @@ Check out the number of people near you.
 
         <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
           <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-            <img src={img6} style={{ width: '100%' }} ></img>
+            <img src={img5} style={{ width: '100%' }} ></img>
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
             <h2 className={styles.aboutUsSecondTitle}>Melbourne is inactive!</h2>
