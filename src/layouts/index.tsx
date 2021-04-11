@@ -4,6 +4,7 @@ import { Button, Tabs, Row, Col, Menu } from 'antd'
 import Travel from '@/pages/map'
 import Home from '@/pages/home'
 import About from '@/pages/about'
+import Login from '@/pages/login'
 import { MailOutlined, AppstoreOutlined, SettingOutlined ,MenuUnfoldOutlined,MailTwoTone} from '@ant-design/icons';
 import logo from '@/assets/logo.png'
 import footerImg from '@/assets/background_footer.jpg'
@@ -14,7 +15,16 @@ class BasicLayout extends React.PureComponent {
 
   state = {
     pageNum: '1',
-    current: 'home'
+    current: 'home',
+    validated: false
+  }
+
+  getValidation=(validated)=>{
+if(validated){
+  this.setState({
+    validated:validated
+  })
+}
   }
 
   changeCurrent = (current) =>{
@@ -38,7 +48,8 @@ class BasicLayout extends React.PureComponent {
     const { current } = this.state;
     return (
       <div className={styles.normal}>
-        <div className={styles.header}>
+        { this.state.validated?<>
+          <div className={styles.header}>
           <Row type="flex" justify="start" align="middle">
             <Col xs={15} sm={15} md={15} lg={15} xl={8}>
               <img src={logo} className={styles.logo_header} />
@@ -128,6 +139,10 @@ class BasicLayout extends React.PureComponent {
            </Col>
          </Row>
         </div>
+        </>:<Login getValidation={this.getValidation.bind(this)}/>
+         
+        }
+      
       </div>
     );
   }
