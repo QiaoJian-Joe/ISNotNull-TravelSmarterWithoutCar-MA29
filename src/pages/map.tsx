@@ -39,7 +39,40 @@ export default class Travel extends React.Component {
     additionalPlaces: [],
 
     destination: {},
-    currentId: 1
+    currentId: 1,
+    age: 0, weight: 0, height: 0,
+    optimized_distance: 0,
+    original_distance: 0,
+    difference_distance: 0,
+    optimized_time: 0,
+    original_time: 0,
+    difference_time: 0,
+    optimized_avg_speed: 0,
+    difference_avg_speed: 0,
+    original_avg_speed: 0,
+    total_calories_comsuption: 0,
+    comsuption_efficiency: 0,
+  }
+
+  handleReset = () => {
+    this.setState({
+      additionalPlaces: [],
+      age: 0, weight: 0, height: 0,
+      optimized_distance: 0,
+      original_distance: 0,
+      difference_distance: 0,
+      optimized_time: 0,
+      original_time: 0,
+      difference_time: 0,
+      optimized_avg_speed: 0,
+      difference_avg_speed: 0,
+      original_avg_speed: 0,
+      total_calories_comsuption: 0,
+      comsuption_efficiency: 0,
+      directions:undefined
+    }, () => {
+      this.props.form.resetFields();
+    })
   }
 
   handleAutoCompleteChange = (address, field) => {
@@ -1195,7 +1228,7 @@ Check out the number of people near you.
                         </Col >
 
                         <Col span={11} style={{ textAlign: 'left' }}>
-                          {this.state.mapIsLoad && <Button onClick={() => { location.reload() }}>
+                          {this.state.mapIsLoad && <Button onClick={this.handleReset}>
                             <RedoOutlined />Reset
                     </Button>}
                         </Col>
