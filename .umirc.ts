@@ -28,6 +28,7 @@ const config: IConfig =  {
           /model\.(t|j)sx?$/,
           /service\.(t|j)sx?$/,
           /components\//,
+          /node_modules|tableau-react/
         ],
       },
     }],

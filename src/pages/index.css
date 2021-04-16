@@ -63,6 +63,146 @@
 text-align: left;
 }
 
+.benefitsBanner{
+  min-height: 30rem;
+    position: relative;
+    display: table;
+    width: 100%;
+    height: auto;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    background: linear-gradient(
+90deg
+, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 90%), url('@/assets/benefitsBanner.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tabsLabelStyle{
+  position: relative;
+  display: block;
+  float: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  width: 16.6%;
+  height: 100%;
+  color:#EB4E01;
+  cursor: pointer;
+}
+
+.tabsLabelStyle:hover{
+  background: #EB4E01;
+  color:#fff;
+  transition: transform 400ms;
+}
+
+.tabsLabelStyleClicked{
+  position: relative;
+  display: block;
+  float: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  height: 100%;
+  width: 16.6%;
+  cursor: pointer;
+  background: #EB4E01;
+  color:#fff;
+  transition: transform 400ms;
+}
+
+.tabsStyle{
+  width: 100;
+  background: #941e00;
+  height: 80px;
+  border-bottom: 5px solid #eb8d01;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+}
+
+.detailTitle{
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 20px;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+      text-align: left;
+}
+
+.societyTitle{
+  content: ' ';
+  color: rgba(0, 0, 0, 0);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 20px;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+      text-align: left;
+}
+
+.societyTitle::after{
+  content: '1 ';
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 20px;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+      text-align: left;
+}
+
+
+.roadSafetyFirstTitle{
+  color: black;
+  font-size: 2rem;
+  font-weight: 700;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.roadSafetySecondTitle{
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 20px;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.detailContent{
+  color: black;
+  font-size: 45px;
+  line-height: 55px;
+  
+  margin: 0;
+  margin-bottom: 20px;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+      text-align: left;
+}
+
+.detailContainer{
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+}
+
+.benefitsBannerTitle{
+  color: antiquewhite;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.benefitsBannerContent{
+  color: antiquewhite;
+  font-size: 1.5rem;
+  padding-top: 1rem;
+}
 
 .aboutUsMiddleSectionTitle{
 

@@ -5,6 +5,7 @@ import Travel from '@/pages/map'
 import Home from '@/pages/home'
 import About from '@/pages/about'
 import Login from '@/pages/login'
+import Benefits from '@/pages/benefits'
 import { MailOutlined, AppstoreOutlined, SettingOutlined ,MenuUnfoldOutlined,MailTwoTone} from '@ant-design/icons';
 import logo from '@/assets/logo.png'
 import footerImg from '@/assets/background_footer.jpg'
@@ -51,10 +52,10 @@ if(validated){
         { this.state.validated?<>
           <div className={styles.header}>
           <Row type="flex" justify="start" align="middle">
-            <Col xs={15} sm={15} md={15} lg={15} xl={8}>
+            <Col xs={15} sm={11} md={11} lg={11} xl={8}>
               <img src={logo} className={styles.logo_header} />
             </Col>
-            <Col xs={0} sm={0} md={0} lg={0} xl={8}>
+            <Col xs={0} sm={4} md={4} lg={4} xl={4}>
               {/* <h1 className={styles.title}>
                 Travel Smarter in Melbourne <br></br>
 
@@ -64,7 +65,7 @@ if(validated){
             <Col xs={6} sm={6} md={6} lg={6} xl={0}>
              
             </Col>
-            <Col xs={3} sm={3} md={3} lg={3} xl={8}>
+            <Col xs={3} sm={3} md={3} lg={3} xl={12}>
             <Row type="flex" justify="start" align="middle">
               <Col span={16}>
               <Menu style={{zIndex:9999}} overflowedIndicator={<MenuUnfoldOutlined />} className={styles.navigator} onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
@@ -77,12 +78,16 @@ if(validated){
                    TRAVEL
    
                  </Menu.Item>
+                 <Menu.Item key="benefits" icon={<AppstoreOutlined />}>
+                    BENEFITS
+        </Menu.Item>
                   <Menu.Item key="about" icon={<AppstoreOutlined />}>
                     ABOUT
         </Menu.Item>
-
+        
                 
                 </Menu>
+                
               </Col>
             </Row>
                 
@@ -107,6 +112,7 @@ if(validated){
 {this.state.current === 'travel' ? <Travel></Travel> : null}
 {this.state.current === 'home' ? <Home></Home> : null}
 {this.state.current === 'about' ? <About></About> : null}
+{this.state.current === 'benefits'?<Benefits></Benefits>:null}
 </div>
         
         <div id={'footer'} className={styles.footer_Tabs_background}>
