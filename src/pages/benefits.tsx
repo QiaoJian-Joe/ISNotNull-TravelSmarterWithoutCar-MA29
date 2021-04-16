@@ -137,7 +137,7 @@ export default class Benefits extends React.Component {
                 dom =
                     <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
 
-                        <Col xs={24} sm={24} md={24} lg={12} xl={10} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle}>
                                 Helping the society
             </h2>
@@ -155,7 +155,7 @@ Helps combat social isolations by creating active and walkable neighbourhoods. B
                 </p>
 
                         </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={10} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
                             <h2 className={styles.societyTitle}>
 
                             </h2>
@@ -439,9 +439,9 @@ Helps combat social isolations by creating active and walkable neighbourhoods. B
 
             case 'Environment':
                 dom = <>
-                    <Row gutter={[10, 10]} style={{ padding: 20 }}>
+                    <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
 
-                        <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle}>
                                 Do you see this?
                         </h2>
@@ -460,8 +460,21 @@ A little change in travel mode will help you lead a better life in a better worl
                         </p>
 
                         </Col>
-                        <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                        <TableauReport
+                               options={
+                                   {
 
+                                       height: 350,
+                                       width: '100%',
+                                       hideTabs: false,
+                                       // All other vizCreate options are supported here, too
+                                       // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
+                                   }
+                               }
+                               query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
+                               url="https://public.tableau.com/views/CO2emissions_16185543267030/Dashboard1"
+                           />
 
                         </Col>
                     </Row>
@@ -472,16 +485,19 @@ A little change in travel mode will help you lead a better life in a better worl
             case 'Economic':
 
                 dom = <>
-                    <Row gutter={[10, 10]} style={{ padding: 20 }}>
+                    <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
 
                         <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle}>
                                 Beneficial for your pockets too!
                     </h2>
+                  
+                 
                             <p>
                                 In Melbourne, an average car takes out almost $300 from you pockets whereas active travel takes almost nothing out. Minimize your travel costs with active travel. Active travel helps you reduce the extra burden of travel costs which can help you save money for may be your dream home or your dream vacation in Paris.
 
-It is not only beneficial for you but the government too. You can save billions of dollars for your government by choosing active travel.<br />
+It is not only beneficial for you but the government too. You can save billions of dollars for your government by choosing active travel. Your smart choices can help ease the burden on the government. During these uncertain times of post COVID, a simple change in your travel can help the economy of Australia. Choose active travel for a wealthier tomorrow.
+       <br />
 
 Road infrastructure costs - $110 billion<br />
 
@@ -491,15 +507,47 @@ Climate change costs - $15 billion<br />
 
 Mental health costs - $60 billion<br />
 
-Your smart choices can help ease the burden on the government. During these uncertain times of post COVID, a simple change in your travel can help the economy of Australia. Choose active travel for a wealthier tomorrow.
                     </p>
+                    </Col> <Col span={24}>
+                    </Col>
+                    <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                   
+                    <TableauReport
+                                options={
+                                    {
 
+                                        height: 450,
+                                        width: '100%',
+                                        hideTabs: false,
+                                        // All other vizCreate options are supported here, too
+                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
+                                    }
+                                }
+                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
+                                url="https://public.tableau.com/views/Weeklycostsofcommute/Dashboard1"
+                            />
+                          
                         </Col>
-                        <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                   
+               
+                            <TableauReport
+                              options={
+                                  {
 
-
-                        </Col>
+                                      height: 450,
+                                      width: '100%',
+                                      hideTabs: false,
+                                      // All other vizCreate options are supported here, too
+                                      // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
+                                  }
+                              }
+                              query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
+                              url="https://public.tableau.com/views/Infrastructurecostanalysis/Dashboard1"
+                          />
+                       </Col>
                     </Row>
+            
                 </>
 
                 break;
@@ -662,6 +710,14 @@ Your smart choices can help ease the burden on the government. During these unce
                     </Row>
 
                 </label>
+                <label className={this.state.currentTab === 'Society' ? styles.tabsLabelStyleClicked : styles.tabsLabelStyle} onClick={() => { this.tabChange('Society') }}>
+                    <Row>
+                        Society
+                    </Row>
+                    <Row>
+                        <FaPeopleCarry className={styles.iconDefault} size={'42px'}></FaPeopleCarry>
+                    </Row>
+                </label>
                 <label className={this.state.currentTab === 'Business' ? styles.tabsLabelStyleClicked : styles.tabsLabelStyle} onClick={() => { this.tabChange('Business') }}>
                     <Row>
                         Business
@@ -679,14 +735,7 @@ Your smart choices can help ease the burden on the government. During these unce
                         <FaRoad className={styles.iconDefault} size={'42px'}></FaRoad>
                     </Row>
                 </label>
-                <label className={this.state.currentTab === 'Society' ? styles.tabsLabelStyleClicked : styles.tabsLabelStyle} onClick={() => { this.tabChange('Society') }}>
-                    <Row>
-                        Society
-                    </Row>
-                    <Row>
-                        <FaPeopleCarry className={styles.iconDefault} size={'42px'}></FaPeopleCarry>
-                    </Row>
-                </label>
+             
             </div>
             {
                 this.state.currentTab === 'Environment' ? this.constructContentDOM('Environment') : null
