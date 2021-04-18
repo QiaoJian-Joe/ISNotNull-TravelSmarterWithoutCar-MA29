@@ -688,19 +688,19 @@ export default class Travel extends React.Component {
       <>
         <Col>
           <Row type={'flex'} align="middle">
-            <Col span={24}>
+            <Col span={22}>
               {start_autoComplete}
               {getFieldDecorator('startPosition')(
                 <Input placeholder={'Start'} style={{ display: 'none' }}></Input>
               )}
             </Col>
-            {/* <Col span={2}>
+            <Col span={2}>
               <EnvironmentOutlined
                 style={{ fontSize: '18px' }}
                 onClick={() => {
                   this.getCurrentPosition()
                 }}></EnvironmentOutlined>
-            </Col> */}
+            </Col>
           </Row>
           {/* <Divider>Start & Destination</Divider> */}
 
@@ -1052,7 +1052,7 @@ Check out the number of people near you.
 
               <div className={styles.mapContainer}>
                 <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.directions ? null : this.state.defaultPosition} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
-                {/* <div className={styles.mapLocateButton}>
+                <div className={styles.mapLocateButton}>
                   {this.state.mapIsLoad && <Button
                     type="default"
                     size='large'
@@ -1061,7 +1061,7 @@ Check out the number of people near you.
                       this.getCurrentPosition()
                     }}></Button>}
 
-                </div> */}
+                </div>
 
               </div>
 
