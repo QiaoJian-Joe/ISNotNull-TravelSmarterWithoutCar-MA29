@@ -117,7 +117,7 @@ if(validated){
         
         <div id={'footer'} className={styles.footer_Tabs_background}>
 
-         <Row type={'flex'} justify={'end'}>
+         <Row type={'flex'} justify={'center'} gutter={[20,20]}>
            <Col  xs={24} sm={24} md={24} lg={24} xl={8} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>
               <h2 className={styles.footer_title}>ABOUT</h2>
               <p className={styles.footer_content}>
@@ -130,10 +130,10 @@ if(validated){
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('home')}}>Home</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('travel')}}>Travel</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('about')}}>About</a>
-           
+             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('benefits')}}>Benefits</a>
               </p>
            </Col>
-           <Col  xs={24} sm={24} md={24} lg={12} xl={8} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>
+           {/* <Col  xs={24} sm={24} md={24} lg={12} xl={8} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>
            <h2 className={styles.footer_title}>CONTACT</h2>
            <div>
              <span>
@@ -142,7 +142,7 @@ if(validated){
              </span>
             
            </div>
-           </Col>
+           </Col> */}
          </Row>
         </div>
         </>:<Login getValidation={this.getValidation.bind(this)}/>

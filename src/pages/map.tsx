@@ -69,7 +69,7 @@ export default class Travel extends React.Component {
       original_avg_speed: 0,
       total_calories_comsuption: 0,
       comsuption_efficiency: 0,
-      directions:undefined
+      directions: undefined
     }, () => {
       this.props.form.resetFields();
     })
@@ -1185,17 +1185,17 @@ Check out the number of people near you.
 
 
                   </Col>
-                  <Col>
+                  {/* <Col> */}
                     {/* <Divider  >
                       <h2>Health</h2>
                     </Divider> */}
 
-                    <Descriptions title="Calories burned">
+                    {/* <Descriptions title="Calories burned">
                       <Descriptions.Item label="Total calories burned">{total_calories_comsuption && String(total_calories_comsuption) + ' cal' || 0} </Descriptions.Item>
                       <Descriptions.Item label="Burning efficiency">{comsuption_efficiency && String(comsuption_efficiency) + ' cal/min' || 0}</Descriptions.Item>
 
-                    </Descriptions>
-                  </Col>
+                    </Descriptions> */}
+                  {/* </Col> */}
                 </Row>
                 {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
               </Form>
@@ -1269,34 +1269,52 @@ Check out the number of people near you.
                 </Divider>
 
 
-                <Col xs={24} xl={12}>
+                <Col xs={24} xl={8}>
                   <Row>
                     <Col xs={24} xl={24}>
-                      <Descriptions title="Distance Prediction" >
-                        <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
-                        <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                      <h2>
+                      Distance Reduced(km)
+                      </h2>
+                      <h2 className={styles.optimizedNumber}>{difference_distance && String(difference_distance / 1000) || 0}</h2>
+                      {/* <p>
+                      Estimated route distance Reduced(min)
+                      </p> */}
+                      {/* <Descriptions title="Distance Prediction" > */}
+                        {/* <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
+                      
+                        {/* <Descriptions.Item label="Estimated route distance Reduced">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
                         {/* <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
-                      </Descriptions>
+                      {/* </Descriptions> */}
                     </Col>
-                    <Col xs={24} xl={24}>
+                    {/* <Col xs={24} xl={24}>
                       <ReactECharts option={distance_option} />
-                    </Col>
+                    </Col> */}
                   </Row>
                 </Col>
 
 
-                <Col xs={24} xl={12}>
+                <Col xs={24} xl={8}>
                   <Row>
                     <Col xs={24} xl={24}>
-                      <Descriptions title="Time Prediction">
-                        <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
-                        <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item>
+                      <h2>
+                      Time Saved(min)
+                      </h2>
+                      <h2 className={styles.optimizedNumber}>{difference_time && String(Math.round((difference_time / 60))) || 0}</h2>
+                      {/* <p>
+                      Estimated time Reduced(min)
+                      </p> */}
+                      {/* <Descriptions title="Time Prediction"> */}
+                        {/* <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
+                        <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
+                       
+                        {/* <Descriptions.Item label="Estimated time Reduced">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
                         {/* <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item> */}
-                      </Descriptions>
+                      {/* </Descriptions> */}
                     </Col>
-                    <Col xs={24} xl={24}>
+                    {/* <Col xs={24} xl={24}>
                       <ReactECharts option={time_option} />
-                    </Col>
+                    </Col> */}
                   </Row>
                 </Col>
 
@@ -1304,13 +1322,20 @@ Check out the number of people near you.
 
 
 
-                <Col xs={24} xl={24}>
+                <Col xs={24} xl={8}>
                   <Row>
                     <Col xs={24} xl={24}>
 
-                      <Descriptions title="Travel Speed Prediction">
-                        <Descriptions.Item label="Estimated Average speed(m/s)">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item>
-                      </Descriptions>
+                      {/* <Descriptions title="Travel Speed Prediction"> */}
+                      <h2>Calories Burned(cal)</h2>
+                      <h2 className={styles.optimizedNumber}>
+                      {total_calories_comsuption && String(total_calories_comsuption) || 0}
+                      </h2>
+                      {/* <p>
+                        Estimated Average speed(m/s)
+                        </p> */}
+                      {/* <Descriptions.Item label="Estimated Average speed(m/s)">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item> */}
+                      {/* </Descriptions> */}
                     </Col>
                   </Row>
                 </Col>

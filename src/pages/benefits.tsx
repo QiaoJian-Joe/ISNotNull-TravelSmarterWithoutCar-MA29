@@ -35,6 +35,7 @@ import Picture18 from '@/assets/Picture 18.png'
 import Picture19 from '@/assets/Picture 19.png'
 import Picture20 from '@/assets/Picture 20.png'
 import Picture21 from '@/assets/Picture 21.png'
+import { BiUpArrow, BiDownArrow } from 'react-icons/bi';
 import { FaBrain, FaDirections, FaRoute, FaTree, FaWalking, FaBicycle, FaHeart, FaMoneyBillAlt, FaHandsHelping, FaRoad, FaPeopleCarry } from 'react-icons/fa';
 import { IconContext } from "react-icons";
 import discover from '@/assets/discover.jpg'
@@ -94,23 +95,57 @@ export default class Benefits extends React.Component {
                                 Make active travel a lifestyle choice!
                             </h2>
                             <p>
-                                This is how physical inactivity affects you. It can lead to unimaginable diseases and take several years away from you. A daily routine 30 minutes of physical activity can save you from these chronic diseases.
+                                World Health Organization (WHO) recommends 80 minutes of walking or 35 minutes of cycling for men while women should walk for at least 65 minutes or cycle for 30 minutes a day. Multiple benefits from active travel.
+                            <br></br>
 
-                                World Health Organization (WHO) recommends 80 minutes of walking or 35 minutes of cycling for men while women should walk for at least 65 minutes or cycle for 30 minutes a day. Active travel can help you achieve those daily recommended physical activity targets easily. Make a shift towards a healthier you. This is how active travel helps you:
+                                <h4> - Weight <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider></h4>
 
-                                - Good for your joints
+                                <h4> - Muscle strength <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+             
+             <BiUpArrow></BiUpArrow>
+            
+           </IconContext.Provider></h4>
 
-                                - Helps in losing weight
+                                <h4> - Mental health <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+             
+             <BiUpArrow></BiUpArrow>
+            
+           </IconContext.Provider></h4>
+                                <h4> - Heart disease risk <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider></h4>
 
-                                - Improves muscle strength
+                                <h4> - Pain in joints <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider></h4>
 
-                                - Improves mental health
+                                <h4> - Energy levels <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+             
+             <BiUpArrow></BiUpArrow>
+            
+           </IconContext.Provider></h4>
+                                <h4> - Stress levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider></h4>
 
-                                - Reduces risk of heart disease
+                            Physical inactivity leads to multiple chronic diseases. This can be fought against with the simplest of solutions: active travel. Incorporate, this in your lifestyle to get rid of all the diseases.
+                            <h4><br></br>
+                                    <i><b>
+                                        Adopt active travel for a fitter you!
+</b>
+                                    </i>
 
-                                - Saves you from depression
-
-                                What is stopping you? Choose active travel, choose a healthier tomorrow.
+                                </h4>
                             </p>
                             {/* <iframe width="645" height="955" src="https://public.tableau.com/views/healthvis/Dashboard1?:showVizHome=no&:embed=true&:language=en&:display_count=y&:origin=viz_share_link"/> */}
                             <TableauReport
@@ -128,7 +163,10 @@ export default class Benefits extends React.Component {
                                 url="https://public.tableau.com/views/healthvis/Dashboard1"
                             />
                         </Col>
-
+                        <Col>
+                        <p>
+                        <b>Note.</b> This visualization provides insights about how physical inactivity takes away your important years through these chronic diseases.
+                            </p></Col>
                     </Row>
                 </>
 
@@ -142,16 +180,36 @@ export default class Benefits extends React.Component {
                                 Helping the society
             </h2>
                             <p>
+                                <h3><b>Road Congestion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider></b></h3>
                                 Traffic conditions are deteriorating in Melbourne quicker than any other Australian city. Choosing active travel can reduce road congestion, resulting in lower costs to remaining road users.
 <br></br>
                                 <br></br>
-Moreover, it helps the localities become safe. More number of pedestrians on road, makes a safer environment for everyone.
+                                <h3><b>Safety <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+             
+             <BiUpArrow></BiUpArrow>
+            
+           </IconContext.Provider></b></h3>
+                                Active travel helps the localities become safe. More number of pedestrians on road, makes a safer environment for everyone.
 <br></br>
                                 <br></br>
-Increased social benefits due to active travel result in wellbeing. Helps build trust, sympathy, respect, understanding, loyalty, and cooperation through direct contact.
+                                <h3><b>Social connections <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+             
+             <BiUpArrow></BiUpArrow>
+            
+           </IconContext.Provider></b></h3>
+                                Helps combat social isolations by creating active and walkable neighbourhoods. Better walking conditions and opportunities increase the numbers of people using the street and in turn strengthen the potential for casual social contact.
 <br></br>
                                 <br></br>
-Helps combat social isolations by creating active and walkable neighbourhoods. Better walking conditions and opportunities increase the numbers of people using the street and in turn strengthen the potential for casual social contact.
+                                <h3><b>Well-being <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+             
+             <BiUpArrow></BiUpArrow>
+            
+           </IconContext.Provider></b></h3>
+                                Increased social benefits due to active travel result in wellbeing. Helps build trust, sympathy, respect, understanding, loyalty, and cooperation through direct contact.
                 </p>
 
                         </Col>
@@ -170,7 +228,7 @@ Helps combat social isolations by creating active and walkable neighbourhoods. B
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
                                 <h2 className={styles.roadSafetyFirstTitle}>
-                                    Walk safety tips
+                                For pedestrians
                         </h2>
                             </Col>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
@@ -335,7 +393,7 @@ Helps combat social isolations by creating active and walkable neighbourhoods. B
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
                                 <h2 className={styles.roadSafetyFirstTitle}>
-                                    Bicycle Safety Tips
+                                For Bike Riders
                         </h2>
                             </Col>
                             <Col xs={12} sm={12} md={12} lg={8} xl={8}>
@@ -446,37 +504,54 @@ Helps combat social isolations by creating active and walkable neighbourhoods. B
                                 Do you see this?
                         </h2>
                             <p>
-                                By switching to active travel, you will do a lot of good to the world.
-                                Emission free travels will make world a better place to live in.
-                                Australia’s 21% greenhouse gas emissions come from road transport.
-                                Your travel choices do affect the environment.
- Choosing active travel can have multiple benefits:<br />
-    -Less pollution <br />
--Better air quality<br />
--Less depletion of ozone layer<br />
--Lesser ultraviolet radiation levels<br />
-A little change in travel mode will help you lead a better life in a better world.
- It is time to think about the environment. Save the environment, it will save you.
+                                21% of Australia’s greenhouse gas emissions come from road transport. How can you bring it down? The answer is active travel.<br />
+                                <h4>- Active travel can result in lower CO2 Emissions <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider><br /></h4>
+                                <h4>- This results in lower pollution levels Pollution levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider><br /></h4>
+                                <h4>- Which in turn reduces the ozone layer depletion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider><br /></h4>
+                                <h4>- This results in reduced UV radiation level <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+             
+             <BiDownArrow></BiDownArrow>
+            
+           </IconContext.Provider><br /></h4>
+                                <h4>- And all of these makes the environment better <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+             
+             <BiUpArrow></BiUpArrow>
+            
+           </IconContext.Provider><br /></h4>
+A little change in travel mode will help you lead a better life in a better world. It is time to think about the environment.
                         </p>
-
+                            <h4><b><i>Save the environment, it will save you.</i></b></h4>
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                        <TableauReport
-                               options={
-                                   {
+                            <TableauReport
+                                options={
+                                    {
 
-                                       height: 350,
-                                       width: '100%',
-                                       hideTabs: false,
-                                       // All other vizCreate options are supported here, too
-                                       // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
-                                   }
-                               }
-                               query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
-                               url="https://public.tableau.com/views/CO2emissions_16185543267030/Dashboard1"
-                           />
+                                        height: 350,
+                                        width: '100%',
+                                        hideTabs: false,
+                                        // All other vizCreate options are supported here, too
+                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
+                                    }
+                                }
+                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
+                                url="https://public.tableau.com/views/CO2emissions_16185543267030/Dashboard1"
+                            />
 
                         </Col>
+                        
                     </Row>
                 </>
 
@@ -489,30 +564,35 @@ A little change in travel mode will help you lead a better life in a better worl
 
                         <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle}>
-                                Beneficial for your pockets too!
+                                Helps save money for you and the government
                     </h2>
-                  
-                 
-                            <p>
-                                In Melbourne, an average car takes out almost $300 from you pockets whereas active travel takes almost nothing out. Minimize your travel costs with active travel. Active travel helps you reduce the extra burden of travel costs which can help you save money for may be your dream home or your dream vacation in Paris.
+                            <h4>Cost of using a car in Melbourne: <b>$290 - $300</b></h4>
+                            <h4>Cost of using active travel: <b>$0 - $20</b></h4>
 
-It is not only beneficial for you but the government too. You can save billions of dollars for your government by choosing active travel. Your smart choices can help ease the burden on the government. During these uncertain times of post COVID, a simple change in your travel can help the economy of Australia. Choose active travel for a wealthier tomorrow.
+
+                            <p>
+                                Helps you cut down on travel costs. Buying the dream house or getting your dream trip overseas can become a reality with active travel.
        <br />
 
-Road infrastructure costs - $110 billion<br />
+                            </p>
+                            <h2>Do you know?</h2>
+                            <p>
+                                Your active travel can help the government as well. During this uncertain times, a simple change in your travel can help the economy of Australia.
 
-Total medical costs - $187 billion<br />
-
-Climate change costs - $15 billion<br />
-
-Mental health costs - $60 billion<br />
-
+                                The government spends millions on the transport infrastructure. Cost of building 1km of busway is equivalent to cost of building 138km of bikeway. So, choosing active travel can reduce those costs as well.
                     </p>
-                    </Col> <Col span={24}>
-                    </Col>
-                    <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
-                   
-                    <TableauReport
+                            <h4>
+                                <i><b>
+                                    Choose active travel for a wealthier tomorrow.
+</b>
+                                </i>
+
+                            </h4>
+                        </Col> <Col span={24}>
+                        </Col>
+                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+
+                            <TableauReport
                                 options={
                                     {
 
@@ -526,28 +606,28 @@ Mental health costs - $60 billion<br />
                                 query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
                                 url="https://public.tableau.com/views/Weeklycostsofcommute/Dashboard1"
                             />
-                          
+
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
-                   
-               
-                            <TableauReport
-                              options={
-                                  {
 
-                                      height: 450,
-                                      width: '100%',
-                                      hideTabs: false,
-                                      // All other vizCreate options are supported here, too
-                                      // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
-                                  }
-                              }
-                              query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
-                              url="https://public.tableau.com/views/Infrastructurecostanalysis/Dashboard1"
-                          />
-                       </Col>
+
+                            <TableauReport
+                                options={
+                                    {
+
+                                        height: 450,
+                                        width: '100%',
+                                        hideTabs: false,
+                                        // All other vizCreate options are supported here, too
+                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
+                                    }
+                                }
+                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
+                                url="https://public.tableau.com/views/Infrastructurecostanalysis/Dashboard1"
+                            />
+                        </Col>
                     </Row>
-            
+
                 </>
 
                 break;
@@ -735,7 +815,7 @@ Mental health costs - $60 billion<br />
                         <FaRoad className={styles.iconDefault} size={'42px'}></FaRoad>
                     </Row>
                 </label>
-             
+
             </div>
             {
                 this.state.currentTab === 'Environment' ? this.constructContentDOM('Environment') : null

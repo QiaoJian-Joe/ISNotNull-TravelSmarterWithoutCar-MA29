@@ -143,6 +143,15 @@ text-align: left;
     font-family: 'Roboto', sans-serif;
       text-align: left;
 }
+.optimizedNumber{
+  color: rgba(0, 0, 0, 1);
+  font-size: 6rem;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+    font-family: 'Roboto', sans-serif;
+      text-align: center;
+}
 
 .societyTitle::after{
   content: '1 ';
@@ -298,7 +307,7 @@ position: absolute;
   bottom: 15%;
   /* width: 100%;
   height: 50px; */
-  z-index: 9999; 
+  /* z-index: 9999;  */
 }
 
 .show_img_container{
