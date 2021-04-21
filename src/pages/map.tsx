@@ -1077,7 +1077,7 @@ Check out the number of people near you.
           </Col>
           <Col xs={24} lg={13} xl={11}>
 
-            <Card title={'Health calculator'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
+            <Card title={'Enter Your Weight'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
               <Form>
                 {/* <Row type={'flex'} justify={'center'}>
                   
@@ -1258,15 +1258,13 @@ Check out the number of people near you.
           </Col>
 
           <Col span={24}>
-            <Card style={{ padding: 0 }} title={'Travel Prediction'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
+            <Card style={{ padding: 0 }} title={'Trip Analysis'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
 
 
               <Row>
 
 
-                <Divider  >
-                  <h2>Trip</h2>
-                </Divider>
+  
 
 
                 <Col xs={24} xl={8}>

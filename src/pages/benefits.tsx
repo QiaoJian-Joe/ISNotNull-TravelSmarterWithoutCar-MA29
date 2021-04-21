@@ -26,6 +26,7 @@ import Picture8 from '@/assets/Picture 8.png'
 import Picture9 from '@/assets/Picture 9.png'
 import Picture10 from '@/assets/Picture 10.png'
 import Picture11 from '@/assets/Picture 11.png'
+import Picture12 from '@/assets/Picture 12.png'
 import Picture13 from '@/assets/Picture 13.png'
 import Picture14 from '@/assets/Picture 14.png'
 import Picture15 from '@/assets/Picture 15.png'
@@ -35,6 +36,9 @@ import Picture18 from '@/assets/Picture 18.png'
 import Picture19 from '@/assets/Picture 19.png'
 import Picture20 from '@/assets/Picture 20.png'
 import Picture21 from '@/assets/Picture 21.png'
+import Picture22 from '@/assets/Picture 22.png'
+import Picture23 from '@/assets/Picture 23.png'
+import Picture24 from '@/assets/Picture 24.png'
 import { BiUpArrow, BiDownArrow } from 'react-icons/bi';
 import { FaBrain, FaDirections, FaRoute, FaTree, FaWalking, FaBicycle, FaHeart, FaMoneyBillAlt, FaHandsHelping, FaRoad, FaPeopleCarry } from 'react-icons/fa';
 import { IconContext } from "react-icons";
@@ -98,45 +102,45 @@ export default class Benefits extends React.Component {
                                 World Health Organization (WHO) recommends 80 minutes of walking or 35 minutes of cycling for men while women should walk for at least 65 minutes or cycle for 30 minutes a day. Multiple benefits from active travel.
                             <br></br>
 
-                                <h4> &#9702; Weight <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider></h4>
+                                <h4> &#9702; Weight <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
 
-                                <h4> &#9702; Muscle strength <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
-             
-             <BiUpArrow></BiUpArrow>
-            
-           </IconContext.Provider></h4>
+                                    <BiDownArrow></BiDownArrow>
 
-                                <h4> &#9702; Mental health <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
-             
-             <BiUpArrow></BiUpArrow>
-            
-           </IconContext.Provider></h4>
-                                <h4> &#9702; Heart disease risk <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider></h4>
+                                </IconContext.Provider></h4>
 
-                                <h4> &#9702; Pain in joints <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider></h4>
+                                <h4> &#9702; Muscle strength <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
 
-                                <h4> &#9702; Energy levels <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
-             
-             <BiUpArrow></BiUpArrow>
-            
-           </IconContext.Provider></h4>
-                                <h4> &#9702; Stress levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider></h4>
+                                    <BiUpArrow></BiUpArrow>
+
+                                </IconContext.Provider></h4>
+
+                                <h4> &#9702; Mental health <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
+
+                                    <BiUpArrow></BiUpArrow>
+
+                                </IconContext.Provider></h4>
+                                <h4> &#9702; Heart disease risk <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+
+                                    <BiDownArrow></BiDownArrow>
+
+                                </IconContext.Provider></h4>
+
+                                <h4> &#9702; Pain in joints <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+
+                                    <BiDownArrow></BiDownArrow>
+
+                                </IconContext.Provider></h4>
+
+                                <h4> &#9702; Energy levels <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
+
+                                    <BiUpArrow></BiUpArrow>
+
+                                </IconContext.Provider></h4>
+                                <h4> &#9702; Stress levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+
+                                    <BiDownArrow></BiDownArrow>
+
+                                </IconContext.Provider></h4>
 
                             Physical inactivity leads to multiple chronic diseases. This can be fought against with the simplest of solutions: active travel. Incorporate, this in your lifestyle to get rid of all the diseases.
                             <h4><br></br>
@@ -148,27 +152,27 @@ export default class Benefits extends React.Component {
                                 </h4>
                             </p>
                             {/* <iframe width="645" height="955" src="https://public.tableau.com/views/healthvis/Dashboard1?:showVizHome=no&:embed=true&:language=en&:display_count=y&:origin=viz_share_link"/> */}
-                            
-                           
+
+
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={12} xl={12}> <TableauReport
-                                options={
-                                    {
+                            options={
+                                {
 
-                                        height: 600,
-                                        width: '100%',
-                                        hideTabs: false,
-                                        // All other vizCreate options are supported here, too
-                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
-                                    }
+                                    height: 600,
+                                    width: '100%',
+                                    hideTabs: false,
+                                    // All other vizCreate options are supported here, too
+                                    // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
                                 }
-                                query="?:showVizHome=no&:embed=true&:language=en&:display_count=y&:origin=viz_share_link"
-                                url="https://public.tableau.com/views/healthvis/Dashboard1"
-                            />
-                             <p>
-                        <b>Note.</b> This visualization provides insights about how physical inactivity takes<br></br> away your important years through these chronic diseases.
+                            }
+                            query="?:showVizHome=no&:embed=true&:language=en&:display_count=y&:origin=viz_share_link"
+                            url="https://public.tableau.com/views/healthvis/Dashboard1"
+                        />
+                            <p>
+                                <b>Note.</b> This visualization provides insights about how physical inactivity takes<br></br> away your important years through these chronic diseases.
                             </p>
-                            </Col>
+                        </Col>
                     </Row>
                 </>
 
@@ -182,35 +186,35 @@ export default class Benefits extends React.Component {
                                 Helping the society
             </h2>
                             <p>
-                                <h3><b>Road Congestion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider></b></h3>
+                                <h3><b>Road Congestion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+
+                                    <BiDownArrow></BiDownArrow>
+
+                                </IconContext.Provider></b></h3>
                                 Traffic conditions are deteriorating in Melbourne quicker than any other Australian city. Choosing active travel can reduce road congestion, resulting in lower costs to remaining road users.
 <br></br>
                                 <br></br>
-                                <h3><b>Safety <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
-             
-             <BiUpArrow></BiUpArrow>
-            
-           </IconContext.Provider></b></h3>
+                                <h3><b>Safety <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
+
+                                    <BiUpArrow></BiUpArrow>
+
+                                </IconContext.Provider></b></h3>
                                 Active travel helps the localities become safe. More number of pedestrians on road, makes a safer environment for everyone.
 <br></br>
                                 <br></br>
-                                <h3><b>Social connections <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
-             
-             <BiUpArrow></BiUpArrow>
-            
-           </IconContext.Provider></b></h3>
+                                <h3><b>Social connections <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
+
+                                    <BiUpArrow></BiUpArrow>
+
+                                </IconContext.Provider></b></h3>
                                 Helps combat social isolations by creating active and walkable neighbourhoods. Better walking conditions and opportunities increase the numbers of people using the street and in turn strengthen the potential for casual social contact.
 <br></br>
                                 <br></br>
-                                <h3><b>Well-being <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
-             
-             <BiUpArrow></BiUpArrow>
-            
-           </IconContext.Provider></b></h3>
+                                <h3><b>Well-being <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
+
+                                    <BiUpArrow></BiUpArrow>
+
+                                </IconContext.Provider></b></h3>
                                 Increased social benefits due to active travel result in wellbeing. Helps build trust, sympathy, respect, understanding, loyalty, and cooperation through direct contact.
                 </p>
 
@@ -230,7 +234,7 @@ export default class Benefits extends React.Component {
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
                                 <h2 className={styles.roadSafetyFirstTitle}>
-                                For pedestrians
+                                    For pedestrians
                         </h2>
                             </Col>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
@@ -278,7 +282,7 @@ export default class Benefits extends React.Component {
                             </Col>
                             <Col xs={12} sm={12} md={12} lg={8} xl={8}>
                                 <Row>
-                                    <Col>   <img src={Picture6} style={{ height: 150 }} ></img>
+                                    <Col>   <img src={Picture22} style={{ height: 150 }} ></img>
                                     </Col>
                                     <Col>
                                         <p>
@@ -291,7 +295,7 @@ export default class Benefits extends React.Component {
                             </Col>
                             <Col xs={12} sm={12} md={12} lg={8} xl={8}>
                                 <Row>
-                                    <Col>  <img src={Picture7} style={{ height: 150 }} ></img>
+                                    <Col>  <img src={Picture12} style={{ height: 150 }} ></img>
                                     </Col>
                                     <Col>
                                         <p>
@@ -302,7 +306,19 @@ export default class Benefits extends React.Component {
 
 
                             </Col>
+                            <Col xs={12} sm={12} md={12} lg={8} xl={8}>
+                                <Row>
+                                    <Col>  <img src={Picture23} style={{ height: 150 }} ></img>
+                                    </Col>
+                                    <Col>
+                                        <p>
+                                            Remove earphones
+                                    </p>
+                                    </Col>
+                                </Row>
 
+
+                            </Col>
                         </Row>
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
@@ -365,7 +381,7 @@ export default class Benefits extends React.Component {
                             <Col xs={12} sm={12} md={12} lg={8} xl={8}>
                                 <Row>
                                     <Col>
-                                        <img src={Picture13} style={{ height: 150 }} ></img>
+                                        <img src={Picture24} style={{ height: 150 }} ></img>
                                     </Col>
                                     <Col>
                                         <p>
@@ -395,7 +411,7 @@ export default class Benefits extends React.Component {
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
                                 <h2 className={styles.roadSafetyFirstTitle}>
-                                For Bike Riders
+                                    For Bike Riders
                         </h2>
                             </Col>
                             <Col xs={12} sm={12} md={12} lg={8} xl={8}>
@@ -404,7 +420,7 @@ export default class Benefits extends React.Component {
                                     </Col>
                                     <Col>
                                         <p>
-                                            Before changing lanes always scan behind and signal your intentions
+                                        Look behind while changing lanes and signal intentions.
                                     </p>
                                     </Col>
                                 </Row>
@@ -417,7 +433,7 @@ export default class Benefits extends React.Component {
                                     </Col>
                                     <Col>
                                         <p>
-                                            Always keep left while riding on footpaths
+                                        Keep left while riding on footpaths
                                     </p>
                                     </Col>
                                 </Row>
@@ -444,7 +460,7 @@ export default class Benefits extends React.Component {
                                     </Col>
                                     <Col>
                                         <p>
-                                            Be careful while riding on tram tracks
+                                        Avoid riding on tram tracks
                                     </p>
                                     </Col>
                                 </Row>
@@ -457,7 +473,7 @@ export default class Benefits extends React.Component {
                                     </Col>
                                     <Col>
                                         <p>
-                                            Wear a correctly fitted, Australian standards approved, bicycle helmet.
+                                        Wear an Australian standard approved fitted helmet
                                     </p>
                                     </Col>
                                 </Row>
@@ -507,31 +523,31 @@ export default class Benefits extends React.Component {
                         </h2>
                             <p>
                                 21% of Australia’s greenhouse gas emissions come from road transport. How can you bring it down? The answer is active travel.<br />
-                                <h4>&#9702; Active travel can result in lower CO2 Emissions <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider><br /></h4>
-                                <h4>&#9702; This results in lower pollution levels Pollution levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider><br /></h4>
-                                <h4>&#9702; Which in turn reduces the ozone layer depletion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider><br /></h4>
-                                <h4>&#9702; This results in reduced UV radiation level <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
-             
-             <BiDownArrow></BiDownArrow>
-            
-           </IconContext.Provider><br /></h4>
-                                <h4>&#9702; And all of these makes the environment better <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
-             
-             <BiUpArrow></BiUpArrow>
-            
-           </IconContext.Provider><br /></h4>
+                                <h4>&#9702; Active travel can result in lower CO2 Emissions <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+
+                                    <BiDownArrow></BiDownArrow>
+
+                                </IconContext.Provider><br /></h4>
+                                <h4>&#9702; This results in lower pollution levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+
+                                    <BiDownArrow></BiDownArrow>
+
+                                </IconContext.Provider><br /></h4>
+                                <h4>&#9702; Which in turn reduces the ozone layer depletion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+
+                                    <BiDownArrow></BiDownArrow>
+
+                                </IconContext.Provider><br /></h4>
+                                <h4>&#9702; This results in reduced UV radiation level <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+
+                                    <BiDownArrow></BiDownArrow>
+
+                                </IconContext.Provider><br /></h4>
+                                <h4>&#9702; And all of these makes the environment better <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
+
+                                    <BiUpArrow></BiUpArrow>
+
+                                </IconContext.Provider><br /></h4>
 A little change in travel mode will help you lead a better life in a better world. It is time to think about the environment.
                         </p>
                             <h4><b><i>Save the environment, it will save you.</i></b></h4>
@@ -553,7 +569,7 @@ A little change in travel mode will help you lead a better life in a better worl
                             />
 
                         </Col>
-                        
+
                     </Row>
                 </>
 
