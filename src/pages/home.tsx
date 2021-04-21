@@ -31,7 +31,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from 'react-places-autocomplete';
 import { formatCountdown } from 'antd/lib/statistic/utils';
-
+import TableauReport from 'tableau-react';
 const FormItem = Form.Item
 const { Meta } = Card;
 @connect(({ map }) => ({
@@ -145,10 +145,24 @@ Check out the number of people near you.
         </Carousel>
 
         <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
-          <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-            <img src={img5} style={{ width: '100%' }} ></img>
-          </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+            {/* <img src={img5} style={{ width: '100%' }} ></img> */}
+            <TableauReport
+                                options={
+                                    {
+
+                                        height: 400,
+                                        width: '100%',
+                                        hideTabs: false,
+                                        // All other vizCreate options are supported here, too
+                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
+                                    }
+                                }
+                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
+                                url="https://public.tableau.com/views/IE_16183790961690/Dashboard1"
+                            />
+          </Col>
+          <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
             <h2 className={styles.aboutUsSecondTitle}>Melbourne is inactive!</h2>
             <p style={{ textAlign: 'left' }}>
             Over the years, Australian city planners have made efforts to extend pedestrian and cycling paths, restrict car traffic but have their efforts paid off? The answer is NO. If we go by the numbers, in 2001 the number of people using active travel was 3.6% while in 2011 it was 5% and in 2021 it stands at 5.1%. This means only a change of 1.4% which certainly is not good enough. Moreover, concerns are that Melbourne’s young age group is becoming inactive which increases health risk. Young adults are advised to at least have some active travel every day of the week. It is important to promote active travel amongst people and certainly amongst the future of Australia.
@@ -166,8 +180,9 @@ Check out the number of people near you.
         <Row gutter={[10,10]} type={"flex"} justify={'center'}  style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto',marginBottom:40 }}>
           <Col xs={24} sm={24} md={8} lg={8} xl={8} >
             <Card 
-              hoverable
+             
               style={{  marginLeft: 'auto', marginRight: 'auto' ,width:'80%'}}
+         
               cover={
                 <IconContext.Provider value={{ color: "#99cc00", className: "global-class-name",size:'30%',style:{padding:20} }}>
                   <div>
@@ -181,7 +196,7 @@ Check out the number of people near you.
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} xl={8}>
             <Card
-              hoverable
+           
               style={{  marginLeft: 'auto', marginRight: 'auto',width:'80%' }}
               cover={<IconContext.Provider value={{ color: "#6600cc", className: "global-class-name",size:'30%',style:{padding:20} }}>
               <div>
@@ -195,7 +210,7 @@ Check out the number of people near you.
           </Col>
           <Col xs={24} sm={24} md={8} lg={8} xl={8}>
             <Card
-              hoverable
+            
               style={{  marginLeft: 'auto', marginRight: 'auto',width:'80%' }}
               cover={<IconContext.Provider value={{ color: "#0066cc", className: "global-class-name",size:'30%',style:{padding:20} }}>
               <div>
