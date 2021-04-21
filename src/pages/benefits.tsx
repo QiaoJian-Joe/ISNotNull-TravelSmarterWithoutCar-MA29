@@ -90,7 +90,7 @@ export default class Benefits extends React.Component {
                         {/* <Col xs={24} sm={24} md={24} lg={24} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
                             <img src={img6} style={{ width: '100%' }} ></img>
                         </Col> */}
-                        <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle}>
                                 Make active travel a lifestyle choice!
                             </h2>
@@ -148,7 +148,10 @@ export default class Benefits extends React.Component {
                                 </h4>
                             </p>
                             {/* <iframe width="645" height="955" src="https://public.tableau.com/views/healthvis/Dashboard1?:showVizHome=no&:embed=true&:language=en&:display_count=y&:origin=viz_share_link"/> */}
-                            <TableauReport
+                            
+                           
+                        </Col>
+                        <Col xs={24} sm={24} md={24} lg={12} xl={12}> <TableauReport
                                 options={
                                     {
 
@@ -162,11 +165,10 @@ export default class Benefits extends React.Component {
                                 query="?:showVizHome=no&:embed=true&:language=en&:display_count=y&:origin=viz_share_link"
                                 url="https://public.tableau.com/views/healthvis/Dashboard1"
                             />
-                        </Col>
-                        <Col>
-                        <p>
-                        <b>Note.</b> This visualization provides insights about how physical inactivity takes away your important years through these chronic diseases.
-                            </p></Col>
+                             <p>
+                        <b>Note.</b> This visualization provides insights about how physical inactivity takes<br></br> away your important years through these chronic diseases.
+                            </p>
+                            </Col>
                     </Row>
                 </>
 
