@@ -98,41 +98,41 @@ export default class Benefits extends React.Component {
                                 World Health Organization (WHO) recommends 80 minutes of walking or 35 minutes of cycling for men while women should walk for at least 65 minutes or cycle for 30 minutes a day. Multiple benefits from active travel.
                             <br></br>
 
-                                <h4> - Weight <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+                                <h4> &#9702; Weight <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
              
              <BiDownArrow></BiDownArrow>
             
            </IconContext.Provider></h4>
 
-                                <h4> - Muscle strength <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+                                <h4> &#9702; Muscle strength <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
              
              <BiUpArrow></BiUpArrow>
             
            </IconContext.Provider></h4>
 
-                                <h4> - Mental health <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+                                <h4> &#9702; Mental health <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
              
              <BiUpArrow></BiUpArrow>
             
            </IconContext.Provider></h4>
-                                <h4> - Heart disease risk <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+                                <h4> &#9702; Heart disease risk <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
              
              <BiDownArrow></BiDownArrow>
             
            </IconContext.Provider></h4>
 
-                                <h4> - Pain in joints <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+                                <h4> &#9702; Pain in joints <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
              
              <BiDownArrow></BiDownArrow>
             
            </IconContext.Provider></h4>
 
-                                <h4> - Energy levels <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+                                <h4> &#9702; Energy levels <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
              
              <BiUpArrow></BiUpArrow>
             
            </IconContext.Provider></h4>
-                                <h4> - Stress levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+                                <h4> &#9702; Stress levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
              
              <BiDownArrow></BiDownArrow>
             
@@ -507,27 +507,27 @@ export default class Benefits extends React.Component {
                         </h2>
                             <p>
                                 21% of Australia’s greenhouse gas emissions come from road transport. How can you bring it down? The answer is active travel.<br />
-                                <h4>- Active travel can result in lower CO2 Emissions <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+                                <h4>&#9702; Active travel can result in lower CO2 Emissions <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
              
              <BiDownArrow></BiDownArrow>
             
            </IconContext.Provider><br /></h4>
-                                <h4>- This results in lower pollution levels Pollution levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+                                <h4>&#9702; This results in lower pollution levels Pollution levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
              
              <BiDownArrow></BiDownArrow>
             
            </IconContext.Provider><br /></h4>
-                                <h4>- Which in turn reduces the ozone layer depletion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+                                <h4>&#9702; Which in turn reduces the ozone layer depletion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
              
              <BiDownArrow></BiDownArrow>
             
            </IconContext.Provider><br /></h4>
-                                <h4>- This results in reduced UV radiation level <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
+                                <h4>&#9702; This results in reduced UV radiation level <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name",size:'14px'}}>
              
              <BiDownArrow></BiDownArrow>
             
            </IconContext.Provider><br /></h4>
-                                <h4>- And all of these makes the environment better <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
+                                <h4>&#9702; And all of these makes the environment better <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name",size:'14px'}}>
              
              <BiUpArrow></BiUpArrow>
             

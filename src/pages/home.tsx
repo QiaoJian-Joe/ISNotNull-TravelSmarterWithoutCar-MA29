@@ -163,9 +163,11 @@ Check out the number of people near you.
                             />
           </Col>
           <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-            <h2 className={styles.aboutUsSecondTitle}>Melbourne is inactive!</h2>
+            <h2 className={styles.aboutUsSecondTitle}>Melbourne Youth is inactive!</h2>
             <p style={{ textAlign: 'left' }}>
-            Over the years, Australian city planners have made efforts to extend pedestrian and cycling paths, restrict car traffic but have their efforts paid off? The answer is NO. If we go by the numbers, in 2001 the number of people using active travel was 3.6% while in 2011 it was 5% and in 2021 it stands at 5.1%. This means only a change of 1.4% which certainly is not good enough. Moreover, concerns are that Melbourne’s young age group is becoming inactive which increases health risk. Young adults are advised to at least have some active travel every day of the week. It is important to promote active travel amongst people and certainly amongst the future of Australia.
+            Over the years, Australian city planners have made efforts to extend pedestrian and cycling paths, restrict car traffic but have their efforts paid off? The answer is <b>NO.</b><br></br>
+            The physical inactivity prevails over all age groups, but the most worrying thing is that its youth is inactive. In that 10-year period, the physical activity rate only increased by 4.5 % for people aged between 18-24. Young adults are advised to at least have some active travel every day of the week. It is important to promote active travel amongst people and certainly amongst the future of Australia.
+<br></br><i><b>It is time, we act fast!</b></i>
 </p>
           </Col>
         </Row>

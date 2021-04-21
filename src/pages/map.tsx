@@ -542,7 +542,7 @@ export default class Travel extends React.Component {
     const searchOptions = {
       location: new google.maps.LatLng(-34, 144),
       radius: 60000,
-      types: ['address']
+      types: ['establishment']
     }
     const start_autoComplete = <PlacesAutocomplete
       value={startPosition_address}
