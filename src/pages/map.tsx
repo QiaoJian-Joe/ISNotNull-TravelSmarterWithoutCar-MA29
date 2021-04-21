@@ -539,8 +539,14 @@ export default class Travel extends React.Component {
   constructSeriesPlacesBar = () => {
     const { form: { getFieldDecorator } } = this.props
     const { additionalPlaces, destination_address, startPosition_address } = this.state
+    const searchOptions = {
+      location: new google.maps.LatLng(-34, 144),
+      radius: 60000,
+      types: ['address']
+    }
     const start_autoComplete = <PlacesAutocomplete
       value={startPosition_address}
+      searchOptions={searchOptions}
       onChange={(e) => { this.handleAutoCompleteChange(e, 'startPosition') }}
       onSelect={(e) => { this.handleAutoCompleteSelect(e, 'startPosition') }}
     >
@@ -591,6 +597,7 @@ export default class Travel extends React.Component {
                 {/* {getFieldDecorator('place_' + String(item.id))( */}
                 <PlacesAutocomplete
                   value={this.state.inputing}
+                  searchOptions={searchOptions}
                   onChange={(e) => { this.handleAutoCompleteChange(e, 'place_' + String(item.id)) }}
                   onSelect={(e) => { this.handleAutoCompleteSelect(e, 'place_' + String(item.id)) }}
                 >
@@ -644,6 +651,7 @@ export default class Travel extends React.Component {
 
     const end_autoComplete = <PlacesAutocomplete
       value={destination_address}
+      searchOptions={searchOptions}
       onChange={(e) => { this.handleAutoCompleteChange(e, 'destination') }}
       onSelect={(e) => { this.handleAutoCompleteSelect(e, 'destination') }}
     >
