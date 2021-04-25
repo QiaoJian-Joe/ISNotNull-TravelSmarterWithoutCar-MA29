@@ -11,11 +11,19 @@ import show_img_1 from '@/assets/show_img_1.png'
 import show_img_2 from '@/assets/show_img_2.png'
 import show_img_3 from '@/assets/show_img_3.png'
 import show_img_4 from '@/assets/show_img_4.png'
+import Slide1 from '@/assets/Slide1.JPG'
+import Slide2 from '@/assets/Slide2.JPG'
+import Slide3 from '@/assets/Slide3.JPG'
+import optimize from '@/assets/optimize.jpg'
 import img1 from '@/assets/img1.png'
 import img2 from '@/assets/img2.png'
 import img3 from '@/assets/img3.png'
 import img4 from '@/assets/img4.png'
 import img5 from '@/assets/img5.png'
+import homepage_photo1 from '@/assets/homepage_photo1.jpg'
+import homepage_photo2 from '@/assets/homepage_photo2.jpg'
+import homepage_photo3 from '@/assets/homepage_photo3.jpg'
+import stepGuide from '@/assets/guide.jpg'
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -73,6 +81,32 @@ export default class Travel extends React.Component {
     }, () => {
       this.props.form.resetFields();
     })
+  }
+
+  componentWillUnmount() {
+
+    window.removeEventListener('resize', this.handleResize.bind(this))
+
+  }
+
+  handleResize = e => {
+    console.log(e)
+    // if (e.target.innerWidth < 1600) {
+    //  console.log(e.target.innerWidth)
+
+    // } else {
+    //   console.log(e.target.innerWidth)
+    // }
+    this.setState({
+      browserWidth:  document.documentElement.clientWidth,
+      browserHeight: document.documentElement.clientHeight
+    }, () => {
+      console.log(e.target.innerWidth)
+    })
+  }
+
+  carouselChange(from, to) {
+    console.log(from, to)
   }
 
   handleAutoCompleteChange = (address, field) => {
@@ -250,6 +284,15 @@ export default class Travel extends React.Component {
 
   componentDidMount = () => {
     this.getCurrentPosition()
+    const winWidth =  document.documentElement.clientWidth;
+    const winHeight = document.documentElement.clientHeight;
+    console.log(winWidth)
+    this.setState({
+      browserWidth: winWidth,
+      browserHeight : winHeight
+    }, () => {
+      window.addEventListener('resize', this.handleResize.bind(this))
+    })
   }
 
   getCurrentPosition = () => {
@@ -472,7 +515,7 @@ export default class Travel extends React.Component {
         additionalPlaces: currentList,
         currentId: currentId + 1
       }, () => {
-
+        message.success('Stop Added!')
       })
     } else {
       message.error('You could only add up to 3 additional waypoints!')
@@ -496,7 +539,7 @@ export default class Travel extends React.Component {
       this.setState({
         additionalPlaces: finalList
       }, () => {
-
+        message.success('Stop Removed!')
 
       })
     }
@@ -521,9 +564,6 @@ export default class Travel extends React.Component {
     })
   }
 
-
-  carouselChange(from, to) {
-  }
 
   getMapStatus = (isload) => {
     this.setState({
@@ -788,20 +828,163 @@ export default class Travel extends React.Component {
       comsuption_efficiency,
     } = this.state
     const { form: { getFieldDecorator } } = this.props
+
+    const { browserWidth,browserHeight } = this.state
+
+    let contentStyle = {
+      position:'relative',
+      width: '100%',
+      height: browserWidth * 1 / 2,
+      color: '#fff',
+      lineHeight: browserWidth * 1 / 2,
+      textAlign: 'center',
+      background: '#364d79',
+      zIndex:0
+    }
+
+    let imgStyle = {
+      width: '100%',
+      height: browserWidth * 1 / 2,
+      color: '#fff',
+      lineHeight: browserWidth * 1 / 2,
+      textAlign: 'center',
+      background: '#364d79',
+      zIndex:0
+    }
+
+    let titleStyle1={
+      position:'absolute',
+      textAlign:'center',
+      top:10,
+      left:browserWidth,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:2,
+      fontSize:browserWidth/20,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'100',
+      
+    }
+
+    let titleStyle2={
+      position:'absolute',
+      textAlign:'center',
+      top:10,
+      left:browserWidth*2,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:2,
+      fontSize:browserWidth/20,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'100',
+      
+    }
+
+    let titleStyle3={
+      position:'absolute',
+      textAlign:'center',
+      top:10,
+      left:browserWidth*3,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:2,
+      fontSize:browserWidth/20,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'100',
+      
+    }
+
+    let titleStyle4={
+      position:'absolute',
+      textAlign:'center',
+      top:10,
+      left:browserWidth*4,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:2,
+      fontSize:browserWidth/20,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'100',
+      
+    }
+
+    let textStyle1 = {
+      position:'absolute',
+      textAlign:'center',
+      top:20+browserWidth/15+10,
+      left:browserWidth,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:1,
+      fontSize:browserWidth/80,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'1',
+    
+    }
+
+    let textStyle2 = {
+      position:'absolute',
+      textAlign:'center',
+      top:20+browserWidth/15+10,
+      left:browserWidth*2,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:1,
+      fontSize:browserWidth/80,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'1',
+    
+    }
+
+    let textStyle3 = {
+      position:'absolute',
+      textAlign:'center',
+      top:20+browserWidth/15+10,
+      left:browserWidth*3,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:1,
+      fontSize:browserWidth/80,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'1',  
+    }
+
+    let textStyle4 = {
+      position:'absolute',
+      textAlign:'center',
+      top:20+browserWidth/15+10,
+      left:browserWidth*4,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:1,
+      fontSize:browserWidth/80,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'1',
+     
+    }
+
     const staticOptions = [
       { title: 'Library', value: 'Library' },
       { title: 'Museum', value: 'Museum' },
       { title: 'Coffee Shop', value: 'Coffee Shop' }
     ]
 
-    const contentStyle = {
-      width: '100%',
-      color: '#fff',
-      opacity: 0.3,
-      textAlign: 'center',
-      background: '#364d79',
+    // const contentStyle = {
+    //   width: '100%',
+    //   color: '#fff',
+    //   opacity: 0.3,
+    //   textAlign: 'center',
+    //   background: '#364d79',
 
-    };
+    // };
 
     const imgTitleStyle = {
       position: 'absolute',
@@ -940,109 +1123,76 @@ export default class Travel extends React.Component {
     };
 
     return (
-      <div id="map" className={styles.background} >
+      <>
+       <Carousel autoplay autoplaySpeed={4000} infinite={true} beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }} dotPosition={'top'} dots={true}>
+          <div style={contentStyle}>
+            {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
+            {/* 
+           <h2>
 
-
-
-
-        <Card style={{ padding: 20, display: 'none' }} hoverable>
-          <Form>
-            <Row type={'flex'} justify={'center'}>
-              <Col xs={24} md={24} xl={24} xxl={8}>
-                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'First priority place'}>
-                  {
-                    getFieldDecorator('firstType')(
-
-                      <Select>
-                        {
-                          staticOptions.map(
-                            item => <Option value={item.value}>{item.title}</Option>
-                          )
-                        }
-                      </Select>
-                    )
-                  }
-                </FormItem>
-              </Col>
-              <Col xs={24} md={24} xl={24} xxl={8}>
-                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Second priority place'}>
-                  {
-                    getFieldDecorator('secondType')(
-                      <Select>
-                        {
-                          staticOptions.map(
-                            item => <Option value={item.value}>{item.title}</Option>
-                          )
-                        }
-                      </Select>
-                    )
-                  }
-                </FormItem>
-              </Col>
-              <Col xs={24} md={24} xl={24} xxl={8}>
-                <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Third priority place'}>
-                  {
-                    getFieldDecorator('thirdType')(
-                      <Select>
-                        {
-                          staticOptions.map(
-                            item => <Option value={item.value}>{item.title}</Option>
-                          )
-                        }
-                      </Select>
-                    )
-                  }
-                </FormItem>
-              </Col>
-            </Row>
-            <Row type={'flex'} justify={'end'} gutter={[10, 10]}>
-              <Col>
-                <Radio.Group name="radiogroup" defaultValue={1} >
-                  <Radio value={1}>Shortest Distance</Radio>
-                  <Radio value={2} disabled>Rating First</Radio>
-                </Radio.Group>
-              </Col>
-
-            </Row>
-
-
-
-            {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
-          </Form>
-
-        </Card>
-
-
-        <Row gutter={[10, 10]} >
-          <Col style={{ display: 'none' }}>
-            <Carousel beforeChange={this.carouselChange} style={{ height: '20%', maxHeight: '700px' }}>
-              <div className={styles.show_img_container}>
-                <div style={imgTitleStyle}> <h1>New to Melbourne?</h1></div>
-                <div style={imgContentStyle}>
-                  <h2>
-
-                    Explore your surroundings with us. <br />
+              Explore your surroundings with us. <br />
 Walk or cycle to places near you quicker.<br />
 Do multiple things on the go.
-                  </h2>
-                </div>
-                <img src={img5} style={contentStyle} ></img>
-              </div>
-              <div className={styles.show_img_container}>
-                <div style={imgTitleStyle}> <h1>Travel smarter!</h1></div>
-                <div style={imgContentStyle}>
-                  <h2>
-                    Optimize your travel with us. <br />
+                  </h2>   */}
+
+            <img src={optimize} style={imgStyle}></img>
+            <span style={titleStyle1}>
+            Optimize your travel
+            </span>
+            <span style={textStyle1}>Save on your travel time when active travelling with our Route Optimizer.
+
+Add multiple stops and get the shortest route to plan your journey.
+
+Travel more in less time.</span>
+          </div>
+          <div style={contentStyle}>
+            {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
+            {/* <h2 >
+              Optimize your travel with us. <br />
 Do more in less time.<br />
 Discover how much time you saved by travelling with us.
 
-                  </h2>
-                </div>
-                <img src={img4} style={contentStyle} ></img>
+                  </h2>  */}
 
-              </div>
+            <img src={Slide1} style={imgStyle} ></img>
+            <span style={titleStyle2}>
+            Step 1
+            </span>
+            <span style={textStyle2}>Enter your weight. Add your current location and destination in the box provided.</span>
+          </div>
+          <div style={contentStyle}>
+            {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
+            {/* <h2 >
+              Optimize your travel with us. <br />
+Do more in less time.<br />
+Discover how much time you saved by travelling with us.
 
-              {/* <div className={styles.show_img_container}>
+                  </h2>  */}
+
+            <img src={Slide2} style={imgStyle} ></img>
+            <span style={titleStyle3}>
+            Step 2
+            </span>
+            <span style={textStyle3}>Click on ‘+’ symbol to add multiple stops in your journey. You can add up to three stops.</span>
+          </div>
+          <div style={contentStyle}>
+            {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
+            {/* 
+           <h2>
+
+              Explore your surroundings with us. <br />
+Walk or cycle to places near you quicker.<br />
+Do multiple things on the go.
+                  </h2>   */}
+
+            <img src={Slide3} style={imgStyle}></img>
+            <span style={titleStyle4}>
+            Step 3
+            </span>
+            <span style={textStyle4}>Select your commute mode (Walking or Cycling). Click on ‘Optimize’ to get the shortest route for your travel along with the trip analysis.</span>
+          </div>
+        
+          {/* <div className={styles.show_img_container}>
                 <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
                 <div style={imgContentStyle}>
                   We will help you get to a place where you feel safe.<br />
@@ -1051,12 +1201,13 @@ Check out the number of people near you.
             </div>
                 <img src={img3} style={contentStyle} ></img>
               </div> */}
-            </Carousel>
-          </Col>
-          <Col>
-          </Col>
+        </Carousel>
+      <div id="map" className={styles.background} >
+
+        <Row gutter={[10, 10]} >
+        
           <Col xs={24} lg={11} xl={13}>
-            <Card style={{ padding: 20 }} hoverable>
+            <Card style={{ padding: 20 }} >
 
               <div className={styles.mapContainer}>
                 <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.directions ? null : this.state.defaultPosition} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
@@ -1077,7 +1228,7 @@ Check out the number of people near you.
           </Col>
           <Col xs={24} lg={13} xl={11}>
 
-            <Card title={'Enter Your Weight'} bordered headStyle={{ background: '#364d79', color: '#fff' }} hoverable>
+            <Card title={'Enter Your Weight'} bordered headStyle={{ background: '#364d79', color: '#fff' }} >
               <Form>
                 {/* <Row type={'flex'} justify={'center'}>
                   
@@ -1186,11 +1337,11 @@ Check out the number of people near you.
 
                   </Col>
                   {/* <Col> */}
-                    {/* <Divider  >
+                  {/* <Divider  >
                       <h2>Health</h2>
                     </Divider> */}
 
-                    {/* <Descriptions title="Calories burned">
+                  {/* <Descriptions title="Calories burned">
                       <Descriptions.Item label="Total calories burned">{total_calories_comsuption && String(total_calories_comsuption) + ' cal' || 0} </Descriptions.Item>
                       <Descriptions.Item label="Burning efficiency">{comsuption_efficiency && String(comsuption_efficiency) + ' cal/min' || 0}</Descriptions.Item>
 
@@ -1203,7 +1354,7 @@ Check out the number of people near you.
             </Card>
           </Col>
           <Col xs={24} lg={13} xl={11}>
-            <Card style={{ padding: 0 }} title={'Plan'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
+            <Card style={{ padding: 0 }} title={'Plan'} bordered headStyle={{ background: '#364d79', color: '#fff' }}>
               <Row gutter={[10, 10]} justify={'end'}>
                 <Col>
                   {
@@ -1258,31 +1409,34 @@ Check out the number of people near you.
           </Col>
 
           <Col span={24}>
-            <Card style={{ padding: 0 }} title={'Trip Analysis'} bordered hoverable headStyle={{ background: '#364d79', color: '#fff' }}>
+            <Card style={{ padding: 0 }} title={'Trip Analysis'} bordered headStyle={{ background: '#364d79', color: '#fff' }}>
 
 
               <Row>
 
 
-  
+
 
 
                 <Col xs={24} xl={8}>
                   <Row>
                     <Col xs={24} xl={24}>
                       <h2>
-                      Distance Reduced(km)
+                        Distance Reduced
                       </h2>
+                      <h4 style={{ color: '#aaa' }}>
+                        Kilometres
+                      </h4>
                       <h2 className={styles.optimizedNumber}>{difference_distance && String(difference_distance / 1000) || 0}</h2>
                       {/* <p>
                       Estimated route distance Reduced(min)
                       </p> */}
                       {/* <Descriptions title="Distance Prediction" > */}
-                        {/* <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                      {/* <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
-                      
-                        {/* <Descriptions.Item label="Estimated route distance Reduced">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
-                        {/* <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
+
+                      {/* <Descriptions.Item label="Estimated route distance Reduced">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
+                      {/* <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
                       {/* </Descriptions> */}
                     </Col>
                     {/* <Col xs={24} xl={24}>
@@ -1296,18 +1450,21 @@ Check out the number of people near you.
                   <Row>
                     <Col xs={24} xl={24}>
                       <h2>
-                      Time Saved(min)
+                        Time Saved
                       </h2>
+                      <h4 style={{ color: '#aaa' }}>
+                        minutes
+                      </h4>
                       <h2 className={styles.optimizedNumber}>{difference_time && String(Math.round((difference_time / 60))) || 0}</h2>
                       {/* <p>
                       Estimated time Reduced(min)
                       </p> */}
                       {/* <Descriptions title="Time Prediction"> */}
-                        {/* <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
+                      {/* <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
-                       
-                        {/* <Descriptions.Item label="Estimated time Reduced">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
-                        {/* <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item> */}
+
+                      {/* <Descriptions.Item label="Estimated time Reduced">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
+                      {/* <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item> */}
                       {/* </Descriptions> */}
                     </Col>
                     {/* <Col xs={24} xl={24}>
@@ -1325,9 +1482,12 @@ Check out the number of people near you.
                     <Col xs={24} xl={24}>
 
                       {/* <Descriptions title="Travel Speed Prediction"> */}
-                      <h2>Calories Burned(cal)</h2>
+                      <h2>Calories Burned</h2>
+                      <h4 style={{ color: '#aaa' }}>
+                        calories
+                      </h4>
                       <h2 className={styles.optimizedNumber}>
-                      {total_calories_comsuption && String(total_calories_comsuption) || 0}
+                        {total_calories_comsuption && String(total_calories_comsuption) || 0}
                       </h2>
                       {/* <p>
                         Estimated Average speed(m/s)
@@ -1360,6 +1520,7 @@ Check out the number of people near you.
         </div>
 
       </div>
+      </>
     );
   }
 }

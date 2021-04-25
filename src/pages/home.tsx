@@ -25,6 +25,10 @@ import img6 from '@/assets/banner_desktop.jpg'
 import educate from '@/assets/educate.png'
 import guide from '@/assets/guide.png'
 import optimize from '@/assets/optimize.png'
+import homepage_photo1 from '@/assets/homepage_photo1.jpg'
+import homepage_photo2 from '@/assets/homepage_photo2.jpg'
+import homepage_photo3 from '@/assets/homepage_photo3.jpg'
+import viz from '@/assets/viz.png'
 import PlacesAutocomplete, {
   geocodeByAddress,
   geocodeByPlaceId,
@@ -45,10 +49,12 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    const winWidth = document.body.clientWidth || document.documentElement.clientWidth;
+    const winWidth =  document.documentElement.clientWidth;
+    const winHeight = document.documentElement.clientHeight;
     console.log(winWidth)
     this.setState({
-      browserWidth: winWidth
+      browserWidth: winWidth,
+      browserHeight : winHeight
     }, () => {
       window.addEventListener('resize', this.handleResize.bind(this))
     })
@@ -70,7 +76,8 @@ export default class Home extends React.Component {
     //   console.log(e.target.innerWidth)
     // }
     this.setState({
-      browserWidth: e.target.innerWidth
+      browserWidth:  document.documentElement.clientWidth,
+      browserHeight: document.documentElement.clientHeight
     }, () => {
       console.log(e.target.innerWidth)
     })
@@ -79,24 +86,124 @@ export default class Home extends React.Component {
   carouselChange(from, to) {
   }
   render() {
-    const { browserWidth } = this.state
+    const { browserWidth,browserHeight } = this.state
 
-    const contentStyle = {
+    let contentStyle = {
+      position:'relative',
       width: '100%',
       height: browserWidth * 1 / 2,
       color: '#fff',
       lineHeight: browserWidth * 1 / 2,
       textAlign: 'center',
       background: '#364d79',
+      zIndex:0
     };
 
+    let imgStyle = {
+      width: '100%',
+      height: browserWidth * 1 / 2,
+      color: '#fff',
+      lineHeight: browserWidth * 1 / 2,
+      textAlign: 'center',
+      background: '#364d79',
+      zIndex:0
+    }
 
+    let titleStyle1={
+      position:'absolute',
+      textAlign:'center',
+      top:10,
+      left:browserWidth,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:2,
+      fontSize:browserWidth/20,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'100',
+      
+    }
+
+    let titleStyle2={
+      position:'absolute',
+      textAlign:'center',
+      top:10,
+      left:browserWidth*2,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:2,
+      fontSize:browserWidth/20,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'100',
+      
+    }
+
+    let titleStyle3={
+      position:'absolute',
+      textAlign:'center',
+      top:10,
+      left:browserWidth*3,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:2,
+      fontSize:browserWidth/20,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'100',
+      
+    }
+
+    let textStyle1 = {
+      position:'absolute',
+      textAlign:'center',
+      top:5+browserWidth/20+10,
+      left:browserWidth,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:1,
+      fontSize:browserWidth/40,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'10',
+      background:'rgba(0,0,0,0.1)'
+    }
+
+    let textStyle2 = {
+      position:'absolute',
+      textAlign:'center',
+      top:5+browserWidth/20+10,
+      left:browserWidth*2,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:1,
+      fontSize:browserWidth/40,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'10',
+      background:'rgba(0,0,0,0.1)'
+    }
+
+    let textStyle3 = {
+      position:'absolute',
+      textAlign:'center',
+      top:5+browserWidth/20+10,
+      left:browserWidth*3,
+      width:browserWidth,
+      padding:browserWidth/20,
+      zIndex:1,
+      fontSize:browserWidth/40,
+      color:'white',
+      fontFamily:'Roboto, sans-serif',
+      fontWeight:'10',
+      background:'rgba(0,0,0,0.1)'
+    }
 
     return (
       <div  >
 
-        <Carousel beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }}>
-          <div >
+        <Carousel autoplay beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }}>
+          <div style={contentStyle}>
             {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
             {/* 
            <h2>
@@ -106,9 +213,13 @@ Walk or cycle to places near you quicker.<br />
 Do multiple things on the go.
                   </h2>   */}
 
-            <img src={discover} style={contentStyle} ></img>
+            <img src={homepage_photo1} style={imgStyle}></img>
+            <span style={titleStyle1}>
+            Discover the benefits of active travel!
+            </span>
+            <span style={textStyle1}>Adopt active travel for a healthier, wealthier, happier future.</span>
           </div>
-          <div >
+          <div style={contentStyle}>
             {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
             {/* <h2 >
               Optimize your travel with us. <br />
@@ -117,10 +228,13 @@ Discover how much time you saved by travelling with us.
 
                   </h2>  */}
 
-            <img src={save} style={contentStyle} ></img>
-
+            <img src={homepage_photo2} style={imgStyle} ></img>
+            <span style={titleStyle2}>
+            Save your travel time!
+            </span>
+            <span style={textStyle2}>Use our optimizer to find the shortest route for all your travels.</span>
           </div>
-          <div >
+          <div style={contentStyle}>
             {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
             {/* <h2 >
               Optimize your travel with us. <br />
@@ -129,8 +243,11 @@ Discover how much time you saved by travelling with us.
 
                   </h2>  */}
 
-            <img src={what} style={contentStyle} ></img>
-
+            <img src={homepage_photo3} style={imgStyle} ></img>
+            <span style={titleStyle3}>
+            Find places to go walking and cycling!
+            </span>
+            <span style={textStyle3}>Get the best cycling and walking trails and much more with us.</span>
           </div>
 
           {/* <div className={styles.show_img_container}>
@@ -145,9 +262,9 @@ Check out the number of people near you.
         </Carousel>
 
         <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
-          <Col xs={24} sm={24} md={24} lg={12} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-            {/* <img src={img5} style={{ width: '100%' }} ></img> */}
-            <TableauReport
+          <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+            <img src={viz} style={{ width: '100%' }} ></img>
+            {/* <TableauReport
                                 options={
                                     {
 
@@ -160,9 +277,9 @@ Check out the number of people near you.
                                 }
                                 query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
                                 url="https://public.tableau.com/views/IE_16183790961690/Dashboard1"
-                            />
+                            /> */}
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+          <Col xs={24} sm={24} md={24} lg={12} xl={10} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
             <h2 className={styles.aboutUsSecondTitle}>Melbourne Youth is inactive!</h2>
             <p style={{ textAlign: 'left' }}>
             Over the years, Australian city planners have made efforts to extend pedestrian and cycling paths, restrict car traffic but have their efforts paid off? The answer is <b>NO.</b><br></br>
