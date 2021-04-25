@@ -16,6 +16,11 @@ import img2 from '@/assets/img2.png'
 import img3 from '@/assets/img3.png'
 import img4 from '@/assets/img4.png'
 import img5 from '@/assets/img5.png'
+import ECO from '@/assets/ECO.png'
+import ECO1 from '@/assets/ECO1.png'
+import ENV from '@/assets/ENV.png'
+import ENV1 from '@/assets/ENV1.png'
+import HEALTH from '@/assets/HEALTH.png'
 import society from '@/assets/society.png'
 import Picture3 from '@/assets/Picture 3.png'
 import Picture4 from '@/assets/Picture 4.png'
@@ -90,18 +95,92 @@ export default class Benefits extends React.Component {
         switch (tag) {
             case 'Health':
                 dom = <>
-                    <Row type={'flex'} justify={'center'} gutter={[10, 10]} style={{ padding: 20 }}>
-                        {/* <Col xs={24} sm={24} md={24} lg={24} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                            <img src={img6} style={{ width: '100%' }} ></img>
-                        </Col> */}
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
-                            <h2 className={styles.detailTitle}>
-                                Make active travel a lifestyle choice!
-                            </h2>
-                            <p>
-                                World Health Organization (WHO) recommends 80 minutes of walking or 35 minutes of cycling for men while women should walk for at least 65 minutes or cycle for 30 minutes a day. Multiple benefits from active travel.
-                            <br></br>
+                    <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
 
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle}>
+                                How these diseases affect you?
+</h2>
+
+
+                            <p>
+                                These disease take away your strength to undertake physical activities and can also be a cause of death. What’s more, no one would want to live with a life with disability, but they can be forced to if they do not undertake recommended physical activity. The line chart on left shows the average number of years people live with a disability based on different diseases and gender.
+<br />
+
+                            </p>
+
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} >
+                            <TableauReport
+                                options={
+                                    {
+
+                                        height: 250,
+                                        width: '100%',
+                                        hideTabs: false,
+                                        // All other vizCreate options are supported here, too
+                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
+                                    }
+                                }
+                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
+                                url="https://public.tableau.com/views/v1_16191373842950/Dashboard2"
+                            />
+                        </Col>
+                        <Col span={24}></Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} >
+                            <TableauReport
+                                options={
+                                    {
+
+                                        height: 250,
+                                        width: '100%',
+                                        hideTabs: false,
+                                        // All other vizCreate options are supported here, too
+                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
+                                    }
+                                }
+                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
+                                url="https://public.tableau.com/views/v2_16191376183490/Dashboard3"
+                            />
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle}>
+                                How these diseases affect you?
+</h2>
+
+
+                            <p>
+                                These disease take away your strength to undertake physical activities and can also be a cause of death. What’s more, no one would want to live with a life with disability, but they can be forced to if they do not undertake recommended physical activity. The line chart on left shows the average number of years people live with a disability based on different diseases and gender.
+<br />
+
+                            </p>
+
+                        </Col>
+                        <Col span={24}></Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle}>
+                                How can you overcome this?
+</h2>
+
+
+                            <p>
+                                You have a new choice! Join the active travel bandwagon! World Health Organization (WHO) recommends 80 minutes of walking 35 minutes of cycling for men while women should walk for at least 65 minutes or cycle for 30 minutes a day. Undertaking active travel will not only ensure you finish your quota of recommended exercise but also stay away from these diseases.
+<br />
+
+                            </p>
+
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} >
+                            <img src={HEALTH} style={{ width: '100%' }} ></img>
+                        </Col>
+                        <Col span={24}></Col>
+                        <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
+                                What’s More!
+</h2>
+
+
+                            <p style={{ textAlign: 'center' }}>
                                 <h4> &#9702; Weight <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
 
                                     <BiDownArrow></BiDownArrow>
@@ -141,37 +220,16 @@ export default class Benefits extends React.Component {
                                     <BiDownArrow></BiDownArrow>
 
                                 </IconContext.Provider></h4>
-
-                            Physical inactivity leads to multiple chronic diseases. This can be fought against with the simplest of solutions: active travel. Incorporate, this in your lifestyle to get rid of all the diseases.
-                            <h4><br></br>
+                                <h4><br></br>
                                     <i><b>
-                                        Adopt active travel for a fitter you!
+                                        Active travel has multiple other health benefits!
 </b>
                                     </i>
 
                                 </h4>
+
                             </p>
-                            {/* <iframe width="645" height="955" src="https://public.tableau.com/views/healthvis/Dashboard1?:showVizHome=no&:embed=true&:language=en&:display_count=y&:origin=viz_share_link"/> */}
 
-
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12}> <TableauReport
-                            options={
-                                {
-
-                                    height: 600,
-                                    width: '100%',
-                                    hideTabs: false,
-                                    // All other vizCreate options are supported here, too
-                                    // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
-                                }
-                            }
-                            query="?:showVizHome=no&:embed=true&:language=en&:display_count=y&:origin=viz_share_link"
-                            url="https://public.tableau.com/views/healthvis/Dashboard1"
-                        />
-                            <p>
-                                <b>Note.</b> This visualization provides insights about how physical inactivity takes<br></br> away your important years through these chronic diseases.
-                            </p>
                         </Col>
                     </Row>
                 </>
@@ -420,7 +478,7 @@ export default class Benefits extends React.Component {
                                     </Col>
                                     <Col>
                                         <p>
-                                        Look behind while changing lanes and signal intentions.
+                                            Look behind while changing lanes and signal intentions.
                                     </p>
                                     </Col>
                                 </Row>
@@ -433,7 +491,7 @@ export default class Benefits extends React.Component {
                                     </Col>
                                     <Col>
                                         <p>
-                                        Keep left while riding on footpaths
+                                            Keep left while riding on footpaths
                                     </p>
                                     </Col>
                                 </Row>
@@ -460,7 +518,7 @@ export default class Benefits extends React.Component {
                                     </Col>
                                     <Col>
                                         <p>
-                                        Avoid riding on tram tracks
+                                            Avoid riding on tram tracks
                                     </p>
                                     </Col>
                                 </Row>
@@ -473,7 +531,7 @@ export default class Benefits extends React.Component {
                                     </Col>
                                     <Col>
                                         <p>
-                                        Wear an Australian standard approved fitted helmet
+                                            Wear an Australian standard approved fitted helmet
                                     </p>
                                     </Col>
                                 </Row>
@@ -517,59 +575,83 @@ export default class Benefits extends React.Component {
                 dom = <>
                     <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
 
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle}>
-                                Do you see this?
-                        </h2>
+                                Emission Contribution of transport
+</h2>
+
+
                             <p>
-                                21% of Australia’s greenhouse gas emissions come from road transport. How can you bring it down? The answer is active travel.<br />
-                                <h4>&#9702; Active travel can result in lower CO2 Emissions <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+                                Australia has one of the highest per capita emissions of greenhouse gas in the world, with its 0.33% of the world's population releasing 1.07% of the world's greenhouse gases, contributing to global climate change. And the major criminal is cars. Cars contribute to around 60% of greenhouse gas emissions. And, if this goes on by 2030, Australia will be the most carbon intensive economy of any major developed country.
+<br />
+
+                            </p>
+
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} >
+                            <img src={ENV} style={{ width: '100%' }} ></img>
+                        </Col>
+                        <Col span={24}></Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} >
+                            <img src={ENV1} style={{ width: '100%' }} ></img>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle}>
+                                How do we avoid this?
+</h2>
+
+
+                            <p>
+                                Answer to this question is adopting active travel. Promoting active travel can result in reduced emissions of the deadly greenhouse gases making the world a better place to live in. Active travel modes like walking and cycling will ensure that you do not harm the environment as there will be no emissions.
+<br />
+
+                            </p>
+
+                        </Col>
+                        <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
+                                Active travel benefits to environment
+</h2>
+
+
+                            <p style={{ textAlign: 'center' }}>
+                                <h4> &#9702; Active travel can result in lower CO2 Emissions <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
 
                                     <BiDownArrow></BiDownArrow>
 
-                                </IconContext.Provider><br /></h4>
-                                <h4>&#9702; This results in lower pollution levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+                                </IconContext.Provider></h4>
+                                <h4> &#9702; This results in lower pollution levels Pollution levels <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
 
                                     <BiDownArrow></BiDownArrow>
 
-                                </IconContext.Provider><br /></h4>
-                                <h4>&#9702; Which in turn reduces the ozone layer depletion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+                                </IconContext.Provider></h4>
+                                <h4> &#9702; Which in turn reduces the ozone layer depletion <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
 
                                     <BiDownArrow></BiDownArrow>
 
-                                </IconContext.Provider><br /></h4>
-                                <h4>&#9702; This results in reduced UV radiation level <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
+                                </IconContext.Provider></h4>
+                                <h4> &#9702; This results in reduced UV radiation level <IconContext.Provider value={{ color: "#ff0022", className: "global-class-name", size: '14px' }}>
 
                                     <BiDownArrow></BiDownArrow>
 
-                                </IconContext.Provider><br /></h4>
-                                <h4>&#9702; And all of these makes the environment better <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
+                                </IconContext.Provider></h4>
+                                <h4> &#9702; And all of these makes the environment better <IconContext.Provider value={{ color: "#00ff22", className: "global-class-name", size: '14px' }}>
 
                                     <BiUpArrow></BiUpArrow>
 
-                                </IconContext.Provider><br /></h4>
-A little change in travel mode will help you lead a better life in a better world. It is time to think about the environment.
-                        </p>
-                            <h4><b><i>Save the environment, it will save you.</i></b></h4>
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                            <TableauReport
-                                options={
-                                    {
+                                </IconContext.Provider></h4>
+                                <br />
+                                <h3>A little change in travel mode will help you lead a better life in a better world. It is time to think about the environment.</h3>
+                                <h4><br></br>
+                                    <i><b>
+                                        Save the environment, it will save you.
+</b>
+                                    </i>
 
-                                        height: 350,
-                                        width: '100%',
-                                        hideTabs: false,
-                                        // All other vizCreate options are supported here, too
-                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
-                                    }
-                                }
-                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
-                                url="https://public.tableau.com/views/CO2emissions_16185543267030/Dashboard1"
-                            />
+                                </h4>
+                            </p>
 
                         </Col>
-
                     </Row>
                 </>
 
@@ -580,69 +662,52 @@ A little change in travel mode will help you lead a better life in a better worl
                 dom = <>
                     <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
 
-                        <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle}>
-                                Helps save money for you and the government
+                                Transport Infrastructure Expense
                     </h2>
-                            <h4>Cost of using a car in Melbourne: <b>$290 - $300</b></h4>
-                            <h4>Cost of using active travel: <b>$0 - $20</b></h4>
 
 
                             <p>
-                                Helps you cut down on travel costs. Buying the dream house or getting your dream trip overseas can become a reality with active travel.
+                                The Australian city planners have spent heavily on improving the transport infrastructure of the nation but still face shortfalls due to increasing traffic congestion, antiquated public transport networks.<br />
+                            Around $70 billion was spent on infrastructure in the past eight years. Adopting active travel methods can help in reducing these costs as well. Building a bikeway costs much lower as compared to anything else. If more people adopt active transport, there will be significant economic benefits for the government.
        <br />
 
                             </p>
-                            <h2>Do you know?</h2>
+
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} >
+                            <img src={ECO} style={{ width: '100%' }} ></img>
+                        </Col>
+                        <Col span={24}></Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} >
+                            <img src={ECO1} style={{ width: '100%' }} ></img>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle}>
+                                Individual transport expense
+                    </h2>
+
+
                             <p>
-                                Your active travel can help the government as well. During this uncertain times, a simple change in your travel can help the economy of Australia.
+                                Using a car in Melbourne is not cheap. There are multiple costs that are levied upon while buying a car. Not only buying a car, but running a car is also expensive. On an average, the cost of using a car in Melbourne comes up to $300 which means a yearly spend of $10,600. The ongoing costs of owning a car can be enough to drive your finances over a cliff if you’re not careful. Answer to solving this issue is again active travel. The cost associated with active travel is a minimal of $20 a week while using a bike and ZERO while walking. It is unimaginable how much money can be saved by a little change in your transportation methods.
+       <br />
 
-                                The government spends millions on the transport infrastructure. Cost of building 1km of busway is equivalent to cost of building 138km of bikeway. So, choosing active travel can reduce those costs as well.
-                    </p>
-                            <h4>
-                                <i><b>
-                                    Choose active travel for a wealthier tomorrow.
-</b>
-                                </i>
-
-                            </h4>
-                        </Col> <Col span={24}>
-                        </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
-
-                            <TableauReport
-                                options={
-                                    {
-
-                                        height: 450,
-                                        width: '100%',
-                                        hideTabs: false,
-                                        // All other vizCreate options are supported here, too
-                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
-                                    }
-                                }
-                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
-                                url="https://public.tableau.com/views/Weeklycostsofcommute/Dashboard1"
-                            />
+                            </p>
 
                         </Col>
-                        <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                        <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
+                                Choice is yours, what do you want to do?
+                    </h2>
 
 
-                            <TableauReport
-                                options={
-                                    {
+                            <p style={{ textAlign: 'center' }}>
+                                Spend a large chunk of your income on a car or save that money by adopting active travel.
+       <br />
 
-                                        height: 450,
-                                        width: '100%',
-                                        hideTabs: false,
-                                        // All other vizCreate options are supported here, too
-                                        // They are listed here: https://onlinehelp.tableau.com/current/api/js_api/en-us/JavaScriptAPI/js_api_ref.htm#ref_head_9
-                                    }
-                                }
-                                query="?:language=en&:display_count=y&publish=yes&:origin=viz_share_link"
-                                url="https://public.tableau.com/views/Infrastructurecostanalysis/Dashboard1"
-                            />
+                            </p>
+
                         </Col>
                     </Row>
 
@@ -808,14 +873,7 @@ A little change in travel mode will help you lead a better life in a better worl
                     </Row>
 
                 </label>
-                <label className={this.state.currentTab === 'Society' ? styles.tabsLabelStyleClicked : styles.tabsLabelStyle} onClick={() => { this.tabChange('Society') }}>
-                    <Row>
-                        Society
-                    </Row>
-                    <Row>
-                        <FaPeopleCarry className={styles.iconDefault} size={'42px'}></FaPeopleCarry>
-                    </Row>
-                </label>
+
                 <label className={this.state.currentTab === 'Business' ? styles.tabsLabelStyleClicked : styles.tabsLabelStyle} onClick={() => { this.tabChange('Business') }}>
                     <Row>
                         Business
@@ -833,13 +891,17 @@ A little change in travel mode will help you lead a better life in a better worl
                         <FaRoad className={styles.iconDefault} size={'42px'}></FaRoad>
                     </Row>
                 </label>
-
+                <label className={this.state.currentTab === 'Society' ? styles.tabsLabelStyleClicked : styles.tabsLabelStyle} onClick={() => { this.tabChange('Society') }}>
+                    <Row>
+                        Society
+                    </Row>
+                    <Row>
+                        <FaPeopleCarry className={styles.iconDefault} size={'42px'}></FaPeopleCarry>
+                    </Row>
+                </label>
             </div>
             {
                 this.state.currentTab === 'Environment' ? this.constructContentDOM('Environment') : null
-            }
-            {
-                this.state.currentTab === 'Society' ? this.constructContentDOM('Society') : null
             }
             {
                 this.state.currentTab === 'Health' ? this.constructContentDOM('Health') : null
@@ -852,6 +914,9 @@ A little change in travel mode will help you lead a better life in a better worl
             }
             {
                 this.state.currentTab === 'Road Safety' ? this.constructContentDOM('Road Safety') : null
+            }
+            {
+                this.state.currentTab === 'Society' ? this.constructContentDOM('Society') : null
             }
         </>
 
