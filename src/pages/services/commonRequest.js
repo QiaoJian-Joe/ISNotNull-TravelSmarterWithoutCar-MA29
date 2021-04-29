@@ -135,7 +135,7 @@ export async function queryData() {
     //     return response;
     // });
 
-    return request(`http://3.131.161.220:80/service/hello`, {
+    return request(`/service/hello`, {
         method: 'GET',
         responseType: 'x-www-form-urlencoded'
         // data: {
