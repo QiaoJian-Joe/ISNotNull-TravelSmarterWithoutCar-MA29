@@ -86,19 +86,18 @@ export default class Travel extends React.Component {
   componentWillUnmount() {
 
     window.removeEventListener('resize', this.handleResize.bind(this))
-
   }
 
-  test=()=>{
-    const{dispatch} = this.props
-    
+  test = () => {
+    const { dispatch } = this.props
+
     dispatch({
-      type:   'map/query', /* 这个是指定的数据模型 */
+      type: 'map/query', /* 这个是指定的数据模型 */
       payload: {},
       callback: (res) => {
-          console.log(res)
+        console.log(res)
       },
-  });
+    });
   }
 
   handleResize = e => {
@@ -110,7 +109,7 @@ export default class Travel extends React.Component {
     //   console.log(e.target.innerWidth)
     // }
     this.setState({
-      browserWidth:  document.documentElement.clientWidth,
+      browserWidth: document.documentElement.clientWidth,
       browserHeight: document.documentElement.clientHeight
     }, () => {
       console.log(e.target.innerWidth)
@@ -295,13 +294,14 @@ export default class Travel extends React.Component {
   }
 
   componentDidMount = () => {
+    this.test()
     this.getCurrentPosition()
-    const winWidth =  document.documentElement.clientWidth;
+    const winWidth = document.documentElement.clientWidth;
     const winHeight = document.documentElement.clientHeight;
     console.log(winWidth)
     this.setState({
       browserWidth: winWidth,
-      browserHeight : winHeight
+      browserHeight: winHeight
     }, () => {
       window.addEventListener('resize', this.handleResize.bind(this))
     })
@@ -841,17 +841,17 @@ export default class Travel extends React.Component {
     } = this.state
     const { form: { getFieldDecorator } } = this.props
 
-    const { browserWidth,browserHeight } = this.state
+    const { browserWidth, browserHeight } = this.state
 
     let contentStyle = {
-      position:'relative',
+      position: 'relative',
       width: '100%',
       height: browserWidth * 1 / 2,
       color: '#fff',
       lineHeight: browserWidth * 1 / 2,
       textAlign: 'center',
       background: '#364d79',
-      zIndex:0
+      zIndex: 0
     }
 
     let imgStyle = {
@@ -861,126 +861,126 @@ export default class Travel extends React.Component {
       lineHeight: browserWidth * 1 / 2,
       textAlign: 'center',
       background: '#364d79',
-      zIndex:0
+      zIndex: 0
     }
 
-    let titleStyle1={
-      position:'absolute',
-      textAlign:'center',
-      top:10,
-      left:browserWidth,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:2,
-      fontSize:browserWidth/20,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'100',
-      
+    let titleStyle1 = {
+      position: 'absolute',
+      textAlign: 'center',
+      top: 10,
+      left: browserWidth,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 2,
+      fontSize: browserWidth / 20,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '100',
+
     }
 
-    let titleStyle2={
-      position:'absolute',
-      textAlign:'center',
-      top:10,
-      left:browserWidth*2,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:2,
-      fontSize:browserWidth/20,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'100',
-      
+    let titleStyle2 = {
+      position: 'absolute',
+      textAlign: 'center',
+      top: 10,
+      left: browserWidth * 2,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 2,
+      fontSize: browserWidth / 20,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '100',
+
     }
 
-    let titleStyle3={
-      position:'absolute',
-      textAlign:'center',
-      top:10,
-      left:browserWidth*3,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:2,
-      fontSize:browserWidth/20,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'100',
-      
+    let titleStyle3 = {
+      position: 'absolute',
+      textAlign: 'center',
+      top: 10,
+      left: browserWidth * 3,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 2,
+      fontSize: browserWidth / 20,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '100',
+
     }
 
-    let titleStyle4={
-      position:'absolute',
-      textAlign:'center',
-      top:10,
-      left:browserWidth*4,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:2,
-      fontSize:browserWidth/20,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'100',
-      
+    let titleStyle4 = {
+      position: 'absolute',
+      textAlign: 'center',
+      top: 10,
+      left: browserWidth * 4,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 2,
+      fontSize: browserWidth / 20,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '100',
+
     }
 
     let textStyle1 = {
-      position:'absolute',
-      textAlign:'center',
-      top:20+browserWidth/15+10,
-      left:browserWidth,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:1,
-      fontSize:browserWidth/80,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'1',
-    
+      position: 'absolute',
+      textAlign: 'center',
+      top: 20 + browserWidth / 15 + 10,
+      left: browserWidth,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 1,
+      fontSize: browserWidth / 80,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '1',
+
     }
 
     let textStyle2 = {
-      position:'absolute',
-      textAlign:'center',
-      top:20+browserWidth/15+10,
-      left:browserWidth*2,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:1,
-      fontSize:browserWidth/80,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'1',
-    
+      position: 'absolute',
+      textAlign: 'center',
+      top: 20 + browserWidth / 15 + 10,
+      left: browserWidth * 2,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 1,
+      fontSize: browserWidth / 80,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '1',
+
     }
 
     let textStyle3 = {
-      position:'absolute',
-      textAlign:'center',
-      top:20+browserWidth/15+10,
-      left:browserWidth*3,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:1,
-      fontSize:browserWidth/80,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'1',  
+      position: 'absolute',
+      textAlign: 'center',
+      top: 20 + browserWidth / 15 + 10,
+      left: browserWidth * 3,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 1,
+      fontSize: browserWidth / 80,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '1',
     }
 
     let textStyle4 = {
-      position:'absolute',
-      textAlign:'center',
-      top:20+browserWidth/15+10,
-      left:browserWidth*4,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:1,
-      fontSize:browserWidth/80,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'1',
-     
+      position: 'absolute',
+      textAlign: 'center',
+      top: 20 + browserWidth / 15 + 10,
+      left: browserWidth * 4,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 1,
+      fontSize: browserWidth / 80,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '1',
+
     }
 
     const staticOptions = [
@@ -1136,7 +1136,7 @@ export default class Travel extends React.Component {
 
     return (
       <>
-       <Carousel autoplay autoplaySpeed={4000} infinite={true} beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }} dotPosition={'top'} dots={true}>
+        <Carousel autoplay autoplaySpeed={4000} infinite={true} beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }} dotPosition={'top'} dots={true}>
           <div style={contentStyle}>
             {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
             {/* 
@@ -1149,11 +1149,11 @@ Do multiple things on the go.
 
             <img src={optimize} style={imgStyle}></img>
             <span style={titleStyle1}>
-            Optimize your travel
+              Optimize your travel
             </span>
             <span style={textStyle1}>Save on your travel time when active travelling with our Route Optimizer.
 
-Add multiple stops and get the shortest route to plan your journey.
+            Add multiple stops and get the shortest route to plan your journey.
 
 Travel more in less time.</span>
           </div>
@@ -1168,7 +1168,7 @@ Discover how much time you saved by travelling with us.
 
             <img src={Slide1} style={imgStyle} ></img>
             <span style={titleStyle2}>
-            Step 1
+              Step 1
             </span>
             <span style={textStyle2}>Enter your weight. Add your current location and destination in the box provided.</span>
           </div>
@@ -1183,7 +1183,7 @@ Discover how much time you saved by travelling with us.
 
             <img src={Slide2} style={imgStyle} ></img>
             <span style={titleStyle3}>
-            Step 2
+              Step 2
             </span>
             <span style={textStyle3}>Click on ‘+’ symbol to add multiple stops in your journey. You can add up to three stops.</span>
           </div>
@@ -1199,11 +1199,11 @@ Do multiple things on the go.
 
             <img src={Slide3} style={imgStyle}></img>
             <span style={titleStyle4}>
-            Step 3
+              Step 3
             </span>
             <span style={textStyle4}>Select your commute mode (Walking or Cycling). Click on ‘Optimize’ to get the shortest route for your travel along with the trip analysis.</span>
           </div>
-        
+
           {/* <div className={styles.show_img_container}>
                 <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
                 <div style={imgContentStyle}>
@@ -1214,35 +1214,35 @@ Check out the number of people near you.
                 <img src={img3} style={contentStyle} ></img>
               </div> */}
         </Carousel>
-      <div id="map" className={styles.background} >
+        <div id="map" className={styles.background} >
 
-        <Row gutter={[10, 10]} >
-        
-          <Col xs={24} lg={11} xl={13}>
-            <Card style={{ padding: 20 }} >
+          <Row gutter={[10, 10]} >
 
-              <div className={styles.mapContainer}>
-                <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.directions ? null : this.state.defaultPosition} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
-                <div className={styles.mapLocateButton}>
-                  {this.state.mapIsLoad && <Button
-                    type="default"
-                    size='large'
-                    icon={'environment'}
-                    onClick={() => {
-                      this.getCurrentPosition()
-                    }}></Button>}
+            <Col xs={24} lg={11} xl={13}>
+              <Card style={{ padding: 20 }} >
+
+                <div className={styles.mapContainer}>
+                  <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.directions ? null : this.state.defaultPosition} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
+                  <div className={styles.mapLocateButton}>
+                    {this.state.mapIsLoad && <Button
+                      type="default"
+                      size='large'
+                      icon={'environment'}
+                      onClick={() => {
+                        this.getCurrentPosition()
+                      }}></Button>}
+
+                  </div>
 
                 </div>
 
-              </div>
+              </Card>
+            </Col>
+            <Col xs={24} lg={13} xl={11}>
 
-            </Card>
-          </Col>
-          <Col xs={24} lg={13} xl={11}>
-
-            <Card title={'Enter Your Weight'} bordered headStyle={{ background: '#364d79', color: '#fff' }} >
-              <Form>
-                {/* <Row type={'flex'} justify={'center'}>
+              <Card title={'Enter Your Weight'} bordered headStyle={{ background: '#364d79', color: '#fff' }} >
+                <Form>
+                  {/* <Row type={'flex'} justify={'center'}>
                   
                   <Col xs={14} md={12} xl={12} xxl={8}>
                     <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Age'}>
@@ -1315,212 +1315,212 @@ Check out the number of people near you.
                   </Col>
                   
                 </Row> */}
-                <Row type={'flex'} justify={'center'}>
-                  <Col xs={14} md={12} xl={12} xxl={8}>
-                    <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Weight'}>
+                  <Row type={'flex'} justify={'center'}>
+                    <Col xs={14} md={12} xl={12} xxl={8}>
+                      <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Weight'}>
+                        {
+                          getFieldDecorator('weight')(
+                            <Slider min={0} max={400} step={0.1}
+                              onChange={
+                                this.changeWeight
+                              }
+                              value={typeof weight === 'number' ? weight : 0}></Slider>
+                          )
+                        }
+                      </FormItem>
+
+                    </Col>
+                    <Col span={4}>
                       {
-                        getFieldDecorator('weight')(
-                          <Slider min={0} max={400} step={0.1}
-                            onChange={
-                              this.changeWeight
-                            }
-                            value={typeof weight === 'number' ? weight : 0}></Slider>
-                        )
+                        getFieldDecorator('weight', {
+                          initialValue: 0
+                        })(
+                          <Input
+                            disabled
+                            style={{ margin: '0 16px' }}
+                            suffix={'kg'}
+
+                            value={weight}
+                            onChange={this.changeWeight}
+                          />)
+
                       }
-                    </FormItem>
-
-                  </Col>
-                  <Col span={4}>
-                    {
-                      getFieldDecorator('weight', {
-                        initialValue: 0
-                      })(
-                        <Input
-                          disabled
-                          style={{ margin: '0 16px' }}
-                          suffix={'kg'}
-
-                          value={weight}
-                          onChange={this.changeWeight}
-                        />)
-
-                    }
 
 
-                  </Col>
-                  {/* <Col> */}
-                  {/* <Divider  >
+                    </Col>
+                    {/* <Col> */}
+                    {/* <Divider  >
                       <h2>Health</h2>
                     </Divider> */}
 
-                  {/* <Descriptions title="Calories burned">
+                    {/* <Descriptions title="Calories burned">
                       <Descriptions.Item label="Total calories burned">{total_calories_comsuption && String(total_calories_comsuption) + ' cal' || 0} </Descriptions.Item>
                       <Descriptions.Item label="Burning efficiency">{comsuption_efficiency && String(comsuption_efficiency) + ' cal/min' || 0}</Descriptions.Item>
 
                     </Descriptions> */}
-                  {/* </Col> */}
-                </Row>
-                {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
-              </Form>
-
-            </Card>
-          </Col>
-          <Col xs={24} lg={13} xl={11}>
-            <Card style={{ padding: 0 }} title={'Plan'} bordered headStyle={{ background: '#364d79', color: '#fff' }}>
-              <Row gutter={[10, 10]} justify={'end'}>
-                <Col>
-                  {
-                    this.state.mapIsLoad && this.constructSeriesPlacesBar()
-                  }
-                </Col>
-
-                <Col>
-                  <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
-                    <Col style={{ textAlign: 'right' }} span={12}>
-                      {
-                        getFieldDecorator('mode', {
-                          initialValue: 'WALKING'
-                        })(
-                          <Radio.Group
-
-                            buttonStyle={{ background: '#364d79', color: '#fff' }}
-                          >
-                            <Radio.Button value="WALKING">WALKING</Radio.Button>
-                            <Radio.Button value="BICYCLING">BICYCLING</Radio.Button>
-                          </Radio.Group>)
-                      }
-                    </Col>
-                    <Col span={12}>
-                      <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
-                        <Col span={13} style={{ textAlign: 'right' }}>
-                          {this.state.mapIsLoad && <Button style={{ background: '#303F9F', color: '#fff' }} onClick={this.optimize}>
-                            <RocketOutlined />Optimize
-                    </Button>}
-                        </Col >
-
-                        <Col span={11} style={{ textAlign: 'left' }}>
-                          {this.state.mapIsLoad && <Button onClick={this.handleReset}>
-                            <RedoOutlined />Reset
-                    </Button>}
-                        </Col>
-                      </Row>
-
-
-                    </Col>
-
+                    {/* </Col> */}
                   </Row>
-                </Col>
+                  {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
+                </Form>
+
+              </Card>
+            </Col>
+            <Col xs={24} lg={13} xl={11}>
+              <Card style={{ padding: 0 }} title={'Plan'} bordered headStyle={{ background: '#364d79', color: '#fff' }}>
+                <Row gutter={[10, 10]} justify={'end'}>
+                  <Col>
+                    {
+                      this.state.mapIsLoad && this.constructSeriesPlacesBar()
+                    }
+                  </Col>
+
+                  <Col>
+                    <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
+                      <Col style={{ textAlign: 'right' }} span={12}>
+                        {
+                          getFieldDecorator('mode', {
+                            initialValue: 'WALKING'
+                          })(
+                            <Radio.Group
+
+                              buttonStyle={{ background: '#364d79', color: '#fff' }}
+                            >
+                              <Radio.Button value="WALKING">WALKING</Radio.Button>
+                              <Radio.Button value="BICYCLING">BICYCLING</Radio.Button>
+                            </Radio.Group>)
+                        }
+                      </Col>
+                      <Col span={12}>
+                        <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
+                          <Col span={13} style={{ textAlign: 'right' }}>
+                            {this.state.mapIsLoad && <Button style={{ background: '#303F9F', color: '#fff' }} onClick={this.optimize}>
+                              <RocketOutlined />Optimize
+                    </Button>}
+                          </Col >
+
+                          <Col span={11} style={{ textAlign: 'left' }}>
+                            {this.state.mapIsLoad && <Button onClick={this.handleReset}>
+                              <RedoOutlined />Reset
+                    </Button>}
+                          </Col>
+                        </Row>
+
+
+                      </Col>
+
+                    </Row>
+                  </Col>
 
 
 
-              </Row>
+                </Row>
 
 
 
-            </Card>
-          </Col>
+              </Card>
+            </Col>
 
-          <Col span={24}>
-            <Card style={{ padding: 0 }} title={'Trip Analysis'} bordered headStyle={{ background: '#364d79', color: '#fff' }}>
-
-
-              <Row>
+            <Col span={24}>
+              <Card style={{ padding: 0 }} title={'Trip Analysis'} bordered headStyle={{ background: '#364d79', color: '#fff' }}>
 
 
+                <Row>
 
 
 
-                <Col xs={24} xl={8}>
-                  <Row>
-                    <Col xs={24} xl={24}>
-                      <h2>
-                        Distance Reduced
+
+
+                  <Col xs={24} xl={8}>
+                    <Row>
+                      <Col xs={24} xl={24}>
+                        <h2>
+                          Distance Reduced
                       </h2>
-                      <h4 style={{ color: '#aaa' }}>
-                        Kilometres
+                        <h4 style={{ color: '#aaa' }}>
+                          Kilometres
                       </h4>
-                      <h2 className={styles.optimizedNumber}>{difference_distance && String(difference_distance / 1000) || 0}</h2>
-                      {/* <p>
+                        <h2 className={styles.optimizedNumber}>{difference_distance && String(difference_distance / 1000) || 0}</h2>
+                        {/* <p>
                       Estimated route distance Reduced(min)
                       </p> */}
-                      {/* <Descriptions title="Distance Prediction" > */}
-                      {/* <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                        {/* <Descriptions title="Distance Prediction" > */}
+                        {/* <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
 
-                      {/* <Descriptions.Item label="Estimated route distance Reduced">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
-                      {/* <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
-                      {/* </Descriptions> */}
-                    </Col>
-                    {/* <Col xs={24} xl={24}>
+                        {/* <Descriptions.Item label="Estimated route distance Reduced">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
+                        {/* <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
+                        {/* </Descriptions> */}
+                      </Col>
+                      {/* <Col xs={24} xl={24}>
                       <ReactECharts option={distance_option} />
                     </Col> */}
-                  </Row>
-                </Col>
+                    </Row>
+                  </Col>
 
 
-                <Col xs={24} xl={8}>
-                  <Row>
-                    <Col xs={24} xl={24}>
-                      <h2>
-                        Time Saved
+                  <Col xs={24} xl={8}>
+                    <Row>
+                      <Col xs={24} xl={24}>
+                        <h2>
+                          Time Saved
                       </h2>
-                      <h4 style={{ color: '#aaa' }}>
-                        minutes
+                        <h4 style={{ color: '#aaa' }}>
+                          minutes
                       </h4>
-                      <h2 className={styles.optimizedNumber}>{difference_time && String(Math.round((difference_time / 60))) || 0}</h2>
-                      {/* <p>
+                        <h2 className={styles.optimizedNumber}>{difference_time && String(Math.round((difference_time / 60))) || 0}</h2>
+                        {/* <p>
                       Estimated time Reduced(min)
                       </p> */}
-                      {/* <Descriptions title="Time Prediction"> */}
-                      {/* <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
+                        {/* <Descriptions title="Time Prediction"> */}
+                        {/* <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
 
-                      {/* <Descriptions.Item label="Estimated time Reduced">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
-                      {/* <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item> */}
-                      {/* </Descriptions> */}
-                    </Col>
-                    {/* <Col xs={24} xl={24}>
+                        {/* <Descriptions.Item label="Estimated time Reduced">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
+                        {/* <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item> */}
+                        {/* </Descriptions> */}
+                      </Col>
+                      {/* <Col xs={24} xl={24}>
                       <ReactECharts option={time_option} />
                     </Col> */}
-                  </Row>
-                </Col>
+                    </Row>
+                  </Col>
 
 
 
 
 
-                <Col xs={24} xl={8}>
-                  <Row>
-                    <Col xs={24} xl={24}>
+                  <Col xs={24} xl={8}>
+                    <Row>
+                      <Col xs={24} xl={24}>
 
-                      {/* <Descriptions title="Travel Speed Prediction"> */}
-                      <h2>Calories Burned</h2>
-                      <h4 style={{ color: '#aaa' }}>
-                        calories
+                        {/* <Descriptions title="Travel Speed Prediction"> */}
+                        <h2>Calories Burned</h2>
+                        <h4 style={{ color: '#aaa' }}>
+                          calories
                       </h4>
-                      <h2 className={styles.optimizedNumber}>
-                        {total_calories_comsuption && String(total_calories_comsuption) || 0}
-                      </h2>
-                      {/* <p>
+                        <h2 className={styles.optimizedNumber}>
+                          {total_calories_comsuption && String(total_calories_comsuption) || 0}
+                        </h2>
+                        {/* <p>
                         Estimated Average speed(m/s)
                         </p> */}
-                      {/* <Descriptions.Item label="Estimated Average speed(m/s)">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item> */}
-                      {/* </Descriptions> */}
-                    </Col>
-                  </Row>
-                </Col>
+                        {/* <Descriptions.Item label="Estimated Average speed(m/s)">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item> */}
+                        {/* </Descriptions> */}
+                      </Col>
+                    </Row>
+                  </Col>
 
 
 
-              </Row>
+                </Row>
 
-            </Card>
-          </Col>
-        </Row>
-        <div>
+              </Card>
+            </Col>
+          </Row>
+          <div>
+          </div>
         </div>
-      </div>
-      {/* <Button onClick={()=>{this.test()}}>测试</Button> */}
+        {/* <Button onClick={()=>{this.test()}}>测试</Button> */}
       </>
     );
   }
