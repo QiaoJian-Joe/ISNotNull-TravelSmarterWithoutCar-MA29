@@ -105,21 +105,10 @@ export const formItemLayout =
 // export const prefixFFMS = `${prefix}:8640`;
 
 export const prefix = 'http://192.168.3.93';
-export const prefixLogin = `${prefix}:8805`;
-export const prefixFFMS = `${prefix}:8805/FFMS/service`;
+export const serviceUrl = `${prefix}/service`;
 
 
 // export const prefixFFMS = `${prefixTest}`;
-
-export const getPath = (params) => {
-    let pfx = prefixFFMS;
-    if (params.path) {
-        if (params.path === "prefixFFMS") {
-            pfx = prefixFFMS;
-        }
-    }
-    return pfx;
-};
 
 export async function queryData() {
 
@@ -131,9 +120,9 @@ export async function queryData() {
             'Access-Control-Allow-Methods': "OPTIONS, GET, PUT, POST, DELETE",
             'Access-Control-Allow-Headers': 'x-requested-with, accept, origin, content-type,Referer,sec-ch-ua,sec-ch-ua-mobile,User-Agent,X-Access-Token,X-Custom-Header',
             'Access-Control-Allow-Credentials': 'true',
-            'X-Custom-Header':'json',
+            'X-Custom-Header': 'json',
             'X-Requested-With': 'XMLHttpRequest',
-            'sec-fetch-dest':'embed'
+            'sec-fetch-dest': 'embed'
             // 'Access-Control-Allow-Origin': 'http://192.168.74.35:8000/'
         },
     });
@@ -146,9 +135,9 @@ export async function queryData() {
     //     return response;
     // });
 
-    return request(`http://localhost:8099/hello`, {
+    return request(`http://localhost:8099/service/hello`, {
         method: 'GET',
-        responseType:'x-www-form-urlencoded'
+        responseType: 'x-www-form-urlencoded'
         // data: {
         //     "batch": [
         //         {

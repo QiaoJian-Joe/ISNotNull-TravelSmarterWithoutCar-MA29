@@ -89,6 +89,18 @@ export default class Travel extends React.Component {
 
   }
 
+  test=()=>{
+    const{dispatch} = this.props
+    
+    dispatch({
+      type:   'map/query', /* 这个是指定的数据模型 */
+      payload: {},
+      callback: (res) => {
+          console.log(res)
+      },
+  });
+  }
+
   handleResize = e => {
     console.log(e)
     // if (e.target.innerWidth < 1600) {
@@ -1504,22 +1516,11 @@ Check out the number of people near you.
 
             </Card>
           </Col>
-
         </Row>
-
-
-
         <div>
-
-
-
-
-
-
-
         </div>
-
       </div>
+      {/* <Button onClick={()=>{this.test()}}>测试</Button> */}
       </>
     );
   }
