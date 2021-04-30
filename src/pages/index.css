@@ -1,3 +1,97 @@
+.homeBannerContainer{
+  
+}
+
+.firstBannerImage{
+  position: relative;
+  width: 633px;
+  height: 633px;
+  margin-left: 300px;
+  margin-right: 0;
+  margin-top: 100px;
+  background-color:#e0e5eb;
+ 
+
+  background-position: 50% 50%;
+  border-radius: 50% !important;
+  text-align: center;
+  object-fit: cover;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.firstBannerImage::before{
+  content: '';
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin-left: 40px;
+  top: -60px;
+  left: -300px;
+
+  background-image: url(../assets/homepage_photo1.jpg);
+  background-position: 50% 50%;
+  border-radius: 50% !important;
+  text-align: center;
+  object-fit: cover;
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.secondBannerImage{
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+    background-image: url(../assets/pexels-lukas-hartmann-907526.jpg);
+    background-position: 50% 50%;
+    margin: -181px auto 0 46px;
+  border-color: #ffffff;
+  border-width: 12px;
+  border-style: solid;
+  stroke: #ffffff;
+  border-radius: 50% !important;
+}
+
+.bannerFirstTitle{
+  position: relative;
+  font-family: 'Open Sans',sans-serif;
+    font-size: 6.875rem;
+    margin-left: 20px;
+  line-height: 1.1;
+  padding: 0;
+  font-weight: 600;
+  color: #db545a !important;
+}
+.secondSectionImage{
+  background-image: url(../assets/pexels-lukas-hartmann-907526.jpg);
+  background-position: 50% 50%;
+  border-radius: 50% !important;
+}
+
+.bannerSecondTitle{
+  font-size: 2.25rem;
+  margin-left: 20px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  color: #808080 !important;
+}
+
+.bannerTextContent{
+  color: #111111;
+  margin-left: 20px;
+  text-align: left;
+  pointer-events: none;
+  font-family: 'Open Sans',sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #ffffff;
+}
 
 .normal {
   font-family: Georgia, sans-serif;
@@ -41,18 +135,93 @@
 .vectorTitle{
   font-size: 22px;
   line-height: 30px;
-  font-weight: 500;
-  color: #e42121;
+  font-weight: 700;
+  color: #111111;
   transition: 0.3s ease-in;
+}
+  
+.secondSectionTitle{
+  font-weight: 400;
+  font-size: 2.25rem;
+  line-height: 1.1;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #db545a !important;
+}
+
+.learnBtn{
+    color: #ffffff !important;
+    background-color: #db545a !important;
+    border-radius: 0% !important;
+    background-image: none;
+    border-style: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin: 20px auto 0 0;
+    padding: 14px 31px 15px 30px;
+    height: fit-content;
+}
+
+.learnBtnLine{
+  color: #111111 !important;
+  border-radius: 0% !important;
+ 
+  border-style: none none solid;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  margin: 20px auto 0 0;
+  padding: 0;
+  height: fit-content;
+}
+
+.purposeTitle{
+  font-family: Roboto,sans-serif;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 300;
+  width: 339px;
+  margin: 60px auto 0;
+}
+
+.purposeContent{
+  font-size: 3rem;
+  line-height: 57.6px;
+  margin: 27px 60px 60px;
+  font-family: 'Open Sans',sans-serif !important;
+  color: #000
+}
+
+.learnBtnLine:hover{
+  border-color: #db545a !important;
+  color: #db545a !important;
+  background-color: transparent !important;
+}
+
+.titleOfLastPartOfHomePage{
+  font-weight: 700;
+    font-size: 3rem;
+    color: #db545a;
+}
+
+.contentOfProvide{
+  font-size: 0.875rem;
+  font-style: italic;
+  margin: 20px 0 0;
 }
 
 .aboutUsSecondTitle{
-  font-size: 35px;
-  line-height: 44px;
-  color: #090909;
-  font-weight: 400;
+  font-size: 6rem;
+
+  line-height: 1;
+  color: #ececec;
+  background-color: #e42121;
+  font-weight: 600;
   text-align: left;
 }
+
 
 .aboutUsMiddleSectionContent{
   max-width: 100%;

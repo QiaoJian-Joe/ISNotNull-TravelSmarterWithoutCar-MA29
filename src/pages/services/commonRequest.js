@@ -116,7 +116,7 @@ export async function queryData() {
         errorHandler, // 默认错误处理
         credentials: 'include', // 默认请求是否带上cookie
         headers: {
-            'Access-Control-Allow-Origin': 'http://localhost:80',
+            'Access-Control-Allow-Origin': 'http://localhost:443',
             'Access-Control-Allow-Methods': "OPTIONS, GET, PUT, POST, DELETE",
             'Access-Control-Allow-Headers': 'x-requested-with, accept, origin, content-type,Referer,sec-ch-ua,sec-ch-ua-mobile,User-Agent,X-Access-Token,X-Custom-Header',
             'Access-Control-Allow-Credentials': 'true',
@@ -136,8 +136,7 @@ export async function queryData() {
     // });
 
     return request(`/service/hello`, {
-        method: 'GET',
-        responseType: 'x-www-form-urlencoded'
+        method: 'GET'
         // data: {
         //     "batch": [
         //         {

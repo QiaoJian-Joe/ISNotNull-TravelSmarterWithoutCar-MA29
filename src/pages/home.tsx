@@ -16,7 +16,8 @@ import img2 from '@/assets/img2.png'
 import img3 from '@/assets/img3.png'
 import img4 from '@/assets/img4.png'
 import img5 from '@/assets/img5.png'
-import { FaBrain,FaDirections,FaRoute } from 'react-icons/fa';
+import secondSection from '@/assets/secondSection.jpg'
+import { FaBrain, FaDirections, FaRoute } from 'react-icons/fa';
 import { IconContext } from "react-icons";
 import discover from '@/assets/discover.jpg'
 import save from '@/assets/save.jpg'
@@ -49,12 +50,12 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    const winWidth =  document.documentElement.clientWidth;
+    const winWidth = document.documentElement.clientWidth;
     const winHeight = document.documentElement.clientHeight;
     console.log(winWidth)
     this.setState({
       browserWidth: winWidth,
-      browserHeight : winHeight
+      browserHeight: winHeight
     }, () => {
       window.addEventListener('resize', this.handleResize.bind(this))
     })
@@ -67,6 +68,11 @@ export default class Home extends React.Component {
 
   }
 
+  handleClickLearnBtn = (value) => {
+    const { changeCurrent } = this.props
+    changeCurrent(value)
+  }
+
   handleResize = e => {
     console.log(e)
     // if (e.target.innerWidth < 1600) {
@@ -76,7 +82,7 @@ export default class Home extends React.Component {
     //   console.log(e.target.innerWidth)
     // }
     this.setState({
-      browserWidth:  document.documentElement.clientWidth,
+      browserWidth: document.documentElement.clientWidth,
       browserHeight: document.documentElement.clientHeight
     }, () => {
       console.log(e.target.innerWidth)
@@ -86,17 +92,17 @@ export default class Home extends React.Component {
   carouselChange(from, to) {
   }
   render() {
-    const { browserWidth,browserHeight } = this.state
+    const { browserWidth, browserHeight } = this.state
 
     let contentStyle = {
-      position:'relative',
+      position: 'relative',
       width: '100%',
       height: browserWidth * 1 / 2,
       color: '#fff',
       lineHeight: browserWidth * 1 / 2,
       textAlign: 'center',
       background: '#364d79',
-      zIndex:0
+      zIndex: 0
     };
 
     let imgStyle = {
@@ -106,164 +112,135 @@ export default class Home extends React.Component {
       lineHeight: browserWidth * 1 / 2,
       textAlign: 'center',
       background: '#364d79',
-      zIndex:0
+      zIndex: 0
     }
 
-    let titleStyle1={
-      position:'absolute',
-      textAlign:'center',
-      top:10,
-      left:browserWidth,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:2,
-      fontSize:browserWidth/20,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'100',
-      
+    let titleStyle1 = {
+      position: 'absolute',
+      textAlign: 'center',
+      top: 10,
+      left: browserWidth,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 2,
+      fontSize: browserWidth / 20,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '100',
+
     }
 
-    let titleStyle2={
-      position:'absolute',
-      textAlign:'center',
-      top:10,
-      left:browserWidth*2,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:2,
-      fontSize:browserWidth/20,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'100',
-      
+    let titleStyle2 = {
+      position: 'absolute',
+      textAlign: 'center',
+      top: 10,
+      left: browserWidth * 2,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 2,
+      fontSize: browserWidth / 20,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '100',
+
     }
 
-    let titleStyle3={
-      position:'absolute',
-      textAlign:'center',
-      top:10,
-      left:browserWidth*3,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:2,
-      fontSize:browserWidth/20,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'100',
-      
+    let titleStyle3 = {
+      position: 'absolute',
+      textAlign: 'center',
+      top: 10,
+      left: browserWidth * 3,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 2,
+      fontSize: browserWidth / 20,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '100',
+
     }
 
     let textStyle1 = {
-      position:'absolute',
-      textAlign:'center',
-      top:5+browserWidth/20+10,
-      left:browserWidth,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:1,
-      fontSize:browserWidth/40,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'10',
-      background:'rgba(0,0,0,0.1)'
+      position: 'absolute',
+      textAlign: 'center',
+      top: 5 + browserWidth / 20 + 10,
+      left: browserWidth,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 1,
+      fontSize: browserWidth / 40,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '10',
+      background: 'rgba(0,0,0,0.1)'
     }
 
     let textStyle2 = {
-      position:'absolute',
-      textAlign:'center',
-      top:5+browserWidth/20+10,
-      left:browserWidth*2,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:1,
-      fontSize:browserWidth/40,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'10',
-      background:'rgba(0,0,0,0.1)'
+      position: 'absolute',
+      textAlign: 'center',
+      top: 5 + browserWidth / 20 + 10,
+      left: browserWidth * 2,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 1,
+      fontSize: browserWidth / 40,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '10',
+      background: 'rgba(0,0,0,0.1)'
     }
 
     let textStyle3 = {
-      position:'absolute',
-      textAlign:'center',
-      top:5+browserWidth/20+10,
-      left:browserWidth*3,
-      width:browserWidth,
-      padding:browserWidth/20,
-      zIndex:1,
-      fontSize:browserWidth/40,
-      color:'white',
-      fontFamily:'Roboto, sans-serif',
-      fontWeight:'10',
-      background:'rgba(0,0,0,0.1)'
+      position: 'absolute',
+      textAlign: 'center',
+      top: 5 + browserWidth / 20 + 10,
+      left: browserWidth * 3,
+      width: browserWidth,
+      padding: browserWidth / 20,
+      zIndex: 1,
+      fontSize: browserWidth / 40,
+      color: 'white',
+      fontFamily: 'Roboto, sans-serif',
+      fontWeight: '10',
+      background: 'rgba(0,0,0,0.1)'
     }
 
     return (
       <div  >
+        <div className={styles.homeBannerContainer}>
+          <Row type={'flex'} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
+            <Col xs={24} sm={24} md={24} lg={24} xl={18}>
+              <Row type={'flex'} justify={'start'}>
+                <Col span={24}>
+                  <div className={styles.firstBannerImage} style={{ width: browserWidth > 900 ? browserWidth * 1 / 2.5 : browserWidth / 1.2, height: browserWidth > 900 ? browserWidth * 1 / 2.5 : browserWidth / 1.2 }}>
 
-        <Carousel autoplay beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }}>
-          <div style={contentStyle}>
-            {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
-            {/* 
-           <h2>
+                  </div>
+                </Col>
+                <Col span={6}>
+                  <div className={styles.secondBannerImage} style={{ width: browserWidth > 900 ? browserWidth * 1 / 6 : browserWidth / 2, height: browserWidth > 900 ? browserWidth * 1 / 6 : browserWidth / 2 }}></div>
+                </Col>
+                <Col span={18}>
+                  <div className={styles.bannerFirstTitle}>Active Travel</div>
+                </Col>
+                <Col span={24}>
+                  <div className={styles.bannerSecondTitle}>IS ANY MODE OF TRAVEL THAT RELIES ON HUMAN POWERED MOBILITY</div>
+                </Col>
+                <Col span={24}>
+                  <div className={styles.bannerTextContent}>It involves walking, cycling , scooting or other active ways of getting to or from places, fo the whole journey or as a part of the journey.</div>
+                </Col>
+              </Row>
+            </Col>
 
-              Explore your surroundings with us. <br />
-Walk or cycle to places near you quicker.<br />
-Do multiple things on the go.
-                  </h2>   */}
-
-            <img src={homepage_photo1} style={imgStyle}></img>
-            <span style={titleStyle1}>
-            Discover the benefits of active travel!
-            </span>
-            <span style={textStyle1}>Adopt active travel for a healthier, wealthier, happier future.</span>
-          </div>
-          <div style={contentStyle}>
-            {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
-            {/* <h2 >
-              Optimize your travel with us. <br />
-Do more in less time.<br />
-Discover how much time you saved by travelling with us.
-
-                  </h2>  */}
-
-            <img src={homepage_photo2} style={imgStyle} ></img>
-            <span style={titleStyle2}>
-            Save your travel time!
-            </span>
-            <span style={textStyle2}>Use our optimizer to find the shortest route for all your travels.</span>
-          </div>
-          <div style={contentStyle}>
-            {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
-            {/* <h2 >
-              Optimize your travel with us. <br />
-Do more in less time.<br />
-Discover how much time you saved by travelling with us.
-
-                  </h2>  */}
-
-            <img src={homepage_photo3} style={imgStyle} ></img>
-            <span style={titleStyle3}>
-            Find places to go walking and cycling!
-            </span>
-            <span style={textStyle3}>Get the best cycling and walking trails and much more with us.</span>
-          </div>
-
-          {/* <div className={styles.show_img_container}>
-                <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
-                <div style={imgContentStyle}>
-                  We will help you get to a place where you feel safe.<br />
-Find a well-lighted route near you using our website.<br />
-Check out the number of people near you.
-            </div>
-                <img src={img3} style={contentStyle} ></img>
-              </div> */}
-        </Carousel>
-
+          </Row>
+        </div>
         <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
-          <Col xs={24} sm={24} md={24} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-            <img src={viz} style={{ width: '100%' }} ></img>
+
+          <Col xs={10} sm={10} md={14} lg={14} xl={10} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+            <h2 className={styles.aboutUsSecondTitle} style={{ fontSize: browserWidth > 1000 ? browserWidth * 1 / 20 : browserWidth / 20 }}>Melbourne Youth is inactive!</h2>
+
+          </Col>
+          <Col xs={14} sm={14} md={10} lg={10} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+            <div className={styles.secondSectionImage} style={{ width: browserWidth > 1000 ? browserWidth * 1 / 3 : browserWidth / 1.1, height: browserWidth > 1000 ? browserWidth * 1 / 3 : browserWidth / 1.1 }}></div>
             {/* <TableauReport
                                 options={
                                     {
@@ -279,67 +256,100 @@ Check out the number of people near you.
                                 url="https://public.tableau.com/views/IE_16183790961690/Dashboard1"
                             /> */}
           </Col>
-          <Col xs={24} sm={24} md={24} lg={12} xl={10} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-            <h2 className={styles.aboutUsSecondTitle}>Melbourne Youth is inactive!</h2>
-            <p style={{ textAlign: 'left' }}>
-            Over the years, Australian city planners have made efforts to extend pedestrian and cycling paths, restrict car traffic but have their efforts paid off? The answer is <b>NO.</b><br></br>
-            The physical inactivity prevails over all age groups, but the most worrying thing is that its youth is inactive. In that 10-year period, the physical activity rate only increased by 4.5 % for people aged between 18-24. Young adults are advised to at least have some active travel every day of the week. It is important to promote active travel amongst people and certainly amongst the future of Australia.
-<br></br><i><b>It is time, we act fast!</b></i>
-</p>
+          <Col xs={24} sm={24} md={24} lg={24} xl={18} style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
+            <Row type={'flex'} justify={'center'} gutter={[20, 10]}>
+              <Col xs={24} sm={24} md={24} lg={12} xl={14}>
+
+                <img src={secondSection} style={{ width: '100%', position: 'relative', top: browserWidth > 1000 ? -browserWidth * 1 / 10 : -browserWidth / 1.5 }}></img>
+
+              </Col>
+              <Col xs={24} sm={24} md={24} lg={12} xl={10} style={{ position: 'relative', top: browserWidth > 1000 ? -browserWidth * 1 / 100 : -browserWidth / 1.5, height: '50px' }}>
+                <div style={{ backgroundColor: '#ececec', textAlign: 'left', height: 'fit-content', padding: '20px' }}>
+                  <h2 className={styles.secondSectionTitle}><b>We need to act fast</b></h2>
+                  <p style={{ textAlign: 'left', color: '#111111', width: '100%' }}>
+                    Around 60% of the youth in Melbourne do not undertaken recommended physical activity. Even with all the infrasturcture for walking and cycling in place, Melbourne has not seen a major difference in physical inactivity since the last 10 years.
+                  <br />
+                    <br />
+                    <p style={{ textAlign: 'center' }}>
+                      <Button className={styles.learnBtn}>LEARN MORE</Button>
+                    </p>
+
+                  </p>
+                </div>
+
+
+              </Col>
+            </Row>
+
           </Col>
-        </Row>
-        <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }} gutter={[10, 10]}>
-          <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
-            <h2 style={{ textAlign: 'Center', lineHeight: '55px', fontSize: '46px', fontFamily: 'Roboto, sans-serif', fontWeight: '400' }}>What We Offer</h2>
-          </Col>
-
 
         </Row>
+        <div style={{ backgroundColor: '#ececec', padding: "20px" }}>
+          <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto', backgroundColor: '#ececec' }} gutter={[10, 10]}>
+            <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
+              <div className={styles.titleOfLastPartOfHomePage} style={{ textAlign: 'Center', lineHeight: '55px', fontSize: '46px', fontFamily: 'Roboto, sans-serif' }}>What We Offer</div>
+            </Col>
 
-        <Row gutter={[10,10]} type={"flex"} justify={'center'}  style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto',marginBottom:40 }}>
-          <Col xs={24} sm={24} md={8} lg={8} xl={8} >
-            <Card 
-             
-              style={{  marginLeft: 'auto', marginRight: 'auto' ,width:'80%'}}
-         
-              cover={
-                <IconContext.Provider value={{ color: "#99cc00", className: "global-class-name",size:'30%',style:{padding:20} }}>
+
+          </Row>
+
+          <Row gutter={[10, 10]} type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto', marginBottom: 40 }}>
+            <Col xs={24} sm={24} md={8} lg={8} xl={8} >
+              <Card
+
+                style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', height: '310px' }}
+
+                cover={
+                  <IconContext.Provider value={{ color: "#db545a", className: "global-class-name", size: '100px', style: { padding: 20 } }}>
+                    <div>
+                      <FaRoute />
+                    </div>
+                  </IconContext.Provider>}
+              >
+                <h3 className={styles.vectorTitle}>Optimize</h3>
+                <Meta className={styles.contentOfProvide} description="We find the shortest route for you activel travel journey." />
+                <Button className={styles.learnBtnLine} onClick={()=>{this.handleClickLearnBtn('travel')}}>LEARN MORE</Button>
+              </Card>
+            </Col>
+            <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+              <Card
+
+                style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', height: '310px' }}
+                cover={<IconContext.Provider value={{ color: "#db545a", className: "global-class-name", size: '100px', style: { padding: 20 } }}>
                   <div>
-                    <FaRoute />
+                    <FaDirections />
                   </div>
                 </IconContext.Provider>}
-            >
-              <h3 className={styles.vectorTitle}>Optimize</h3>
-              <Meta  description="We provide you shortest routes to manage all your travel in one go." />
-            </Card>
+              >
+                <h3 className={styles.vectorTitle}>Guide</h3>
+                <Meta className={styles.contentOfProvide} description="We provide you insights about benefits of active travel." />
+                <Button className={styles.learnBtnLine}  onClick={()=>{this.handleClickLearnBtn('benefits')}}>LEARN MORE</Button>
+              </Card>
+            </Col>
+            <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+              <Card
+
+                style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', height: '310px' }}
+                cover={<IconContext.Provider value={{ color: "#db545a", className: "global-class-name", size: '100px', style: { padding: 20 } }}>
+                  <div>
+                    <FaBrain />
+                  </div>
+                </IconContext.Provider>}
+              >
+                <h3 className={styles.vectorTitle}>Educate</h3>
+                <Meta className={styles.contentOfProvide} description="We show you places to go for a ride or a walk." />
+                <br></br>
+                <Button className={styles.learnBtnLine}>LEARN MORE</Button>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+        <Row type={'flex'} justify={'center'}>
+          <Col xs={24} sm={24} md={16} lg={16} xl={16}>
+            <h2 className={styles.purposeTitle}>OUR PURPOSE</h2>
           </Col>
-          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-            <Card
-           
-              style={{  marginLeft: 'auto', marginRight: 'auto',width:'80%' }}
-              cover={<IconContext.Provider value={{ color: "#6600cc", className: "global-class-name",size:'30%',style:{padding:20} }}>
-              <div>
-                <FaDirections />
-              </div>
-            </IconContext.Provider>}
-            >
-               <h3 className={styles.vectorTitle}>Guide</h3>
-              <Meta description="We provide you all the reasons for choosing and adopting active travel." />
-            </Card>
-          </Col>
-          <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-            <Card
-            
-              style={{  marginLeft: 'auto', marginRight: 'auto',width:'80%' }}
-              cover={<IconContext.Provider value={{ color: "#0066cc", className: "global-class-name",size:'30%',style:{padding:20} }}>
-              <div>
-                <FaBrain />
-              </div>
-            </IconContext.Provider>}
-            >
-               <h3 className={styles.vectorTitle}>Educate</h3>
-              <Meta description="We educate you about all the benefits associated with active travel." />
-            </Card>
+          <Col xs={24} sm={24} md={16} lg={16} xl={16}>
+            <p className={styles.purposeContent}>We aim to promote active travel amongst young adults. And guide them towards a healthy, wealthy and better future.</p>
           </Col>
         </Row>
       </div>

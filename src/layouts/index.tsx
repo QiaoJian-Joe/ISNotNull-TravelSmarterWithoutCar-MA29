@@ -29,7 +29,9 @@ if(validated){
   }
 
   changeCurrent = (current) =>{
-    this.setState({ current:current});
+    this.setState({ current:current},()=>{
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
   }
 
   handleClick = e => {
@@ -109,10 +111,10 @@ if(validated){
         </Tabs>
 
 <div className={styles.content}> 
-{this.state.current === 'travel' ? <Travel></Travel> : null}
-{this.state.current === 'home' ? <Home></Home> : null}
-{this.state.current === 'about' ? <About></About> : null}
-{this.state.current === 'benefits'?<Benefits></Benefits>:null}
+{this.state.current === 'travel' ? <Travel changeCurrent={this.changeCurrent.bind(this)}></Travel> : null}
+{this.state.current === 'home' ? <Home changeCurrent={this.changeCurrent.bind(this)}></Home> : null}
+{this.state.current === 'about' ? <About changeCurrent={this.changeCurrent.bind(this)}></About> : null}
+{this.state.current === 'benefits'?<Benefits changeCurrent={this.changeCurrent.bind(this)}></Benefits>:null}
 </div>
         
         <div id={'footer'} className={styles.footer_Tabs_background}>
