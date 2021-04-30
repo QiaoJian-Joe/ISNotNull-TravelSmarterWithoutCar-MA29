@@ -30,7 +30,7 @@
   top: -60px;
   left: -300px;
 
-  background-image: url(../assets/homepage_photo1.jpg);
+  background-image: url('@/assets/homepage_photo1.jpg');
   background-position: 50% 50%;
   border-radius: 50% !important;
   text-align: center;
@@ -44,7 +44,7 @@
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
-    background-image: url(../assets/pexels-lukas-hartmann-907526.jpg);
+    background-image: url('@/assets/circle2.jpg');
     background-position: 50% 50%;
     margin: -181px auto 0 46px;
   border-color: #ffffff;
@@ -65,7 +65,8 @@
   color: #db545a !important;
 }
 .secondSectionImage{
-  background-image: url(../assets/pexels-lukas-hartmann-907526.jpg);
+  background-image: url('@/assets/lazy.jpg');
+  background-size: cover;
   background-position: 50% 50%;
   border-radius: 50% !important;
 }
@@ -101,7 +102,7 @@
 
 .welcome {
   height: 512px;
-  background: url(../assets/yay.jpg) no-repeat center 0;
+  background: url('@/assets/yay.jpg') no-repeat center 0;
   background-size: 512px 512px;
 }
 
@@ -112,7 +113,7 @@
    width: 100%;
    height: 100%;
    background-size: cover;
-   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.1)), url(../assets/banner_desktop.jpg);
+   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.1)), url('@/assets//banner_desktop.jpg');
    background-repeat: no-repeat, no-repeat, no-repeat;
    background-position: center;
    background-attachment: fixed;
@@ -397,7 +398,7 @@ text-align: left;
 
 .aboutUsMiddleSection{
   background-size: cover;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.1)), url(../assets/banner_desktop.jpg);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.1)), url('@/assets/banner_desktop.jpg');
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: center;
   background-attachment: fixed;
