@@ -11,6 +11,9 @@ import show_img_1 from '@/assets/show_img_1.png'
 import show_img_2 from '@/assets/show_img_2.png'
 import show_img_3 from '@/assets/show_img_3.png'
 import show_img_4 from '@/assets/show_img_4.png'
+import Step1 from '@/assets/Step 1.png'
+import Step2 from '@/assets/Step 2.png'
+import Step3 from '@/assets/Step 3.png'
 import Slide1 from '@/assets/Slide1.JPG'
 import Slide2 from '@/assets/Slide2.JPG'
 import Slide3 from '@/assets/Slide3.JPG'
@@ -1164,15 +1167,8 @@ Walk or cycle to places near you quicker.<br />
 Do multiple things on the go.
                   </h2>   */}
 
-            <img src={optimize} style={imgStyle}></img>
-            <span style={titleStyle1}>
-              Optimize your travel
-            </span>
-            <span style={textStyle1}>Save on your travel time when active travelling with our Route Optimizer.
-
-            Add multiple stops and get the shortest route to plan your journey.
-
-Travel more in less time.</span>
+            <img src={Step1} style={imgStyle}></img>
+           
           </div>
           <div style={contentStyle}>
             {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
@@ -1183,11 +1179,8 @@ Discover how much time you saved by travelling with us.
 
                   </h2>  */}
 
-            <img src={Slide1} style={imgStyle} ></img>
-            <span style={titleStyle2}>
-              Step 1
-            </span>
-            <span style={textStyle2}>Enter your weight. Add your current location and destination in the box provided.</span>
+            <img src={Step2} style={imgStyle} ></img>
+           
           </div>
           <div style={contentStyle}>
             {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
@@ -1198,28 +1191,10 @@ Discover how much time you saved by travelling with us.
 
                   </h2>  */}
 
-            <img src={Slide2} style={imgStyle} ></img>
-            <span style={titleStyle3}>
-              Step 2
-            </span>
-            <span style={textStyle3}>Click on ‘+’ symbol to add multiple stops in your journey. You can add up to three stops.</span>
+            <img src={Step3} style={imgStyle} ></img>
+            
           </div>
-          <div style={contentStyle}>
-            {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
-            {/* 
-           <h2>
-
-              Explore your surroundings with us. <br />
-Walk or cycle to places near you quicker.<br />
-Do multiple things on the go.
-                  </h2>   */}
-
-            <img src={Slide3} style={imgStyle}></img>
-            <span style={titleStyle4}>
-              Step 3
-            </span>
-            <span style={textStyle4}>Select your commute mode (Walking or Cycling). Click on ‘Optimize’ to get the shortest route for your travel along with the trip analysis.</span>
-          </div>
+          
 
           {/* <div className={styles.show_img_container}>
                 <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
