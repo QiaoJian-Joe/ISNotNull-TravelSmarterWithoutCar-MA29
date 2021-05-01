@@ -99,18 +99,26 @@ export default class Home extends React.Component {
 
         return (
             <div style={{ padding: 40 }}>
-                <h2 className={styles.aboutUsTitle}>About Us</h2>
+
                 <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
 
-                    <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                        <h2 style={{ textAlign: 'left', lineHeight: '40px', fontSize: '32px', fontFamily: 'Roboto, sans-serif', fontWeight: '400' }}>We promote IT for Social Good</h2>
-                        <p style={{ textAlign: 'left' }}>
-                            We are a team of four post-graduate students of Information Technology from India and China. We have a unique name for our team 'ISNotNull' which signifies the collaboration of Indians and Chinese developing something valuable for society. <br />
-                        Our vision is to make people aware of the importance of active travel. These are our small efforts to give back to society through Information Technology.
+                    <Col xs={24} sm={24} md={24} lg={12} xl={10} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                        <span style={{textAlign:'left'}}>
+                        <h2 className={styles.about} style={{ height: 'fit-content', margin: 0, padding: 0 }}>About</h2>
+                        <h2 className={styles.us} style={{ height: 'fit-content', margin: 0, padding: 0 }}>Us</h2>
+                        </span>
+                       
+                        <p className={styles.aboutUsContent} style={{ textAlign: 'left' }}>
+                            We are a team of four post-graduate students of Information Technology from India and China. We have a unique name for our team 'ISNotNull' which signifies the collaboration of Indians and Chinese developing something valuable for society.
+<br></br>
+<br></br>
+Our vision is to make people aware of the importance of active travel. These are our small efforts to give back to society through Information Technology.
 </p>
                     </Col>
-                    <Col xs={24} sm={24} md={24} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                        <img src={img6} style={{ width: '100%' }} ></img>
+                    <Col xs={24} sm={24} md={24} lg={12} xl={14} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                        <div className={styles.aboutBannerImage} style={{ width: browserWidth > 900 ? browserWidth * 1 / 3 : browserWidth / 1.2, height: browserWidth > 900 ? browserWidth * 1 / 3 : browserWidth / 1.2 }}>
+
+</div>
                     </Col>
                 </Row>
 
@@ -119,9 +127,9 @@ export default class Home extends React.Component {
                     <div className={styles.aboutUsMiddleSectionContent}>
                         <h2 className={styles.aboutUsMiddleSectionTitle}>Trust Us, We Motivate You.</h2>
                         <p className={styles.aboutUsMiddleSectionContentP}>
-                        It is important for everyone to incorporate some physical activity every day.<br/>
-                        It can be a 2 km walk or a 5 km bicycle ride. With people less likely to use <br/>
-                        public transport as part of their daily commute during the pandemic,<br/> 
+                            It is important for everyone to incorporate some physical activity every day.<br />
+                        It can be a 2 km walk or a 5 km bicycle ride. With people less likely to use <br />
+                        public transport as part of their daily commute during the pandemic,<br />
                         there are some simple and easy ways to travel while also being physically active. </p>
                     </div>
                 </div>
@@ -138,43 +146,43 @@ export default class Home extends React.Component {
 
 
                 <Row gutter={[10, 10]} type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto', marginBottom: 40 }}>
-                    <Col xs={24} sm={24} md={6} lg={6} xl={6} >
+                    <Col xs={12} sm={12} md={6} lg={6} xl={6} >
                         <Card
                             hoverable
-                            style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%' }}
+                            style={{ marginLeft: 'auto', marginRight: 'auto', width: '200px' }}
                             cover={
-                                <img alt="Malav" src={Malav} style={{ maxHeight: '300px' }} />}
+                                <img alt="Malav" src={Malav} style={{ height: '250px' }} />}
                         >
                             <h3 className={styles.vectorTitle}>Malav</h3>
-                            <Meta description="Business Analyst" />
+                            <Meta description="Business Analyst"  />
                         </Card>
                     </Col>
-                    <Col xs={24} sm={24} md={6} lg={6} xl={6} >
+                    <Col xs={12} sm={12} md={6} lg={6} xl={6} >
                         <Card
                             hoverable
-                            style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%' }}
+                            style={{ marginLeft: 'auto', marginRight: 'auto', width: '200px' }}
                             cover={
-                                <img alt="Prathamesh" src={Prathamesh} style={{ maxHeight: '300px' }} />}
+                                <img alt="Prathamesh" src={Prathamesh} style={{ height: '250px' }} />}
                         >
                             <h3 className={styles.vectorTitle}>Prathamesh</h3>
                             <Meta description="Data Scientist" />
                         </Card>
                     </Col>
-                    <Col xs={24} sm={24} md={6} lg={6} xl={6} >
+                    <Col xs={12} sm={12} md={6} lg={6} xl={6} >
                         <Card
                             hoverable
-                            style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%' }}
-                            cover={<img alt="Chenxu" src={Chenxu} style={{ maxHeight: '300px' }} />}
+                            style={{ marginLeft: 'auto', marginRight: 'auto', width: '200px' }}
+                            cover={<img alt="Chenxu" src={Chenxu} style={{ height: '250px' }} />}
                         >
                             <h3 className={styles.vectorTitle}>Chenxu</h3>
                             <Meta description="Data Scientist" />
                         </Card>
                     </Col>
-                    <Col xs={24} sm={24} md={6} lg={6} xl={6} >
+                    <Col xs={12} sm={12} md={6} lg={6} xl={6} >
                         <Card
                             hoverable
-                            style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%' }}
-                            cover={<img alt="Qiao" src={Qiao} style={{ maxHeight: '300px' }} />}
+                            style={{ marginLeft: 'auto', marginRight: 'auto', width: '200px' }}
+                            cover={<img alt="Qiao" src={Qiao} style={{ height: '250px' }} />}
                         >
                             <h3 className={styles.vectorTitle}>Qiao</h3>
                             <Meta description="Lead Developer" />

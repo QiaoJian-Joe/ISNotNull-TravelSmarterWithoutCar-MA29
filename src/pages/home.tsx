@@ -220,13 +220,18 @@ export default class Home extends React.Component {
                   <div className={styles.secondBannerImage} style={{ width: browserWidth > 900 ? browserWidth * 1 / 6 : browserWidth / 2, height: browserWidth > 900 ? browserWidth * 1 / 6 : browserWidth / 2 }}></div>
                 </Col>
                 <Col span={18}>
+                  <span style={{textAlign:'left'}}>
                   <div className={styles.bannerFirstTitle}>Active Travel</div>
-                </Col>
-                <Col span={24}>
                   <div className={styles.bannerSecondTitle}>IS ANY MODE OF TRAVEL THAT RELIES ON HUMAN POWERED MOBILITY</div>
+                  <div className={styles.bannerTextContent}>It involves walking, cycling , scooting or other active ways of getting to or from places, fo the whole journey or as a part of the journey.</div>
+                  </span>
+                 
                 </Col>
                 <Col span={24}>
-                  <div className={styles.bannerTextContent}>It involves walking, cycling , scooting or other active ways of getting to or from places, fo the whole journey or as a part of the journey.</div>
+                 
+                </Col>
+                <Col span={24}>
+                  
                 </Col>
               </Row>
             </Col>

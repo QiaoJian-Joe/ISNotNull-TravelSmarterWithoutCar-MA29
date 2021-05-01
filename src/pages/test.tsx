@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.css';
-import { Descriptions, Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip, Modal } from 'antd';
+import { Descriptions, Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip } from 'antd';
 import { connect } from 'dva';
 import { Autocomplete, Marker, LoadScript, useJsApiLoader, GoogleMap } from '@react-google-maps/api';
 import { AimOutlined, CaretDownOutlined, RedoOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined } from '@ant-design/icons'
@@ -1136,24 +1136,7 @@ export default class Travel extends React.Component {
 
     return (
       <>
-      <Row>
-      <Col span ={2}>
-        </Col>
-        <Col span={20}>
-        <h2 className={styles.planTitle}>Plan Your Journey</h2>
-        </Col>
-        <Col span={2}>
-        <h2><Button icon={'info'}style={{margin:'0 auto',position:'relative',top:'50%',borderRadius:'50%'}}onClick={()=>{this.setState({guildanceVisible:true})}}></Button></h2>
-        </Col>
-      
-      
-     
-      </Row>
-     <Modal width = {browserWidth*0.8}  footer={false} visible={this.state.guildanceVisible} onCancel={()=>{this.setState({
-       guildanceVisible:false
-     })}}>
-       <div style={{padding:'30px 10px 10px 10px'}}>
-     <Carousel autoplay autoplaySpeed={4000} infinite={true} beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }} dotPosition={'top'} dots={true}>
+        <Carousel autoplay autoplaySpeed={4000} infinite={true} beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }} dotPosition={'top'} dots={true}>
           <div style={contentStyle}>
             {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
             {/* 
@@ -1231,10 +1214,6 @@ Check out the number of people near you.
                 <img src={img3} style={contentStyle} ></img>
               </div> */}
         </Carousel>
-       </div>
-
-     </Modal>
-   
         <div id="map" className={styles.background} >
 
           <Row gutter={[10, 10]} >
@@ -1257,11 +1236,9 @@ Check out the number of people near you.
 
                 </div>
             </Col>
-            <Col span={24} style={{backgroundColor:'white',padding:'30px'}}>
-            
-            <Row>
+            <Row style={{backgroundColor:'white',padding:'30px'}}>
             <Col xs={24} lg={12} xl={12}>
-              <h2 className={styles.mapSecondTitle}>Plan</h2>
+              <h2>Plan</h2>
               
                 <Row gutter={[10, 10]} justify={'end'}>
                   <Col>
@@ -1314,7 +1291,7 @@ Check out the number of people near you.
             </Col>
 
             <Col xs={24} lg={12} xl={12}>
-<h2 className={styles.mapSecondTitle}>Enter Your Weight</h2>
+<h2>Enter Your Weight</h2>
              
                 <Form>
                   {/* <Row type={'flex'} justify={'center'}>
@@ -1391,14 +1368,27 @@ Check out the number of people near you.
                   
                 </Row> */}
                   <Row type={'flex'} justify={'center'}>
-                    
-                    <Col span={18}>
+                    <Col xs={14} md={12} xl={12} xxl={8}>
+                      <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Weight'}>
+                        {
+                          getFieldDecorator('weight')(
+                            <Slider min={0} max={400} step={0.1}
+                              onChange={
+                                this.changeWeight
+                              }
+                              value={typeof weight === 'number' ? weight : 0}></Slider>
+                          )
+                        }
+                      </FormItem>
+
+                    </Col>
+                    <Col span={4}>
                       {
                         getFieldDecorator('weight', {
                           initialValue: 0
                         })(
                           <Input
-                         
+                            disabled
                             style={{ margin: '0 16px' }}
                             suffix={'kg'}
 
@@ -1427,18 +1417,15 @@ Check out the number of people near you.
 
             </Col>
             </Row>
-            </Col>
             
      
             <Col span={24}>
               
 
-           
-                <Row style={{padding:'30px'}}>
+            <h2 className={styles.optimizedResultTitle}>Trip Analysis</h2>
+                <Row>
 
-               <Col span={24}>
-               <h2 className={styles.optimizedResultTitle}>Trip Analysis</h2>
-               </Col>
+               
 
 
 
