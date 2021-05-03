@@ -1,5 +1,5 @@
 :global(.body){
-  
+
 }
 
 .normal {
@@ -96,6 +96,7 @@ display: inline-block;
 }
 
 .navigator {
+
   position: relative;
   bottom: 0;
   height: 100%;

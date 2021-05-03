@@ -7,7 +7,7 @@ import About from '@/pages/about'
 import Login from '@/pages/login'
 import Benefits from '@/pages/benefits'
 import { MailOutlined, AppstoreOutlined, SettingOutlined ,MenuUnfoldOutlined,MailTwoTone} from '@ant-design/icons';
-import logo from '@/assets/logo.png'
+import logo from '@/assets/logo_version3.png'
 import footerImg from '@/assets/background_footer.jpg'
 const { SubMenu } = Menu;
 const { TabPane } = Tabs
@@ -29,8 +29,9 @@ if(validated){
   }
 
   changeCurrent = (current) =>{
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.setState({ current:current},()=>{
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
+     
     });
   }
 
@@ -55,7 +56,7 @@ if(validated){
           <div className={styles.header}>
           <Row type="flex" justify="start" align="middle">
             <Col xs={15} sm={11} md={11} lg={11} xl={8}>
-              <img src={logo} className={styles.logo_header} />
+              <img src={logo} className={styles.logo_header} onClick={()=>{this.changeCurrent('home')}}/>
             </Col>
             <Col xs={0} sm={4} md={4} lg={4} xl={4}>
               {/* <h1 className={styles.title}>
@@ -72,18 +73,22 @@ if(validated){
               <Col span={16}>
               <Menu style={{zIndex:9999}} overflowedIndicator={<MenuUnfoldOutlined />} className={styles.navigator} onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
                   
-                  <Menu.Item key="home" icon={<MailOutlined />}>
+                  <Menu.Item key="home" onClick={()=>{this.changeCurrent("home")}} icon={<MailOutlined />}>
                     HOME
         </Menu.Item>
-        <Menu.Item key="travel">
+        <Menu.Item key="benefits" onClick={()=>{this.changeCurrent("benefits")}} icon={<AppstoreOutlined />}>
+                    BENEFITS
+        </Menu.Item>
+        {/* <Menu.Item key="about" onClick={()=>{this.changeCurrent("about")}} icon={<AppstoreOutlined />}>
+                    POI
+        </Menu.Item> */}
+        <Menu.Item onClick={()=>{this.changeCurrent("travel")}} key="travel">
                    
                    TRAVEL
    
                  </Menu.Item>
-                 <Menu.Item key="benefits" icon={<AppstoreOutlined />}>
-                    BENEFITS
-        </Menu.Item>
-                  <Menu.Item key="about" icon={<AppstoreOutlined />}>
+                
+                  <Menu.Item key="about" onClick={()=>{this.changeCurrent("about")}} icon={<AppstoreOutlined />}>
                     ABOUT
         </Menu.Item>
         

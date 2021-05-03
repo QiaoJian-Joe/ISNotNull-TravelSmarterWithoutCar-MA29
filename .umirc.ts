@@ -12,6 +12,9 @@ const config: IConfig =  {
       ]
     }
   ],
+  "theme": {
+    "primary-color": "#db545a",
+  },
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {

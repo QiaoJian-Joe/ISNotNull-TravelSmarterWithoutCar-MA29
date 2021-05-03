@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.css';
-import { Descriptions, Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip, } from 'antd';
+import { Descriptions, Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip, Modal, Anchor } from 'antd';
 import { connect } from 'dva';
 import { Autocomplete, Marker, LoadScript, useJsApiLoader, GoogleMap } from '@react-google-maps/api';
 import { AimOutlined, CaretDownOutlined, RedoOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined } from '@ant-design/icons'
@@ -16,6 +16,8 @@ import img2 from '@/assets/img2.png'
 import img3 from '@/assets/img3.png'
 import img4 from '@/assets/img4.png'
 import img5 from '@/assets/img5.png'
+import homePageInfo from '@/assets/homePageInfo.png'
+
 import secondSection from '@/assets/secondSection.jpg'
 import { FaBrain, FaDirections, FaRoute } from 'react-icons/fa';
 import { IconContext } from "react-icons";
@@ -39,6 +41,7 @@ import { formatCountdown } from 'antd/lib/statistic/utils';
 import TableauReport from 'tableau-react';
 const FormItem = Form.Item
 const { Meta } = Card;
+const {Link} = Anchor
 @connect(({ map }) => ({
   map
 }))
@@ -220,18 +223,18 @@ export default class Home extends React.Component {
                   <div className={styles.secondBannerImage} style={{ width: browserWidth > 900 ? browserWidth * 1 / 6 : browserWidth / 2, height: browserWidth > 900 ? browserWidth * 1 / 6 : browserWidth / 2 }}></div>
                 </Col>
                 <Col span={18}>
-                  <span style={{textAlign:'left'}}>
-                  <div className={styles.bannerFirstTitle}>Active Travel</div>
-                  <div className={styles.bannerSecondTitle}>IS ANY MODE OF TRAVEL THAT RELIES ON HUMAN POWERED MOBILITY</div>
-                  <div className={styles.bannerTextContent}>It involves walking, cycling , scooting or other active ways of getting to or from places, fo the whole journey or as a part of the journey.</div>
+                  <span style={{ textAlign: 'left' }}>
+                    <div className={styles.bannerFirstTitle}>Active Travel</div>
+                    <div className={styles.bannerSecondTitle}>IS ANY MODE OF TRAVEL THAT RELIES ON HUMAN POWERED MOBILITY</div>
+                    <div className={styles.bannerTextContent}>It involves walking, cycling , scooting or other active ways of getting to or from places, fo the whole journey or as a part of the journey.</div>
                   </span>
-                 
+
                 </Col>
                 <Col span={24}>
-                 
+
                 </Col>
                 <Col span={24}>
-                  
+
                 </Col>
               </Row>
             </Col>
@@ -240,8 +243,14 @@ export default class Home extends React.Component {
         </div>
         <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
 
-          <Col xs={10} sm={10} md={14} lg={14} xl={10} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+          <Col xs={10} sm={10} md={14} lg={14} xl={10} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20, textAlign: 'left' }}>
             <h2 className={styles.aboutUsSecondTitle} style={{ fontSize: browserWidth > 1000 ? browserWidth * 1 / 20 : browserWidth / 20 }}>Melbourne Youth is inactive!</h2>
+            <div>
+              <span style={{ textAlign: 'left' }}>
+                <Button className={styles.redBtn} onClick={() => { this.setState({ visible: true }) }}>Learn More</Button>
+              </span>
+            </div>
+
 
           </Col>
           <Col xs={14} sm={14} md={10} lg={10} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
@@ -276,7 +285,7 @@ export default class Home extends React.Component {
                   <br />
                     <br />
                     <p style={{ textAlign: 'center' }}>
-                      <Button className={styles.learnBtn}>LEARN MORE</Button>
+                      <Button className={styles.learnBtn} href={'#offer'}>LEARN MORE</Button>
                     </p>
 
                   </p>
@@ -289,31 +298,33 @@ export default class Home extends React.Component {
           </Col>
 
         </Row>
-        <div style={{ backgroundColor: '#ececec', padding: "20px" }}>
+      <div id='offer'>
+
+      </div>
+        <div style={{ backgroundColor: '#ececec', padding: "20px" ,margin:'200px 0 0 0'}} >
           <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto', backgroundColor: '#ececec' }} gutter={[10, 10]}>
             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
-              <div className={styles.titleOfLastPartOfHomePage} style={{ textAlign: 'Center', lineHeight: '55px', fontSize: '46px', fontFamily: 'Roboto, sans-serif' }}>What We Offer</div>
+              <div  className={styles.titleOfLastPartOfHomePage} style={{ textAlign: 'Center', lineHeight: '55px', fontSize: '46px', fontFamily: 'Roboto, sans-serif' }}>What We Offer</div>
             </Col>
 
 
           </Row>
 
           <Row gutter={[10, 10]} type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto', marginBottom: 40 }}>
-            <Col xs={24} sm={24} md={8} lg={8} xl={8} >
+            <Col xs={24} sm={24} md={8} lg={8} xl={8}>
               <Card
 
                 style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', height: '310px' }}
-
-                cover={
-                  <IconContext.Provider value={{ color: "#db545a", className: "global-class-name", size: '100px', style: { padding: 20 } }}>
-                    <div>
-                      <FaRoute />
-                    </div>
-                  </IconContext.Provider>}
+                cover={<IconContext.Provider value={{ color: "#db545a", className: "global-class-name", size: '100px', style: { padding: 20 } }}>
+                  <div>
+                    <FaBrain />
+                  </div>
+                </IconContext.Provider>}
               >
-                <h3 className={styles.vectorTitle}>Optimize</h3>
-                <Meta className={styles.contentOfProvide} description="We find the shortest route for you activel travel journey." />
-                <Button className={styles.learnBtnLine} onClick={()=>{this.handleClickLearnBtn('travel')}}>LEARN MORE</Button>
+                <h3 className={styles.vectorTitle}>Benefits of Active Travel</h3>
+                <Meta className={styles.contentOfProvide} description="We provide you insights about benefits of active travel." />
+
+                <Button className={styles.learnBtnLine} onClick={() => { this.handleClickLearnBtn('benefits') }}><b></b>LEARN</Button>
               </Card>
             </Col>
             <Col xs={24} sm={24} md={8} lg={8} xl={8}>
@@ -327,26 +338,30 @@ export default class Home extends React.Component {
                 </IconContext.Provider>}
               >
                 <h3 className={styles.vectorTitle}>Guide</h3>
-                <Meta className={styles.contentOfProvide} description="We provide you insights about benefits of active travel." />
-                <Button className={styles.learnBtnLine}  onClick={()=>{this.handleClickLearnBtn('benefits')}}>LEARN MORE</Button>
+
+                <Meta className={styles.contentOfProvide} description="We show you places to go for a ride or a walk." />
+                <Button className={styles.learnBtnLine} onClick={() => { this.handleClickLearnBtn('benefits') }}><b></b>GUIDE</Button>
               </Card>
             </Col>
-            <Col xs={24} sm={24} md={8} lg={8} xl={8}>
+            <Col xs={24} sm={24} md={8} lg={8} xl={8} >
               <Card
 
                 style={{ marginLeft: 'auto', marginRight: 'auto', width: '80%', height: '310px' }}
-                cover={<IconContext.Provider value={{ color: "#db545a", className: "global-class-name", size: '100px', style: { padding: 20 } }}>
-                  <div>
-                    <FaBrain />
-                  </div>
-                </IconContext.Provider>}
+
+                cover={
+                  <IconContext.Provider value={{ color: "#db545a", className: "global-class-name", size: '100px', style: { padding: 20 } }}>
+                    <div>
+                      <FaRoute />
+                    </div>
+                  </IconContext.Provider>}
               >
-                <h3 className={styles.vectorTitle}>Educate</h3>
-                <Meta className={styles.contentOfProvide} description="We show you places to go for a ride or a walk." />
-                <br></br>
-                <Button className={styles.learnBtnLine}>LEARN MORE</Button>
+                <h3 className={styles.vectorTitle}>Plan Your Journey</h3>
+                <Meta className={styles.contentOfProvide} description="We find the shortest route for you activel travel journey." />
+                <Button className={styles.learnBtnLine} onClick={() => { this.handleClickLearnBtn('travel') }}><b></b>PLAN</Button>
               </Card>
             </Col>
+
+
           </Row>
         </div>
         <Row type={'flex'} justify={'center'}>
@@ -357,6 +372,9 @@ export default class Home extends React.Component {
             <p className={styles.purposeContent}>We aim to promote active travel amongst young adults. And guide them towards a healthy, wealthy and better future.</p>
           </Col>
         </Row>
+        <Modal visible={this.state.visible} onCancel={() => { this.setState({ visible: false }) }} footer={[]}>
+          <img src={homePageInfo} style={{ width: '100%', margin: '30px 0 0 0' }}></img>
+        </Modal>
       </div>
     );
   }

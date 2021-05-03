@@ -120,7 +120,7 @@
 
 .about{
   color: #db545a !important;
-  font-family: Ubuntu, sans-serif !important;
+  font-family: 'Open Sans',sans-serif;
   font-size: 6rem;
   line-height: 1;
   font-weight: 700;
@@ -130,7 +130,7 @@
 .us{
   height: fit-content;
   color: #111 !important;
-  font-family: Ubuntu, sans-serif !important;
+  font-family:'Open Sans',sans-serif;
   line-height: 1;
   font-size: 6rem;
 }
@@ -165,7 +165,7 @@
 }
 
 .normal {
-  font-family: Georgia, sans-serif;
+  font-family: 'Open Sans',sans-serif;
   margin-top: 4em;
   text-align: center;
 }
@@ -230,8 +230,6 @@
     letter-spacing: 2px;
     font-weight: 700;
     font-size: 1.125rem;
-    margin: 20px auto 0 0;
-    padding: 14px 31px 15px 30px;
     height: fit-content;
 }
 
@@ -249,7 +247,7 @@
 }
 
 .purposeTitle{
-  font-family: Roboto,sans-serif;
+  font-family: 'Open Sans',sans-serif;
   letter-spacing: 4px;
   text-transform: uppercase;
   font-weight: 300;
@@ -323,17 +321,17 @@ text-align: left;
   position: relative;
   display: block;
   float: left;
-  font-size: 11px;
+  font-size: 0.8rem;
   text-transform: uppercase;
   text-align: center;
   width: 16.6%;
   height: 100%;
-  color:#EB4E01;
+  color:#111;
   cursor: pointer;
 }
 
 .tabsLabelStyle:hover{
-  background: #EB4E01;
+  background: #db545a;
   color:#fff;
   transition: transform 400ms;
 }
@@ -342,34 +340,64 @@ text-align: left;
   position: relative;
   display: block;
   float: left;
-  font-size: 11px;
+  font-size: 0.8rem;
   text-transform: uppercase;
   text-align: center;
   height: 100%;
   width: 16.6%;
   cursor: pointer;
-  background: #EB4E01;
+  background: #db545a;
   color:#fff;
   transition: transform 400ms;
 }
 
 .tabsStyle{
   width: 100;
-  background: #941e00;
+  /* background: #941e00; */
   height: 80px;
-  border-bottom: 5px solid #eb8d01;
+  /* border-bottom: 5px solid #eb8d01; */
   box-shadow: 0 3px 5px rgb(0 0 0 / 20%);
+}
+.redBtn{
+  color: #ffffff !important;
+  background-color: #e42121 !important;
+  border-radius: 0% !important;
+  background-image: none;
+  border-style: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin: 20px auto 0 0;
+  padding: 14px 31px 15px 30px;
+  height: fit-content;
 }
 
 .detailTitle{
-  color: black;
-  font-size: 1.5rem;
+  color: #db545a;
+  font-size: 2.5rem;
   font-weight: 700;
   margin: 0;
   margin-bottom: 20px;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans',sans-serif;
       text-align: left;
+}
+
+.detailSecondTitle{
+  color: #db545a;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 20px;
+    padding: 0;
+    font-family: 'Open Sans',sans-serif;
+}
+
+.detailText{
+  font-family: 'Open Sans',sans-serif;
+  font-size: 1rem;
+    line-height: 1.6;
 }
 
 .societyTitle{
@@ -380,7 +408,7 @@ text-align: left;
   margin: 0;
   margin-bottom: 20px;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans',sans-serif;
       text-align: left;
 }
 
@@ -419,7 +447,7 @@ text-align: left;
   font-weight: 700;
   margin: 0;
   padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans',sans-serif;
       text-align: center;
 }
 
@@ -430,17 +458,17 @@ text-align: left;
   margin: 0;
   margin-bottom: 20px;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans',sans-serif;
       text-align: left;
 }
 
 
 .roadSafetyFirstTitle{
-  color: black;
-  font-size: 2rem;
+  color: #db545a;
+  font-size: 3rem;
   font-weight: 700;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans',sans-serif;
 }
 .roadSafetySecondTitle{
   color: black;
@@ -448,7 +476,7 @@ text-align: left;
   font-weight: 300;
   margin-bottom: 20px;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans',sans-serif;
 }
 
 .detailContent{
@@ -459,7 +487,7 @@ text-align: left;
   margin: 0;
   margin-bottom: 20px;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family:'Open Sans',sans-serif;
       text-align: left;
 }
 
@@ -492,7 +520,7 @@ text-align: left;
   margin: 0;
   margin-bottom: 20px;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans',sans-serif;
       text-align: left;
 }
 

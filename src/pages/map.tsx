@@ -795,7 +795,7 @@ export default class Travel extends React.Component {
           <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
 
         </Col>
-        <Col>
+        <Col span={22}>
           <CaretDownOutlined />
           {end_autoComplete}
           {/* <Divider>Destination</Divider> */}
@@ -803,7 +803,7 @@ export default class Travel extends React.Component {
             <Input placeholder={'End'} style={{ display: 'none' }}></Input>
           )}
         </Col>
-
+        <Col span={24}></Col>
       </>
 
 
@@ -1143,10 +1143,10 @@ export default class Travel extends React.Component {
       <Col span ={2}>
         </Col>
         <Col span={20}>
-        <h2 className={styles.planTitle}>Plan Your Journey</h2>
+        <span><h2 className={styles.planTitle}>Plan Your Journey<span style={{textAlign:'center',margin:'20px',position:'relative',top:'50%'}}><Button icon={'info'}style={{margin:'0 auto',position:'relative',top:'50%',borderRadius:'50%'}}onClick={()=>{this.setState({guildanceVisible:true})}}></Button></span></h2></span>
         </Col>
         <Col span={2}>
-        <h2><Button icon={'info'}style={{margin:'0 auto',position:'relative',top:'50%',borderRadius:'50%'}}onClick={()=>{this.setState({guildanceVisible:true})}}></Button></h2>
+  
         </Col>
       
       
