@@ -6,6 +6,7 @@ import Home from '@/pages/home'
 import About from '@/pages/about'
 import Login from '@/pages/login'
 import Benefits from '@/pages/benefits'
+import POI from '@/pages/poi'
 import { MailOutlined, AppstoreOutlined, SettingOutlined ,MenuUnfoldOutlined,MailTwoTone} from '@ant-design/icons';
 import logo from '@/assets/logo_version3.png'
 import footerImg from '@/assets/background_footer.jpg'
@@ -79,9 +80,9 @@ if(validated){
         <Menu.Item key="benefits" onClick={()=>{this.changeCurrent("benefits")}} icon={<AppstoreOutlined />}>
                     BENEFITS
         </Menu.Item>
-        {/* <Menu.Item key="about" onClick={()=>{this.changeCurrent("about")}} icon={<AppstoreOutlined />}>
+        <Menu.Item key="poi" onClick={()=>{this.changeCurrent("poi")}} icon={<AppstoreOutlined />}>
                     POI
-        </Menu.Item> */}
+        </Menu.Item>
         <Menu.Item onClick={()=>{this.changeCurrent("travel")}} key="travel">
                    
                    TRAVEL
@@ -120,6 +121,7 @@ if(validated){
 {this.state.current === 'home' ? <Home changeCurrent={this.changeCurrent.bind(this)}></Home> : null}
 {this.state.current === 'about' ? <About changeCurrent={this.changeCurrent.bind(this)}></About> : null}
 {this.state.current === 'benefits'?<Benefits changeCurrent={this.changeCurrent.bind(this)}></Benefits>:null}
+{this.state.current === 'poi'?<POI changeCurrent={this.changeCurrent.bind(this)}></POI>:null}
 </div>
         
         <div id={'footer'} className={styles.footer_Tabs_background}>
@@ -138,6 +140,7 @@ if(validated){
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('travel')}}>Travel</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('about')}}>About</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('benefits')}}>Benefits</a>
+             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('poi')}}>POI</a>
               </p>
            </Col>
            {/* <Col  xs={24} sm={24} md={24} lg={12} xl={8} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>

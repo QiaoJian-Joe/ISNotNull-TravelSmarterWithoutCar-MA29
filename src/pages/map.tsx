@@ -795,13 +795,16 @@ export default class Travel extends React.Component {
           <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
 
         </Col>
-        <Col span={22}>
-          <CaretDownOutlined />
+        <CaretDownOutlined />
+        <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
+                <Col span={22}>
+         
           {end_autoComplete}
           {/* <Divider>Destination</Divider> */}
           {getFieldDecorator('destination')(
             <Input placeholder={'End'} style={{ display: 'none' }}></Input>
-          )}
+          )}  </Col>
+          </Row>
         </Col>
         <Col span={24}></Col>
       </>

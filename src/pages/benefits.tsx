@@ -189,14 +189,14 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
                                 Traffic conditions are deteriorating in Melbourne quicker than any other Australian city. Choosing active travel can reduce road congestion, resulting in lower costs to remaining road users.</p>
 
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                            <img src={social1} style={{ width: '100%' }} ></img>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                            <img src={social1} style={{ width: '80%' }} ></img>
 
                         </Col>
                     </Row>
                     <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
-                        <Col xs={0} sm={0} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                            <img src={social2} style={{ width: '100%' }} ></img>
+                        <Col xs={0} sm={0} md={12} lg={12} xl={6} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                            <img src={social2} style={{ width: '80%' }} ></img>
 
                         </Col>
                         <Col xs={0} sm={0} md={12} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
@@ -218,7 +218,7 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
 
                         </Col>
                         <Col xs={24} sm={24} md={0} lg={0} xl={0} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                            <img src={social2} style={{ width: '100%' }} ></img>
+                            <img src={social2} style={{ width: '80%' }} ></img>
 
                         </Col>
                     </Row>
@@ -235,14 +235,14 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
 
 
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                            <img src={social3} style={{ width: '100%' }} ></img>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                            <img src={social3} style={{ width: '80%' }} ></img>
 
                         </Col>
                     </Row>
                     <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
-                        <Col xs={0} sm={0} md={12} lg={12} xl={8} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                            <img src={social4} style={{ width: '100%' }} ></img>
+                        <Col xs={0} sm={0} md={12} lg={12} xl={6} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                            <img src={social4} style={{ width: '80%' }} ></img>
 
                         </Col>
                         <Col xs={0} sm={0} md={12} lg={12} xl={12} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
@@ -264,7 +264,7 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
 
                         </Col>
                         <Col xs={24} sm={24} md={0} lg={0} xl={0} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
-                            <img src={social4} style={{ width: '100%' }} ></img>
+                            <img src={social4} style={{ width: '80%' }} ></img>
 
                         </Col>
                     </Row>
@@ -274,7 +274,7 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
                 dom = <Row type={'flex'} justify={'center'} >
                     <Col xs={24} sm={24} md={24} lg={18} xl={18} >
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
-                            <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                            <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40}}>
                                 <h2 className={styles.roadSafetyFirstTitle}>
                                     Pedestrian Safety Guide
                         </h2>
@@ -284,7 +284,7 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
 
                         </Row>
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
-                            <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }}>
+                            <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40 }}>
                                 <h2 className={styles.roadSafetyFirstTitle}>
                                     Cycling Safety Guide
                         </h2>
