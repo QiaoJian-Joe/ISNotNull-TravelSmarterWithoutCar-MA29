@@ -8,7 +8,7 @@ import Login from '@/pages/login'
 import Benefits from '@/pages/benefits'
 import POI from '@/pages/poi'
 import { MailOutlined, AppstoreOutlined, SettingOutlined ,MenuUnfoldOutlined,MailTwoTone} from '@ant-design/icons';
-import logo from '@/assets/logo_version3.png'
+import logo from '@/assets/logo_final.png'
 import footerImg from '@/assets/background_footer.jpg'
 const { SubMenu } = Menu;
 const { TabPane } = Tabs
