@@ -287,7 +287,6 @@ export default class Travel extends React.Component {
   }
 
   componentDidMount = () => {
-    this.test()
     this.getCurrentPosition()
     const winWidth = document.documentElement.clientWidth;
     const winHeight = document.documentElement.clientHeight;
