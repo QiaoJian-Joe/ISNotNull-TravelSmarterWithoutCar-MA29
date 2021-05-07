@@ -91,17 +91,7 @@ export default class Travel extends React.Component {
     window.removeEventListener('resize', this.handleResize.bind(this))
   }
 
-  test = () => {
-    const { dispatch } = this.props
-
-    dispatch({
-      type: 'map/query', /* 这个是指定的数据模型 */
-      payload: {},
-      callback: (res) => {
-        console.log(res)
-      },
-    });
-  }
+ 
 
   handleResize = e => {
     console.log(e)
