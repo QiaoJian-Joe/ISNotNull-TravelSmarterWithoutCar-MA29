@@ -31,7 +31,8 @@
       
     <!-- ORM映射文件 -->  
     <mappers>  
-        <mapper resource="mapper/ActiveTravel.xml" />  
+        <mapper resource="mapper/ActiveTravel.xml" /> 
+        <mapper resource="mapper/POI.xml" /> 
     </mappers>  
       
       

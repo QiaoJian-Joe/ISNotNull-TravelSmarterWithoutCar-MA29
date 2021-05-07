@@ -52,10 +52,12 @@ export default class Home extends React.Component {
 
   }
 
+ 
   componentDidMount() {
     const winWidth = document.documentElement.clientWidth;
     const winHeight = document.documentElement.clientHeight;
-    console.log(winWidth)
+
+    console.log(winWidth);
     this.setState({
       browserWidth: winWidth,
       browserHeight: winHeight

@@ -229,7 +229,51 @@
   color: #db545a !important;
   line-height: 1.6;
 }
+.poiSecondTitle{
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.1;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #db545a !important;
+  line-height: 1.6;
+}
+.poiThirdTitle{
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.1;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #111111 !important;
+  line-height: 1.6;
+}
+.poiPlacesImage{
 
+}
+
+.poiDetailTitle{
+  color: #111111;
+  margin-left: 20px;
+  text-align: left;
+  pointer-events: none;
+  font-family: 'Open Sans',sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.poiDetailContent{
+  color: #111111;
+  margin-left: 20px;
+  text-align: left;
+  pointer-events: none;
+  font-family: 'Open Sans',sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.poiPlacesImage:hover{
+opacity: 0.6;
+}
 .poiContent{
   font-size: 1.25rem;
   font-family: 'Open Sans',sans-serif;

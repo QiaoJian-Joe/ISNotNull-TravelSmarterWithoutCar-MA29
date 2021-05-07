@@ -1,4 +1,5 @@
 com\ma29\isnotnull\IsnotnullApplication.class
 entity\ActiveTravel.class
 entity\Trail.class
+entity\POI.class
 com\ma29\isnotnull\controller\TestController.class
