@@ -10,6 +10,7 @@ import POI from '@/pages/poi'
 import { MailOutlined, AppstoreOutlined, SettingOutlined ,MenuUnfoldOutlined,MailTwoTone} from '@ant-design/icons';
 import logo from '@/assets/logo_final.png'
 import footerImg from '@/assets/background_footer.jpg'
+import RoadSafety from '@/pages/roadSafety';
 const { SubMenu } = Menu;
 const { TabPane } = Tabs
 class BasicLayout extends React.PureComponent {
@@ -59,7 +60,7 @@ if(validated){
             <Col xs={15} sm={11} md={11} lg={11} xl={8}>
               <img src={logo} className={styles.logo_header} onClick={()=>{this.changeCurrent('home')}}/>
             </Col>
-            <Col xs={0} sm={4} md={4} lg={4} xl={4}>
+            <Col xs={0} sm={4} md={4} lg={4} xl={0}>
               {/* <h1 className={styles.title}>
                 Travel Smarter in Melbourne <br></br>
 
@@ -69,7 +70,7 @@ if(validated){
             <Col xs={6} sm={6} md={6} lg={6} xl={0}>
              
             </Col>
-            <Col xs={3} sm={3} md={3} lg={3} xl={12}>
+            <Col xs={3} sm={3} md={3} lg={3} xl={16}>
             <Row type="flex" justify="start" align="middle">
               <Col span={16}>
               <Menu style={{zIndex:9999}} overflowedIndicator={<MenuUnfoldOutlined />} className={styles.navigator} onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
@@ -88,7 +89,9 @@ if(validated){
                    TRAVEL
    
                  </Menu.Item>
-                
+                 <Menu.Item key="roadSafety" onClick={()=>{this.changeCurrent("roadSafety")}} icon={<AppstoreOutlined />}>
+                    Road Safety
+        </Menu.Item>
                   <Menu.Item key="about" onClick={()=>{this.changeCurrent("about")}} icon={<AppstoreOutlined />}>
                     ABOUT
         </Menu.Item>
@@ -122,6 +125,7 @@ if(validated){
 {this.state.current === 'about' ? <About changeCurrent={this.changeCurrent.bind(this)}></About> : null}
 {this.state.current === 'benefits'?<Benefits changeCurrent={this.changeCurrent.bind(this)}></Benefits>:null}
 {this.state.current === 'poi'?<POI changeCurrent={this.changeCurrent.bind(this)}></POI>:null}
+{this.state.current === 'roadSafety'?<RoadSafety changeCurrent={this.changeCurrent.bind(this)}></RoadSafety>:null}
 </div>
         
         <div id={'footer'} className={styles.footer_Tabs_background}>
@@ -130,17 +134,20 @@ if(validated){
            <Col  xs={24} sm={24} md={24} lg={24} xl={8} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>
               <h2 className={styles.footer_title}>ABOUT</h2>
               <p className={styles.footer_content}>
-              Travel Smarter Melbourne is an initiative to help people of Melbourne get aware of the importance of active travel. Active travel is much more than just health benefits or environmental stability. Through this platform, we educate, guide, and optimize their daily travels.  
+              Travel Smart Melbourne is an initiative to help people of Melbourne get aware of the importance of active travel. Active travel is much more than just health benefits or environmental stability. Through this platform, we educate, guide, and optimize their daily travels.  
               </p>
            </Col>
            <Col  xs={24} sm={24} md={24} lg={12} xl={4} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>
            <h2 className={styles.footer_title}>QUICK LINKS</h2>
            <p className={styles.footer_content}>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('home')}}>Home</a>
-             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('travel')}}>Travel</a>
-             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('about')}}>About</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('benefits')}}>Benefits</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('poi')}}>POI</a>
+             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('travel')}}>Travel</a>
+             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('roadSafety')}}>Roud Safety</a>
+             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('about')}}>About</a>
+           
+     
               </p>
            </Col>
            {/* <Col  xs={24} sm={24} md={24} lg={12} xl={8} style={{paddingTop:60,paddingLeft:30,textAlign:'left'}}>

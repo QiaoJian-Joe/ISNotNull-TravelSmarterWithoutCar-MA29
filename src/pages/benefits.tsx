@@ -13,6 +13,9 @@ import noun2 from '@/assets/noun2.png'
 import noun3 from '@/assets/noun3.png'
 import noun4 from '@/assets/noun4.png'
 import aus from '@/assets/aus.png'
+import image_5_9_1 from '@/assets/image_5_9_1.png'
+import image_5_9_2 from '@/assets/image_5_9_2.png'
+import image_5_9_3 from '@/assets/image_5_9_3.png'
 import health_img1 from '@/assets/health_img1.png'
 import health_img2 from '@/assets/health_img2.png'
 import health_img3 from '@/assets/health_img3.png'
@@ -124,26 +127,26 @@ export default class Benefits extends React.Component {
                 </h2>
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={24} xl={20}>
-                            <Row  gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
-                            <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img1} style={{ width: '80%' }} ></img><h3>Weight loss</h3></Col>
-                            <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img2} style={{ width: '80%' }} ></img><h3>Lesser heart disease risk</h3></Col>
-                            <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img3} style={{ width: '80%' }} ></img><h3>Lesser pain 
+                            <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
+                                <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img1} style={{ width: '80%' }} ></img><h3>Weight loss</h3></Col>
+                                <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img2} style={{ width: '80%' }} ></img><h3>Lesser heart disease risk</h3></Col>
+                                <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img3} style={{ width: '80%' }} ></img><h3>Lesser pain
     in joints</h3></Col>
-                            <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img4} style={{ width: '80%' }} ></img><h3>Improved muscle
+                                <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img4} style={{ width: '80%' }} ></img><h3>Improved muscle
          strength</h3></Col>
-                            <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img5} style={{ width: '80%' }} ></img><h3>Improved mental
+                                <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img5} style={{ width: '80%' }} ></img><h3>Improved mental
           health</h3></Col>
-                            <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img6} style={{ width: '80%' }} ></img><h3>Higher energy
+                                <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img6} style={{ width: '80%' }} ></img><h3>Higher energy
          levels</h3></Col>
-                            <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img7} style={{ width: '80%' }} ></img><h3>Lower stress
+                                <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={health_img7} style={{ width: '80%' }} ></img><h3>Lower stress
        levels</h3></Col>
                             </Row>
-                          
+
                         </Col>
 
                         <Col xs={24} sm={24} md={24} lg={24} xl={16}>
-                            <p className={styles.detailText} style={{ textAlign: 'left' }}>
-                                World Health Organization (WHO) recommends 80 minutes of walking 35 minutes of cycling for men while women should walk for at least 65 minutes or cycle for 30 minutes a day. Undertaking <b style={{color:'#db545a'}}>ACTIVE TRAVEL</b> will not only ensure you finish your quota of recommended exercise but also keep you healthy. No physical activity can result in chronic diseases which can be life threatning.
+                            <p className={styles.detailText} style={{ textAlign: 'center' }}>
+                                World Health Organization (WHO) recommends 80 minutes of walking 35 minutes of cycling for men while women should walk for at least 65 minutes or cycle for 30 minutes a day. Undertaking <b style={{ color: '#db545a' }}>ACTIVE TRAVEL</b> will not only ensure you finish your quota of recommended exercise but also keep you healthy. No physical activity can result in chronic diseases which can be life threatning.
 <br></br>
                                 <br></br>
 Physical inactivity can result in various diseases like bowel, uterine and breast cancer alongside heart disease, diabetes, stroke, dementia. Over the years, many lives have been lost due to this and many years have been lost to disability (YLD) which could have been a healthy life.
@@ -156,21 +159,25 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
                         <Col span={24}></Col>
                         <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
-                            Physical inactivity results in
+                                Physical inactivity results in
                 </h2>
                             <div style={{ padding: '0', textAlign: 'center' }}>
-                                <DWChart title="Chart" src="https://datawrapper.dwcdn.net/Qo8qW/2/"></DWChart>
+                            <div style={{ textAlign: 'center' }}>
+
+<img src={image_5_9_2} style={{ width: '80%' }} ></img>
+</div>
+                                {/* <DWChart title="Chart" src="https://datawrapper.dwcdn.net/Qo8qW/2/"></DWChart> */}
                             </div>
-                          
+
                         </Col>
                         <Col xs={24} sm={24} md={24} lg={24} xl={16}>
                             <p className={styles.detailText} style={{ textAlign: 'center' }}>
-                            <b style={{color:'#db545a'}}>ACTIVE TRAVEL</b>  can help you remain healthy and protect you from these chronic diseases. Adopt active travel today.
+                                <b style={{ color: '#db545a' }}>ACTIVE TRAVEL</b>  can help you remain healthy and protect you from these chronic diseases. Adopt active travel today.
 </p>
                         </Col>
                         <Col span={24}></Col>
-                   
-                      
+
+
                     </Row>
 
                 </>
@@ -274,14 +281,12 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
                 dom = <Row type={'flex'} justify={'center'} >
                     <Col xs={24} sm={24} md={24} lg={18} xl={18} >
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
-                            <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40}}>
+                            <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40 }}>
                                 <h2 className={styles.roadSafetyFirstTitle}>
                                     Pedestrian Safety Guide
                         </h2>
                                 <img src={safetyGuide1} style={{ width: '100%' }}></img>
                             </Col>
-
-
                         </Row>
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40 }}>
@@ -308,6 +313,17 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
                     <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
                         <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
+                                Active travel results in ...
+                </h2>
+                        </Col>
+                        <Col span={24}></Col>
+                        <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={noun1} style={{ width: '80%' }} ></img><h3>Reduced carbon footprint</h3></Col>
+                        <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={noun4} style={{ width: '80%' }} ></img><h3>Lower pollution levels</h3></Col>
+                        <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={noun3} style={{ width: '80%' }} ></img><h3>Reduced ozone depletion</h3></Col>
+                        <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={noun2} style={{ width: '80%' }} ></img><h3>Improves environment</h3></Col>
+
+                        <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
+                            <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
                                 Australia's transport emissions
                 </h2>
                             <div style={{ textAlign: 'center' }}>
@@ -329,7 +345,11 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
                                 How do we avoid this?
                 </h2>
                             <div style={{ padding: '0', textAlign: 'center' }}>
-                                <DWChart title="Chart" src="https://datawrapper.dwcdn.net/ee39E/4/"></DWChart>
+                                <div style={{ textAlign: 'center' }}>
+
+                                    <img src={image_5_9_3} style={{ width: '80%' }} ></img>
+                                </div>
+                                {/* <DWChart title="Chart" src="https://datawrapper.dwcdn.net/ee39E/4/"></DWChart> */}
                             </div>
                             <p style={{ textAlign: 'center' }}>
                                 Answer to this question is adopting active travel. Promoting active travel can result in reduced emissions of the deadly greenhouse gases making the world a better place to live in. Active travel modes like walking and cycling will ensure that you do not harm the environment as there will be no emissions.
@@ -339,16 +359,6 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
 
                         </Col>
                         <Col span={24}></Col>
-                        <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
-                            <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
-                                This would result in ...
-                </h2>
-                        </Col>
-                        <Col span={24}></Col>
-                        <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={noun1} style={{ width: '80%' }} ></img><h3>Reduced carbon footprint</h3></Col>
-                        <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={noun4} style={{ width: '80%' }} ></img><h3>Lower pollution levels</h3></Col>
-                        <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={noun3} style={{ width: '80%' }} ></img><h3>Reduced ozone depletion</h3></Col>
-                        <Col xs={12} sm={12} md={12} lg={6} xl={5}><img src={noun2} style={{ width: '80%' }} ></img><h3>Improves environment</h3></Col>
 
                         {/* <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                         <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
@@ -393,19 +403,22 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
                         <Col span={24}></Col>
                         <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
-                                Infrastructure costs
+                                Savings to the economy from 1km of individual walking
                     </h2>
-                            <h2 className={styles.detailSecondTitle} style={{ textAlign: 'center' }}>
+                            {/* <h2 className={styles.detailSecondTitle} style={{ textAlign: 'center' }}>
                                 This is the amount of cycle way that can be build in the same cost as these ways.
                                 1 km of bus way = 138 km of cycle way
 
-                    </h2>
+                    </h2> */}
                             <div style={{ padding: '0', textAlign: 'center' }}>
-                                <DWChart title="Chart" src="https://datawrapper.dwcdn.net/C6Z2G/2/"></DWChart>
+                            <div style={{ textAlign: 'center' }}>
+
+<img src={image_5_9_1} style={{ width: '80%' }} ></img>
+</div>
+                                {/* <DWChart title="Chart" src="https://datawrapper.dwcdn.net/C6Z2G/2/"></DWChart> */}
                             </div>
                             <p style={{ textAlign: 'center' }}>
-                                The Australian city planners have spent heavily on improving the transport infrastructure of the nation but still face shortfalls due to increasing traffic congestion, antiquated public transport networks.
-                                Around $70 billion was spent on infrastructure in the past eight years. Adopting active travel methods can help in reducing these costs as well. Building a bikeway costs much lower as compared to anything else. If more people adopt active transport, there will be significant economic benefits for the government.
+                                Investing in better walking infrastructure can provide a higher return than other transport projects such as rail and road. Evidence from 20 different studies has suggested that the benefit-cost ratio of walking interventions is 13:1 - $13 of benefit for every $1 of expenditure. And overall, cost benefits from 1 km individual walking are shown above.
        <br />
 
                             </p>
@@ -666,14 +679,14 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
 
 
                     </label>
-                    <label className={this.state.currentTab === 'Road Safety' ? styles.tabsLabelStyleClicked : styles.tabsLabelStyle} onClick={() => { this.tabChange('Road Safety') }}>
+                    {/* <label className={this.state.currentTab === 'Road Safety' ? styles.tabsLabelStyleClicked : styles.tabsLabelStyle} onClick={() => { this.tabChange('Road Safety') }}>
                         <div style={{ position: 'relative', top: "25%", fontSize: browserWidth > 800 ? '1rem' : '9px' }}>
                             Road Safety
                    </div>
 
 
 
-                    </label>
+                    </label> */}
                 </div>
             </div>
             {

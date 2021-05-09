@@ -342,7 +342,7 @@ export default class Home extends React.Component {
                 <h3 className={styles.vectorTitle}>Guide</h3>
 
                 <Meta className={styles.contentOfProvide} description="We show you places to go for a ride or a walk." />
-                <Button className={styles.learnBtnLine} onClick={() => { this.handleClickLearnBtn('benefits') }}><b></b>GUIDE</Button>
+                <Button className={styles.learnBtnLine} onClick={() => { this.handleClickLearnBtn('poi') }}><b></b>EXPLORE</Button>
               </Card>
             </Col>
             <Col xs={24} sm={24} md={8} lg={8} xl={8} >
@@ -374,7 +374,7 @@ export default class Home extends React.Component {
             <p className={styles.purposeContent}>We aim to promote active travel amongst young adults. And guide them towards a healthy, wealthy and better future.</p>
           </Col>
         </Row>
-        <Modal visible={this.state.visible} onCancel={() => { this.setState({ visible: false }) }} footer={[]}>
+        <Modal visible={this.state.visible} width={browserWidth*0.8} onCancel={() => { this.setState({ visible: false }) }} footer={[]}>
           <img src={homePageInfo} style={{ width: '100%', margin: '30px 0 0 0' }}></img>
         </Modal>
       </div>

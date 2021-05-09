@@ -181,84 +181,84 @@ export default class POI extends React.Component {
                         </Col>
                     </Row>
                 </Col>}
-            {desc && desc.place_type === 'Trail' &&  <Col xs={24} sm={24} md={24} lg={14} xl={12}>
-                    <Row type={'flex'} justify={'center'} gutter={[20, 20]}>
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>DETAILS:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_desc}
-                            </p>
-                        </Col>
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>ADDRESS:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_address}
-                            </p>
-                        </Col>
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>TRAIL LENGTH:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_length+' km'}
-                            </p>
-                        </Col>
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>DIFFICULTY LEVEL:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_difficulty}
-                            </p>
-                        </Col>
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>ELEVATION:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_elevation+' feet'}
-                            </p>
-                        </Col>
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>ROUTE TYPE:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_route_type}
-                            </p>
-                        </Col>
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>TIME TO COMPLETE:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_complete_time+' mins'}
-                            </p>
-                        </Col>
-    
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>PUBLIC TOILETS:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_toilet_avlbl}
-                            </p>
-                        </Col>
-                        <Col span={6}>
-                            <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>DRINKING WATER TAPS:  </h2>
-                        </Col>
-                        <Col span={18}>
-                            <p className={styles.poiDetailContent}>
-                                {desc.place_water_tap}
-                            </p>
-                        </Col>
-                   
-                    </Row>
-                </Col>}
+            {desc && desc.place_type === 'Trail' && <Col xs={24} sm={24} md={24} lg={14} xl={12}>
+                <Row type={'flex'} justify={'center'} gutter={[20, 20]}>
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>DETAILS:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_desc}
+                        </p>
+                    </Col>
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>ADDRESS:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_address}
+                        </p>
+                    </Col>
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>TRAIL LENGTH:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_length + ' km'}
+                        </p>
+                    </Col>
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>DIFFICULTY LEVEL:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_difficulty}
+                        </p>
+                    </Col>
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>ELEVATION:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_elevation + ' feet'}
+                        </p>
+                    </Col>
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>ROUTE TYPE:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_route_type}
+                        </p>
+                    </Col>
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>TIME TO COMPLETE:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_complete_time + ' mins'}
+                        </p>
+                    </Col>
+
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>PUBLIC TOILETS:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_toilet_avlbl}
+                        </p>
+                    </Col>
+                    <Col span={6}>
+                        <h2 className={styles.poiDetailTitle} style={{ textAlign: 'right' }}>DRINKING WATER TAPS:  </h2>
+                    </Col>
+                    <Col span={18}>
+                        <p className={styles.poiDetailContent}>
+                            {desc.place_water_tap}
+                        </p>
+                    </Col>
+
+                </Row>
+            </Col>}
             <Col xs={0} sm={0} md={0} lg={10} xl={10}>
                 <img src={require('@/assets/' + id + '.jpg')} style={{ width: '100%' }}></img>
             </Col>
@@ -293,7 +293,7 @@ export default class POI extends React.Component {
                         </span>
 
                         <p className={styles.poiContent} style={{ textAlign: 'center' }}>
-                            Melbourne is a city of amazing flora and fauna. It has several places where you can go for a walk or bike ride and get rejuvenated. We provide you all the parks and trails you can go to.
+                            Melbourne is considered to be Australia's garden city. It has several places where you can go for a walk or bike ride and get rejuvenated. We provide you all the parks and trails you can go to.
                             Go close to nature by escaping from the sight of concrete and take a break from a routine life. Explore mother nature at its best in Melbourne.
 </p>
                     </Col>
@@ -301,22 +301,20 @@ export default class POI extends React.Component {
                         <Row justify={'center'} type={'flex'} style={{ padding: '60px', backgroundColor: '#e0e5e6' }} gutter={[30, 30]}>
                             <Col xs={24} sm={24} md={12} lg={10} xl={10}>
                                 <Card
-
-                                    style={{ marginLeft: 'auto', marginRight: 'auto', padding: '30px' }}
+                                    style={{ marginLeft: 'auto', marginRight: 'auto', padding: '30px',height:'fit-content' }}
                                     cover={<img alt="trails" src={trails} style={{ marginTop: '10px' }} />}
                                 >
                                     <h3 className={styles.poiFirstSectionTitle}>TRAILS</h3>
-                                    <Meta description="Explore the wonderful walking and cycling trails in and around Melbourne to enjoy your active travel" />
+                                    <Meta description="Explore the wonderful walking and cycling trails in and around Melbourne to enjoy your active travel. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
                                 </Card>
                             </Col>
                             <Col xs={24} sm={24} md={12} lg={10} xl={10}>
                                 <Card
-
-                                    style={{ marginLeft: 'auto', marginRight: 'auto', padding: '30px' }}
+                                    style={{ marginLeft: 'auto', marginRight: 'auto', padding: '30px',height:'fit-content' }}
                                     cover={<img alt="parks" src={parks} style={{ marginTop: '10px' }} />}
                                 >
                                     <h3 className={styles.poiFirstSectionTitle}>PARKS</h3>
-                                    <Meta description="Explore the lush green parks of Melbourne by taking a walk or bike ride with your loved ones and enjoy the recreational activities on offer." />
+                                    <Meta description="Explore the lush green parks of Melbourne by walking or bike ride with your loved ones and enjoy the recreational activities on offer." />
                                 </Card>
                             </Col>
 
@@ -327,10 +325,34 @@ export default class POI extends React.Component {
                             <h2 className={styles.poiSecondTitle} style={{ height: 'fit-content', margin: 0, padding: 0 }}>Recommended Places</h2>
 
                         </span>
+                    </Col> <Col xs={24} sm={24} md={12} lg={10} xl={9}>
+                        <span style={{ textAlign: 'center' }}>
+                            <h2 className={styles.poiThirdTitle} style={{ height: 'fit-content', margin: 0, padding: 0 }}>Trails</h2>
+
+                        </span>
+                        <Row style={{ padding: 10 }}>
+                            <Col span={8}>
+                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(34) }} className={styles.poiPlacesImage}>
+                                    <img src={require('@/assets/34.jpg')} style={{ width: '100%' }}></img>
+                                </Card>
+                            </Col>
+                            <Col span={8}>
+                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(31) }} className={styles.poiPlacesImage}>
+                                    <img src={require('@/assets/31.jpg')} style={{ width: '100%' }}></img>
+                                </Card>
+                            </Col>
+                            <Col span={8}>
+                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(32) }} className={styles.poiPlacesImage}>
+                                    <img src={require('@/assets/32.jpg')} style={{ width: '100%' }}></img>
+                                </Card>
+                            </Col>
+                        </Row>
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={10} xl={9}>
                         <span style={{ textAlign: 'center' }}>
-                            <h2 className={styles.poiThirdTitle} style={{ height: 'fit-content', margin: 0, padding: 0 }}>Trails</h2>
+                            <h2 className={styles.poiThirdTitle} style={{ height: 'fit-content', margin: 0, padding: 0 }}>
+                            Parks 
+                            </h2>
 
                         </span>
                         <Row style={{ padding: 10 }}>
@@ -340,41 +362,19 @@ export default class POI extends React.Component {
                                 </Card>
                             </Col>
                             <Col span={8}>
-                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(2) }}className={styles.poiPlacesImage}>
+                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(2) }} className={styles.poiPlacesImage}>
                                     <img src={require('@/assets/2.jpg')} style={{ width: '100%' }}></img>
                                 </Card>
                             </Col>
                             <Col span={8}>
-                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(3) }}className={styles.poiPlacesImage}>
+                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(3) }} className={styles.poiPlacesImage}>
                                     <img src={require('@/assets/3.jpg')} style={{ width: '100%' }}></img>
                                 </Card>
                             </Col>
                         </Row>
 
                     </Col>
-                    <Col xs={24} sm={24} md={12} lg={10} xl={9}>
-                        <span style={{ textAlign: 'center' }}>
-                            <h2 className={styles.poiThirdTitle} style={{ height: 'fit-content', margin: 0, padding: 0 }}>Parks</h2>
-
-                        </span>
-                        <Row style={{ padding: 10 }}>
-                            <Col span={8}>
-                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(34) }}className={styles.poiPlacesImage}>
-                                    <img src={require('@/assets/34.jpg')} style={{ width: '100%' }}></img>
-                                </Card>
-                            </Col>
-                            <Col span={8}>
-                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(31) }}className={styles.poiPlacesImage}>
-                                    <img src={require('@/assets/31.jpg')} style={{ width: '100%' }}></img>
-                                </Card>
-                            </Col>
-                            <Col span={8}>
-                                <Card hoverable bodyStyle={{ padding: 0 }} onClick={() => { this.handleClickImage(32) }}className={styles.poiPlacesImage}>
-                                    <img src={require('@/assets/32.jpg')} style={{ width: '100%' }}></img>
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Col>
+                   
                     <Col xs={24} sm={24} md={22} lg={20} xl={18} style={{ padding: 30 }}>
                         <Collapse bordered={false} onChange={(value) => { console.log(value) }} expandIconPosition={'right'}>
                             <Collapse.Panel header="Explore More" key="1" style={{ backgroundColor: 'white', textAlign: 'right', border: '0' }}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './index.css';
-import { Descriptions, Button, Slider, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip, Modal } from 'antd';
+import { Descriptions, Button, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip, Modal } from 'antd';
 import { connect } from 'dva';
 import { Autocomplete, Marker, LoadScript, useJsApiLoader, GoogleMap } from '@react-google-maps/api';
 import { AimOutlined, CaretDownOutlined, RedoOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined } from '@ant-design/icons'
@@ -11,9 +11,9 @@ import show_img_1 from '@/assets/show_img_1.png'
 import show_img_2 from '@/assets/show_img_2.png'
 import show_img_3 from '@/assets/show_img_3.png'
 import show_img_4 from '@/assets/show_img_4.png'
-import Step1 from '@/assets/Step 1.png'
-import Step2 from '@/assets/Step 2.png'
-import Step3 from '@/assets/Step 3.png'
+import Step1 from '@/assets/Step 1 new.png'
+import Step2 from '@/assets/Step 2 new.png'
+import Step3 from '@/assets/Step 3 new.png'
 import Slide1 from '@/assets/Slide1.JPG'
 import Slide2 from '@/assets/Slide2.JPG'
 import Slide3 from '@/assets/Slide3.JPG'
@@ -32,6 +32,7 @@ import PlacesAutocomplete, {
   geocodeByPlaceId,
   getLatLng,
 } from 'react-places-autocomplete';
+import Slider from "react-slick";
 import { formatCountdown } from 'antd/lib/statistic/utils';
 
 const FormItem = Form.Item
@@ -1129,6 +1130,8 @@ export default class Travel extends React.Component {
       }]
     };
 
+   
+
     return (
       <>
       <Row>
@@ -1148,7 +1151,7 @@ export default class Travel extends React.Component {
        guildanceVisible:false
      })}}>
        <div style={{padding:'30px 10px 10px 10px'}}>
-     <Carousel autoplay autoplaySpeed={4000} infinite={true} beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }} dotPosition={'top'} dots={true}>
+     <Carousel dotsClass={styles.dot} autoplay autoplaySpeed={4000} infinite={true} accessibility={true} arrows={true} draggable={true} beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }}>
           <div style={contentStyle}>
             {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
             {/* 
