@@ -144,7 +144,7 @@ if(validated){
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('benefits')}}>Benefits</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('poi')}}>POI</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('travel')}}>Travel</a>
-             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('roadSafety')}}>Roud Safety</a>
+             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('roadSafety')}}>Road Safety</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('about')}}>About</a>
            
      
