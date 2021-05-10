@@ -125,7 +125,7 @@ export default class RoadSafety extends React.Component {
                     <Col xs={24} sm={24} md={24} lg={18} xl={18} >
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40 }}>
-                                <h2 className={styles.roadSafetyFirstTitle}>
+                                <h2 className={styles.roadSafetyFirstTitle}  style={{marginBottom:30}}>
                                     Pedestrian Safety Guide
                         </h2>
                                 <img src={safetyGuide1} style={{ width: '100%' }}></img>
@@ -133,9 +133,9 @@ export default class RoadSafety extends React.Component {
                         </Row>
                         <Row type={'flex'} justify={'center'} gutter={[20, 20]} style={{ padding: 20 }}>
                             <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40 }}>
-                                <h2 className={styles.roadSafetyFirstTitle}>
+                                <h2 className={styles.roadSafetyFirstTitle} style={{marginBottom:30}}>
                                     Cycling Safety Guide
-                        </h2>
+                        </h2 >
                                 <img src={safetyGuide} style={{ width: '100%' }}></img>
                             </Col>
                             <img></img>

@@ -90,7 +90,7 @@ if(validated){
    
                  </Menu.Item>
                  <Menu.Item key="roadSafety" onClick={()=>{this.changeCurrent("roadSafety")}} icon={<AppstoreOutlined />}>
-                    Road Safety
+                    ROAD SAFETY
         </Menu.Item>
                   <Menu.Item key="about" onClick={()=>{this.changeCurrent("about")}} icon={<AppstoreOutlined />}>
                     ABOUT
