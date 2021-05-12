@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './index.css';
-import { Descriptions, Button, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip, Modal } from 'antd';
+import { Descriptions, Button, Form, InputNumber, Select, Row, Col, Spin, Card, Carousel, Radio, Input, Divider, message, Tooltip, Modal, Icon } from 'antd';
 import { connect } from 'dva';
 import { Autocomplete, Marker, LoadScript, useJsApiLoader, GoogleMap } from '@react-google-maps/api';
-import { AimOutlined, CaretDownOutlined, RedoOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined } from '@ant-design/icons'
+import { AimOutlined, CaretDownOutlined, RedoOutlined, PlusCircleOutlined, CloseOutlined, PlusOutlined, EnvironmentOutlined, RocketOutlined, SubnodeOutlined } from '@ant-design/icons'
 import MyComponent from '@/pages/googleMap';
 import ReactECharts from 'echarts-for-react';
 import Geocode from "react-geocode";
@@ -43,6 +43,18 @@ const FormItem = Form.Item
 @Form.create()
 export default class Travel extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.next = this.next.bind(this);
+    this.prev = this.prev.bind(this);
+  }
+  next() {
+    this.slider.slick.slickNext();
+  }
+  prev() {
+    this.slider.slick.slickPrev();
+  }
+
   state = {
     age: 0, weight: 0, height: 0,
     defaultPosition: {
@@ -64,6 +76,7 @@ export default class Travel extends React.Component {
     original_avg_speed: 0,
     total_calories_comsuption: 0,
     comsuption_efficiency: 0,
+    currentPage: 2
   }
 
   handleReset = () => {
@@ -92,7 +105,7 @@ export default class Travel extends React.Component {
     window.removeEventListener('resize', this.handleResize.bind(this))
   }
 
- 
+
 
   handleResize = e => {
     console.log(e)
@@ -112,6 +125,9 @@ export default class Travel extends React.Component {
 
   carouselChange(from, to) {
     console.log(from, to)
+    this.setState({
+      currentPage: to,
+    })
   }
 
   handleAutoCompleteChange = (address, field) => {
@@ -781,20 +797,22 @@ export default class Travel extends React.Component {
 
           {wayPoints_autoComplete}
 
+          <Tooltip defaultVisible={true} placement="right" title={'ADD MORE WAYPOINTS!'} zIndex={0}>
+            <SubnodeOutlined onClick={this.addPlaces} style={{ fontSize: '30px',position:'relative',left:'0' }} rotate={90}/>
+          </Tooltip>
 
-          <PlusOutlined onClick={this.addPlaces} style={{ fontSize: '30px' }} />
 
         </Col>
         <CaretDownOutlined />
         <Col><Row gutter={[10, 10]} type={'flex'} align="middle">
-                <Col span={22}>
-         
-          {end_autoComplete}
-          {/* <Divider>Destination</Divider> */}
-          {getFieldDecorator('destination')(
-            <Input placeholder={'End'} style={{ display: 'none' }}></Input>
-          )}  </Col>
-          </Row>
+          <Col span={22}>
+
+            {end_autoComplete}
+            {/* <Divider>Destination</Divider> */}
+            {getFieldDecorator('destination')(
+              <Input placeholder={'End'} style={{ display: 'none' }}></Input>
+            )}  </Col>
+        </Row>
         </Col>
         <Col span={24}></Col>
       </>
@@ -1130,31 +1148,33 @@ export default class Travel extends React.Component {
       }]
     };
 
-   
+
 
     return (
       <>
-      <Row>
-      <Col span ={2}>
-        </Col>
-        <Col span={20}>
-        <span><h2 className={styles.planTitle}>Plan Your Journey<span style={{textAlign:'center',margin:'20px',position:'relative',top:'50%'}}><Button icon={'info'}style={{margin:'0 auto',position:'relative',top:'50%',borderRadius:'50%'}}onClick={()=>{this.setState({guildanceVisible:true})}}></Button></span></h2></span>
-        </Col>
-        <Col span={2}>
-  
-        </Col>
-      
-      
-     
-      </Row>
-     <Modal width = {browserWidth*0.8}  footer={false} visible={this.state.guildanceVisible} onCancel={()=>{this.setState({
-       guildanceVisible:false
-     })}}>
-       <div style={{padding:'30px 10px 10px 10px'}}>
-     <Carousel dotsClass={styles.dot} autoplay autoplaySpeed={4000} infinite={true} accessibility={true} arrows={true} draggable={true} beforeChange={this.carouselChange} style={{ height: browserWidth * 1 / 2 }}>
-          <div style={contentStyle}>
-            {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
-            {/* 
+        <Row>
+          <Col span={2}>
+          </Col>
+          <Col span={20}>
+            <span><h2 className={styles.planTitle}>Plan Your Journey<span style={{ textAlign: 'center', margin: '20px', position: 'relative', top: '50%' }}><Tooltip defaultVisible={true} placement="right" title={'GET MORE INSTRUCTION!'} zIndex={0} ><Button icon={'info'} style={{ margin: '0 auto', position: 'relative', top: '50%', borderRadius: '50%' }} onClick={() => { this.setState({ guildanceVisible: true }) }}></Button></Tooltip></span></h2></span>
+          </Col>
+          <Col span={2}>
+
+          </Col>
+
+
+
+        </Row>
+        <Modal width={browserWidth * 0.8} footer={false} visible={this.state.guildanceVisible} onCancel={() => {
+          this.setState({
+            guildanceVisible: false
+          })
+        }}>
+          <div style={{ padding: '30px 10px 10px 10px' }}>
+            <Carousel ref={el => (this.slider = el)} accessibility={true} dotsClass={styles.dot} autoplay autoplaySpeed={4000} infinite={true} accessibility={true} arrows={true} draggable={true} beforeChange={(from, to) => { this.carouselChange(from, to) }} style={{ height: browserWidth * 1 / 2 }} slickGoTo={this.state.currentPage}>
+              <div style={contentStyle}>
+                {/* <h3 style={contentStyle}>New to Melbourne?</h3> */}
+                {/* 
            <h2>
 
               Explore your surroundings with us. <br />
@@ -1162,36 +1182,36 @@ Walk or cycle to places near you quicker.<br />
 Do multiple things on the go.
                   </h2>   */}
 
-            <img src={Step1} style={imgStyle}></img>
-           
-          </div>
-          <div style={contentStyle}>
-            {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
-            {/* <h2 >
+                <img src={Step1} style={imgStyle}></img>
+
+              </div>
+              <div style={contentStyle}>
+                {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
+                {/* <h2 >
               Optimize your travel with us. <br />
 Do more in less time.<br />
 Discover how much time you saved by travelling with us.
 
                   </h2>  */}
 
-            <img src={Step2} style={imgStyle} ></img>
-           
-          </div>
-          <div style={contentStyle}>
-            {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
-            {/* <h2 >
+                <img src={Step2} style={imgStyle} ></img>
+
+              </div>
+              <div style={contentStyle}>
+                {/* <h3 style={contentStyle}>Travel smarter!</h3> */}
+                {/* <h2 >
               Optimize your travel with us. <br />
 Do more in less time.<br />
 Discover how much time you saved by travelling with us.
 
                   </h2>  */}
 
-            <img src={Step3} style={imgStyle} ></img>
-            
-          </div>
-          
+                <img src={Step3} style={imgStyle} ></img>
 
-          {/* <div className={styles.show_img_container}>
+              </div>
+
+
+              {/* <div className={styles.show_img_container}>
                 <div style={imgTitleStyle}> Feeling unsafe in dark?</div>
                 <div style={imgContentStyle}>
                   We will help you get to a place where you feel safe.<br />
@@ -1200,94 +1220,107 @@ Check out the number of people near you.
             </div>
                 <img src={img3} style={contentStyle} ></img>
               </div> */}
-        </Carousel>
-       </div>
+            </Carousel>
+            <div>
 
-     </Modal>
-   
+              <Row type={'flex'} justify={'center'} gutter={[10,10]}>
+                <Col> <Button onClick={this.prev} style={{border:0,boxShadow:'none'}}>{'< prev'}</Button>
+
+                </Col>
+                <Col>   <Button onClick={this.next} style={{border:0,boxShadow:'none'}}>{'next >'}</Button>
+                </Col>
+              </Row>
+
+
+            </div>
+
+
+          </div>
+        </Modal>
+
         <div id="map" className={styles.background} >
 
           <Row gutter={[10, 10]} >
 
             <Col xs={24} lg={24} xl={24}>
-          
 
-                <div className={styles.mapContainer}>
-                  <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.directions ? null : this.state.defaultPosition} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
-                  <div className={styles.mapLocateButton}>
-                    {this.state.mapIsLoad && <Button
-                      type="default"
-                      size='large'
-                      icon={'environment'}
-                      onClick={() => {
-                        this.getCurrentPosition()
-                      }}></Button>}
 
-                  </div>
+              <div className={styles.mapContainer}>
+                <MyComponent directions={this.state.directions} markers={this.markerRender.bind(this)} startPoint={this.state.directions ? null : this.state.defaultPosition} getMapStatus={this.getMapStatus.bind(this)}></MyComponent>
+                <div className={styles.mapLocateButton}>
+                  {this.state.mapIsLoad && <Button
+                    type="default"
+                    size='large'
+                    icon={'environment'}
+                    onClick={() => {
+                      this.getCurrentPosition()
+                    }}></Button>}
 
                 </div>
+
+              </div>
             </Col>
-            <Col span={24} style={{backgroundColor:'white',padding:'30px'}}>
-            
-            <Row>
-            <Col xs={24} lg={12} xl={12}>
-              <h2 className={styles.mapSecondTitle}>Plan</h2>
-              
-                <Row gutter={[10, 10]} justify={'end'}>
-                  <Col>
-                    {
-                      this.state.mapIsLoad && this.constructSeriesPlacesBar()
-                    }
-                  </Col>
+            <Col span={24} style={{ backgroundColor: 'white', padding: '30px' }}>
 
-                  <Col>
-                    <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
-                      <Col style={{ textAlign: 'right' }} span={12}>
-                        {
-                          getFieldDecorator('mode', {
-                            initialValue: 'WALKING'
-                          })(
-                            <Radio.Group
+              <Row>
+                <Col xs={24} lg={12} xl={12}>
+                  <h2 className={styles.mapSecondTitle}>Plan</h2>
 
-                              buttonStyle={{ background: '#364d79', color: '#fff' }}
-                            >
-                              <Radio.Button value="WALKING">WALKING</Radio.Button>
-                              <Radio.Button value="BICYCLING">BICYCLING</Radio.Button>
-                            </Radio.Group>)
-                        }
-                      </Col>
-                      <Col span={12}>
-                        <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
-                          <Col span={13} style={{ textAlign: 'right' }}>
-                            {this.state.mapIsLoad && <Button style={{ background: '#303F9F', color: '#fff' }} onClick={this.optimize}>
-                              <RocketOutlined />Optimize
+                  <Row gutter={[10, 10]} justify={'end'}>
+                    <Col>
+                      {
+                        this.state.mapIsLoad && this.constructSeriesPlacesBar()
+                      }
+                    </Col>
+
+                    <Col>
+                      <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
+                        <Col style={{ textAlign: 'right' }} span={12}>
+                          {
+                            getFieldDecorator('mode', {
+                              initialValue: 'WALKING'
+                            })(
+                              <Radio.Group
+
+                                buttonStyle={{ background: '#364d79', color: '#fff' }}
+                              >
+                                <Radio.Button value="WALKING">WALKING</Radio.Button>
+                                <Radio.Button value="BICYCLING">BICYCLING</Radio.Button>
+                              </Radio.Group>)
+                          }
+                        </Col>
+                        <Col span={12}>
+                          <Row gutter={[10, 10]} justify={'end'} type={'flex'}>
+                            <Col span={13} style={{ textAlign: 'right' }}>
+                              {this.state.mapIsLoad && <Button style={{ background: '#303F9F', color: '#fff' }} onClick={this.optimize}>
+                                <RocketOutlined />Optimize
                     </Button>}
-                          </Col >
+                            </Col >
 
-                          <Col span={11} style={{ textAlign: 'left' }}>
-                            {this.state.mapIsLoad && <Button onClick={this.handleReset}>
-                              <RedoOutlined />Reset
+                            <Col span={11} style={{ textAlign: 'left' }}>
+                              {this.state.mapIsLoad && <Button onClick={this.handleReset}>
+                                <RedoOutlined />Reset
                     </Button>}
-                          </Col>
-                        </Row>
+                            </Col>
+                          </Row>
 
 
-                      </Col>
+                        </Col>
 
-                    </Row>
-                  </Col>
+                      </Row>
+                    </Col>
 
 
 
-                </Row>
+                  </Row>
 
-            </Col>
+                </Col>
 
-            <Col xs={24} lg={12} xl={12}>
-<h2 className={styles.mapSecondTitle}>Enter Your Weight</h2>
-             
-                <Form>
-                  {/* <Row type={'flex'} justify={'center'}>
+                <Col xs={24} lg={12} xl={12}>
+                  <h2 className={styles.mapSecondTitle}>Enter Your Weight</h2>
+
+                  <Form>
+                    {/* <Row type={'flex'} justify={'center'}>
                   
                   <Col xs={14} md={12} xl={12} xxl={8}>
                     <FormItem labelCol={{ span: 8 }} wrapperCol={{ span: 14 }} label={'Age'}>
@@ -1360,146 +1393,156 @@ Check out the number of people near you.
                   </Col>
                   
                 </Row> */}
-                  <Row type={'flex'} justify={'center'}>
-                    
-                    <Col span={18}>
-                      {
-                        getFieldDecorator('weight', {
-                          initialValue: 0
-                        })(
-                          <Input
-                         
-                            style={{ margin: '0 16px' }}
-                            suffix={'kg'}
+                    <Row type={'flex'} justify={'center'}>
 
-                            value={weight}
-                            onChange={this.changeWeight}
-                          />)
+                      <Col span={6}>
+                        {
+                          getFieldDecorator('weight', {
+                            initialValue: 0,
+                            rules: [
 
-                      }
+                            ],
+                          })(
+                            <InputNumber
+
+                              style={{ margin: '0 16px', width: '100%' }}
+                              // suffix={'kg'}
+                              max={300}
+                              min={0}
+                              value={weight}
+                              onChange={this.changeWeight}
+                            />
+
+                          )
 
 
-                    </Col>
-                    {/* <Col> */}
-                    {/* <Divider  >
+                        }
+
+
+                      </Col>
+                      <Col span={4}>
+                        <span><h2>kg</h2></span>
+                      </Col>
+                      {/* <Col> */}
+                      {/* <Divider  >
                       <h2>Health</h2>
                     </Divider> */}
 
-                    {/* <Descriptions title="Calories burned">
+                      {/* <Descriptions title="Calories burned">
                       <Descriptions.Item label="Total calories burned">{total_calories_comsuption && String(total_calories_comsuption) + ' cal' || 0} </Descriptions.Item>
                       <Descriptions.Item label="Burning efficiency">{comsuption_efficiency && String(comsuption_efficiency) + ' cal/min' || 0}</Descriptions.Item>
 
                     </Descriptions> */}
-                    {/* </Col> */}
-                  </Row>
-                  {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
-                </Form>
+                      {/* </Col> */}
+                    </Row>
+                    {/* <this.PlaceDetailsComponent></this.PlaceDetailsComponent> */}
+                  </Form>
 
+                </Col>
+              </Row>
             </Col>
-            </Row>
-            </Col>
-            
-     
+
+
             <Col span={24}>
-              
-
-           
-                <Row style={{padding:'30px'}}>
-
-               <Col span={24}>
-               <h2 className={styles.optimizedResultTitle}>Trip Analysis</h2>
-               </Col>
 
 
 
-                  <Col xs={24} xl={8}>
-                    <Row>
-                      <Col xs={24} xl={24}>
+              <Row style={{ padding: '30px' }}>
+
+                <Col span={24}>
+                  <h2 className={styles.optimizedResultTitle}>Trip Analysis</h2>
+                </Col>
+
+
+
+                <Col xs={24} xl={8}>
+                  <Row>
+                    <Col xs={24} xl={24}>
                       <h2 className={styles.optimizedTitle}>
-                          Distance Reduced
+                        Distance Reduced
                       </h2>
-                       
-                        <h2 className={styles.optimizedNumber}>{difference_distance && String(difference_distance / 1000) || 0}</h2>
-                        <h4 style={{ color: '#aaa' }}>
-                          Kilometres
+
+                      <h2 className={styles.optimizedNumber}>{difference_distance && String(difference_distance / 1000) || 0}</h2>
+                      <h4 style={{ color: '#aaa' }}>
+                        Kilometres
                       </h4>
-                        {/* <p>
+                      {/* <p>
                       Estimated route distance Reduced(min)
                       </p> */}
-                        {/* <Descriptions title="Distance Prediction" > */}
-                        {/* <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
+                      {/* <Descriptions title="Distance Prediction" > */}
+                      {/* <Descriptions.Item label="Estimated route distance(original)">{original_distance && String(original_distance / 1000) + ' km' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated route distance(optimized)">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
 
-                        {/* <Descriptions.Item label="Estimated route distance Reduced">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
-                        {/* <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
-                        {/* </Descriptions> */}
-                      </Col>
-                      {/* <Col xs={24} xl={24}>
+                      {/* <Descriptions.Item label="Estimated route distance Reduced">{optimized_distance && String(optimized_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
+                      {/* <Descriptions.Item label="Total distance reduced by optimizer">{difference_distance && String(difference_distance / 1000) + ' km' || 0}</Descriptions.Item> */}
+                      {/* </Descriptions> */}
+                    </Col>
+                    {/* <Col xs={24} xl={24}>
                       <ReactECharts option={distance_option} />
                     </Col> */}
-                    </Row>
-                  </Col>
+                  </Row>
+                </Col>
 
 
-                  <Col xs={24} xl={8}>
-                    <Row>
-                      <Col xs={24} xl={24}>
-                        <h2 className={styles.optimizedTitle}>
-                          Time Saved
+                <Col xs={24} xl={8}>
+                  <Row>
+                    <Col xs={24} xl={24}>
+                      <h2 className={styles.optimizedTitle}>
+                        Time Saved
                       </h2>
-                        
-                        <h2 className={styles.optimizedNumber}>{difference_time && String(Math.round((difference_time / 60))) || 0}</h2>
-                        <h4 style={{ color: '#aaa' }}>
-                          minutes
+
+                      <h2 className={styles.optimizedNumber}>{difference_time && String(Math.round((difference_time / 60))) || 0}</h2>
+                      <h4 style={{ color: '#aaa' }}>
+                        minutes
                       </h4>
-                        {/* <p>
+                      {/* <p>
                       Estimated time Reduced(min)
                       </p> */}
-                        {/* <Descriptions title="Time Prediction"> */}
-                        {/* <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
+                      {/* <Descriptions title="Time Prediction"> */}
+                      {/* <Descriptions.Item label="Estimated time(original)">{original_time && String(Math.round(original_time / 60)) + ' mins' || 0}</Descriptions.Item>
                         <Descriptions.Item label="Estimated time(optimized)">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
 
-                        {/* <Descriptions.Item label="Estimated time Reduced">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
-                        {/* <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item> */}
-                        {/* </Descriptions> */}
-                      </Col>
-                      {/* <Col xs={24} xl={24}>
+                      {/* <Descriptions.Item label="Estimated time Reduced">{optimized_time && String(Math.round((optimized_time / 60))) + ' mins' || 0}</Descriptions.Item> */}
+                      {/* <Descriptions.Item label="Total time reduced by optimizer">{difference_time && String(Math.round(difference_time / 60)) + ' mins' || 0}</Descriptions.Item> */}
+                      {/* </Descriptions> */}
+                    </Col>
+                    {/* <Col xs={24} xl={24}>
                       <ReactECharts option={time_option} />
                     </Col> */}
-                    </Row>
-                  </Col>
+                  </Row>
+                </Col>
 
 
 
 
 
-                  <Col xs={24} xl={8}>
-                    <Row>
-                      <Col xs={24} xl={24}>
+                <Col xs={24} xl={8}>
+                  <Row>
+                    <Col xs={24} xl={24}>
 
-                        {/* <Descriptions title="Travel Speed Prediction"> */}
-                        <h2 className={styles.optimizedTitle}>Calories Burned</h2>
-                       
-                        <h2 className={styles.optimizedNumber}>
-                          {total_calories_comsuption && String(total_calories_comsuption) || 0}
-                        </h2>
-                        <h4 style={{ color: '#aaa' }}>
-                          calories
+                      {/* <Descriptions title="Travel Speed Prediction"> */}
+                      <h2 className={styles.optimizedTitle}>Calories Burned</h2>
+
+                      <h2 className={styles.optimizedNumber}>
+                        {total_calories_comsuption && String(total_calories_comsuption) || 0}
+                      </h2>
+                      <h4 style={{ color: '#aaa' }}>
+                        calories
                       </h4>
-                        {/* <p>
+                      {/* <p>
                         Estimated Average speed(m/s)
                         </p> */}
-                        {/* <Descriptions.Item label="Estimated Average speed(m/s)">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item> */}
-                        {/* </Descriptions> */}
-                      </Col>
-                    </Row>
-                  </Col>
+                      {/* <Descriptions.Item label="Estimated Average speed(m/s)">{optimized_avg_speed && String(optimized_avg_speed) + ' m/s' || 0}</Descriptions.Item> */}
+                      {/* </Descriptions> */}
+                    </Col>
+                  </Row>
+                </Col>
 
 
 
-                </Row>
+              </Row>
 
-              
+
             </Col>
           </Row>
           <div>

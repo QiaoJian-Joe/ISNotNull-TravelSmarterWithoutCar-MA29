@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>  
+    <!-- 属性配置 -->  
+    
+      
+    <!-- 设置缓存和延迟加载等等重要的运行时的行为方式 -->  
+   
+      
+    <!-- 别名 -->  
+   
+      
+    <environments default="development">  
+        <!-- environment 元素体中包含对事务管理和连接池的环境配置 -->  
+        <environment id="development">  
+            <transactionManager type="JDBC" />  
+            <!-- type分三种：  
+                    UNPOOLED是每次被请求时简单打开和关闭连接   
+                    UNPOOLED的数据源仅仅用来配置以下 4 种属性driver，url，username，password  
+                    POOLED ：JDBC连接对象的数据源连接池的实现，不直接支持第三方数据库连接池  
+            -->  
+            <dataSource type="POOLED">  
+                <property name="driver" value="com.mysql.jdbc.Driver" />  
+                <property name="url" value="jdbc:mysql://travel-db.cvvqwnn1mhqt.us-east-2.rds.amazonaws.com:3306/traveldb"/>  
+                <property name="username" value="admin" />  
+                <property name="password" value="team_ma29" />  
+            </dataSource>  
+        </environment>  
+    </environments>  
+      
+    <!-- ORM映射文件 -->  
+    <mappers>  
+        <mapper resource="mapper/ActiveTravel.xml" /> 
+        <mapper resource="mapper/POI.xml" /> 
+    </mappers>  
+      
+      
+</configuration>
