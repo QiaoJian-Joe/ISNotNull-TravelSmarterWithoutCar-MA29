@@ -313,7 +313,7 @@ Physical inactivity can result in various diseases like bowel, uterine and breas
                     <Row gutter={[10, 10]} style={{ padding: 20 }} type={'flex'} justify={'center'}>
                         <Col xs={24} sm={24} md={24} lg={24} xl={16} style={{ paddingTop: 40, paddingBottom: 20, paddingLeft: 20, paddingRight: 20 }} className={styles.detailContainer}>
                             <h2 className={styles.detailTitle} style={{ textAlign: 'center' }}>
-                                Active travel results in ...
+                                Active travel results in
                 </h2>
                         </Col>
                         <Col span={24}></Col>

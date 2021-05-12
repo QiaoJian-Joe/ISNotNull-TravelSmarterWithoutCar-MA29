@@ -82,7 +82,7 @@ if(validated){
                     BENEFITS
         </Menu.Item>
         <Menu.Item key="poi" onClick={()=>{this.changeCurrent("poi")}} icon={<AppstoreOutlined />}>
-                    POI
+        EXPLORE
         </Menu.Item>
         <Menu.Item onClick={()=>{this.changeCurrent("travel")}} key="travel">
                    
@@ -142,7 +142,7 @@ if(validated){
            <p className={styles.footer_content}>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('home')}}>Home</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('benefits')}}>Benefits</a>
-             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('poi')}}>POI</a>
+             <a className={styles.footer_link} onClick={()=>{this.changeCurrent('poi')}}>Explore</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('travel')}}>Travel</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('roadSafety')}}>Road Safety</a>
              <a className={styles.footer_link} onClick={()=>{this.changeCurrent('about')}}>About</a>

@@ -288,7 +288,7 @@ export default class POI extends React.Component {
 
                     <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ backgroundColor: '#f2f2f2', padding: '20px' }}>
                         <span style={{ textAlign: 'center' }}>
-                            <h2 className={styles.poiTitle} style={{ height: 'fit-content', margin: 0, padding: 0 }}>Points of Interest</h2>
+                            <h2 className={styles.poiTitle} style={{ height: 'fit-content', margin: 0, padding: 0 }}>EXPLORE</h2>
 
                         </span>
 

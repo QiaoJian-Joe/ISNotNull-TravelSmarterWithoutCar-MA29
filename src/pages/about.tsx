@@ -135,17 +135,17 @@ Our vision is to make people aware of the importance of active travel. These are
                 </div>
 
 
-                <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }} gutter={[10, 10]}>
+                {/* <Row type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }} gutter={[10, 10]}>
                     <Col xs={24} sm={24} md={24} lg={24} xl={24} style={{ paddingTop: 40, paddingBottom: 40, paddingLeft: 20, paddingRight: 20 }}>
                         <h2 className={styles.aboutUsPicTitle}>Meet our Team</h2>
                     </Col>
 
 
-                </Row>
+                </Row> */}
 
 
 
-                <Row gutter={[10, 10]} type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto', marginBottom: 40 }}>
+                {/* <Row gutter={[10, 10]} type={"flex"} justify={'center'} style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto', marginBottom: 40 }}>
                     <Col xs={12} sm={12} md={6} lg={6} xl={6} >
                         <Card
                             hoverable
@@ -188,7 +188,7 @@ Our vision is to make people aware of the importance of active travel. These are
                             <Meta description="Lead Developer" />
                         </Card>
                     </Col>
-                </Row>
+                </Row> */}
             </div>
         );
     }
